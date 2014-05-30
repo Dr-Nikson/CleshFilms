@@ -1,0 +1,68 @@
+<form name="addMovieForm" class="ang-form"  ng-controller="MovieAddFormCtrl as movieAddFormCtrl"
+      ng-submit="movieAddFormCtrl.submitForm()" ng-show="movieAddFormCtrl.showForm" novalidate>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <a href="#/movies" class="btn btn-block btn-lg btn-default">Back to movies</a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-block btn-lg btn-success" ng-disabled="addMovieForm.$invalid"
+                    ng-class="{disabled:addMovieForm.$invalid}">
+                Add movie
+            </button>
+        </div>
+    </div>
+
+    <div>Form is {{addMovieForm.$valid}}</div>
+    <div>Form dirty is {{addMovieForm.$dirty}}</div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieName.$valid,
+                'has-error': addMovieForm.movieName.$invalid && addMovieForm.movieName.$dirty}">
+
+                <input type="text" value="" name="movieName" placeholder="Enter movie name"
+                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.name"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieName.$valid"></span>
+            </div>
+        </div>
+        <!--<div class="col-xs-6">
+            <h4 class="demo-panel-title">Name:</h4>
+            <div class="form-group">
+                <input type="text" value="" placeholder="Inactive" class="form-control my-form-control">
+            </div>
+        </div>-->
+    </div>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Thumbnail url:</h4>
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieThumbUrl.$valid,
+                'has-error': addMovieForm.movieThumbUrl.$invalid && addMovieForm.movieThumbUrl.$dirty}">
+                <input type="url" value="" name="movieThumbUrl" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                       ng-model="movieAddFormCtrl.movie.thumbUrl" required>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Description:</h4>
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieDesc.$valid,
+                'has-error': addMovieForm.movieDesc.$invalid && addMovieForm.movieDesc.$dirty}">
+                <textarea name="movieDesc" placeholder="Enter movie description" class="form-control my-form-control"
+                          ng-model="movieAddFormCtrl.movie.desc" required></textarea>
+            </div>
+        </div>
+    </div>
+
+</form>

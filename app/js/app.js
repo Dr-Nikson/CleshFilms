@@ -23,6 +23,34 @@
             activeTab: 'movies'
         });
 
+        $routeProvider.when('/movies/add', {
+            templateUrl: 'partials/movie-add.html',
+            /*controller: 'MovieAddCtrl',
+            controllerAs: 'movieAddCtrl',*/
+            activeTab: 'movies'
+        });
+
+        $routeProvider.when('/movies/add/success/:movieId', {
+            templateUrl: 'partials/movie-add-success.html',
+            controller: 'MovieAddSuccessCtrl',
+            controllerAs: 'movieAddSuccessCtrl',
+            activeTab: 'movies'
+        });
+
+        $routeProvider.when('/movies/edit/:movieId', {
+            templateUrl: 'partials/movie-edit.html',
+            controller: 'MovieEditCtrl',
+            controllerAs: 'movieEditCtrl',
+            activeTab: 'movies'
+        });
+
+        $routeProvider.when('/images/add', {
+            templateUrl: 'partials/image-add.html',
+            /*controller: 'MovieAddCtrl',
+             controllerAs: 'movieAddCtrl',*/
+            activeTab: 'images'
+        });
+
         $routeProvider.when('/view2', {
             templateUrl: 'partials/partial2.html',
             controller: 'MyCtrl2'

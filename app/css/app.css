@@ -1,6 +1,7 @@
 /* app css stylesheet */
 
-.my-row-standard
+.my-row-standard,
+.standard-margin
 {
     margin-bottom: 20px;
 }
@@ -25,3 +26,43 @@
 {
     height: 45px;
 }
+
+
+.edit-movie-title
+{
+    margin-top: 0;
+}
+
+
+.edit-movie-inline-btn
+{
+    margin-top: -8px;
+}
+
+.edit-movie-desc-title
+{
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.edit-movie-desc
+{
+    padding-left: 52px;
+}
+
+
+.form-title
+{
+    padding-top: 20px;
+    margin: 2px 0 20px;
+}
+
+/*.ang-form input.ng-invalid.ng-dirty
+{
+    background-color: #FA787E;
+}
+
+.ang-form input.ng-valid.ng-dirty
+{
+    background-color: #78FA89;
+}*/

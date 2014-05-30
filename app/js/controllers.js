@@ -24,18 +24,35 @@
 
     }]);
 
-    app.controller('MoviePageCtrl', ['$scope', '$http', function($scope,$http) {
+    app.controller('MoviePageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
         var self = this;
         self.movies = [];
+        // This is what you will bind the filter to
+        self.filterSearchQuery = '';
 
-        /*$http.get('/app/json/main-movies-list.json').success(function(data){
+        $http.get('/app/json/main-movies-list.json').success(function(data){
+            self.movies = data;
+            //$scope.movies = data;
+        });
+
+        /*$http.get('/app/json/all-movies-list.json').success(function(data){
             self.movies = data;
             //$scope.movies = data;
         });*/
 
-        $http.get('/app/json/all-movies-list.json').success(function(data){
-            self.movies = data;
-            //$scope.movies = data;
+
+
+        // Instantiate these variables outside the watch
+        var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+        $scope.$watch('searchQuery', function (val) {
+            if (filterSearchQueryTimeout)
+                $timeout.cancel(filterSearchQueryTimeout);
+
+            tmpFilterSearchQuery = val;
+
+            filterSearchQueryTimeout = $timeout(function() {
+                self.filterSearchQuery = tmpFilterSearchQuery;
+            }, 250); // delay 250 ms
         });
 
         self.getRowMoviesNum = function () {
@@ -53,6 +70,44 @@
             self.movies.splice(index,1);
         };
 
+
+    }]);
+
+    app.controller('MovieEditCtrl', ['$scope', '$http', '$routeParams', function($scope,$http,$routeParams) {
+        var self = this;
+        self.movieId = $routeParams.movieId;
+        self.movie = { };
+
+        $http.get('/app/json/spider-man-movie.json').success(function (data) {
+            self.movie = data;
+        });
+
+    }]);
+
+    app.controller('MovieAddSuccessCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+        var self = this;
+        self.movieId = $routeParams.movieId;
+        $scope.movie = {};
+
+        $http.get('/app/json/spider-man-movie.json').success(function (data) {
+            $scope.movie = data;
+        });
+
+    }]);
+
+
+    app.controller('MovieAddFormCtrl', ['$scope', '$http', '$routeParams', '$location', function ($scope, $http, $routeParams, $location) {
+        var self = this;
+
+        self.movie = {};
+        self.showForm = true;
+
+        self.submitForm = function () {
+            console.log("Form submit");
+            self.showForm = false;
+            self.movie.id = "1";
+            $location.path("movies/add/success/"+self.movie.id);
+        }
 
     }]);
 

@@ -4,7 +4,7 @@
 
 <div class="row my-row-standard">
     <div class="col-xs-3">
-        <a href="#" class="btn btn-block btn-lg btn-primary">Add new movie</a>
+        <a href="#/movies/add" class="btn btn-block btn-lg btn-primary">Add new movie</a>
     </div>
     <div class="col-xs-9">
         <div class="form-group">
@@ -15,13 +15,13 @@
 </div>
 
 
-<div class="row my-row-standard" ng-repeat="moviesRow in moviePageCtrl.movies | filter:searchQuery | partition:moviePageCtrl.getRowMoviesNum() ">
+<div class="row my-row-standard" ng-repeat="moviesRow in moviePageCtrl.movies | filter:moviePageCtrl.filterSearchQuery | partition:moviePageCtrl.getRowMoviesNum() ">
     <div class="col-xs-3" ng-repeat="movie in moviesRow">
         <div class="tile tile-movie">
             <img src="{{movie.thumbUrl}}" alt="{{movie.name}}" class="tile-image big-illustration">
             <h3 class="tile-title">{{movie.name | characters:21:true}}</h3>
             <!-- <p>100% convertable to HTML/CSS layout.</p> -->
-            <a class="btn btn-info btn-large btn-block" href="http://designmodo.com/flat">Изменить</a>
+            <a class="btn btn-info btn-large btn-block" href="#/movies/edit/{{movie.id}}">Изменить</a>
             <button class="btn btn-danger btn-large btn-block" ng-click="moviePageCtrl.removeMovie(moviePageCtrl.calculateIndex($index,$parent.$index))">
                 Удалить
             </button>
