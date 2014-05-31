@@ -6,9 +6,18 @@
     margin-bottom: 20px;
 }
 
+.standard-top-margin
+{
+    margin-top: 20px;
+}
+
 .small-margin
 {
     margin-bottom: 10px;
+}
+.double-margin
+{
+    margin-bottom: 40px;
 }
 
 .no-margin
@@ -53,6 +62,11 @@
 .edit-movie-inline-btn
 {
     margin-top: -8px;
+}
+
+.edit-movie-inline-btn-big
+{
+    margin-top: 9px;
 }
 
 .edit-movie-desc-title

@@ -6,6 +6,7 @@
     var app = angular.module('cleshFilm', [
         'ngRoute',
         'ngSanitize',
+        'rt.encodeuri',
         'cleshFilm.filters',
         'cleshFilm.services',
         'cleshFilm.directives',
@@ -52,7 +53,7 @@
             activeTab: 'images'
         });
 
-        $routeProvider.when('/images/edit/:imageId', {
+        $routeProvider.when('/images/edit/:imageId/:returnPath?', {
             templateUrl: 'partials/image-edit.html',
             controller: 'ImageEditCtrl',
             controllerAs: 'imageEditCtrl',

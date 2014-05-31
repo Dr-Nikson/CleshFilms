@@ -96,19 +96,88 @@
     }]);
 
 
-    app.controller('MovieAddFormCtrl', ['$scope', '$http', '$routeParams', '$location', function ($scope, $http, $routeParams, $location) {
-        var self = this;
+    app.controller('MovieAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter)
+        {
+            var self = this;
 
-        self.movie = {};
-        self.showForm = true;
+            self.movie = {};
+            self.tmpData = {
+                imagePreViewUrl : ""
+            };
+            self.images = [];
+            self.showForm = true;
+            self.showImageContainer = true;
+            self.showLoadMoreBtn = true;
+            self.filterImageSearchQuery = '';
 
-        self.submitForm = function () {
-            console.log("Form submit");
-            self.showForm = false;
-            self.movie.id = "1";
-            $location.path("movies/add/success/"+self.movie.id);
-        }
 
+            // Instantiate these variables outside the watch
+            var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+            $scope.$watch('imageSearchQuery', function (val) {
+                if (filterSearchQueryTimeout)
+                    $timeout.cancel(filterSearchQueryTimeout);
+
+                tmpFilterSearchQuery = val;
+
+                filterSearchQueryTimeout = $timeout(function() {
+                    self.filterImageSearchQuery = tmpFilterSearchQuery;
+                }, 250); // delay 250 ms
+            });
+
+            self.getRowNum = function () {
+                return 3;
+            };
+
+            self.chooseImg = function (id) {
+                var tmpImg = $filter('filter')(self.images, { "id": id }, true)[0];
+                //self.movie.image = $filter('filter')(self.images, { "id": id }, true)[0];
+                self.movie.imageId = id;
+                self.toggleImageContainer();
+                self.tmpData.imagePreViewUrl = tmpImg.thumbUrl;
+                $scope.addMovieForm.$setDirty();
+                //$scope.addMovieForm.movieImageId.$setValidity('required', true);
+                //console.log(self.movie.image);
+            };
+
+            self.refreshImagesList = function () {
+                $http.get('/app/json/all-images-list.json').success(function (data) {
+                    self.images = data;
+                    self.showLoadMoreBtn = true;
+                });
+            };
+
+            self.loadMoreImages = function () {
+                $http.get('/app/json/additional-images-list.json').success(function (data) {
+                    //self.images = data;
+                    for(var i =0; i != data.length; i++)
+                    {
+                        self.images.push(data[i]);
+                    }
+                    self.showLoadMoreBtn = false;
+                });
+            };
+
+            self.toggleImageContainer = function () {
+                var $cont = $('#imagesContainer');
+                if(self.showImageContainer)
+                {
+                    $cont.slideUp("slow");
+                    self.showImageContainer = false;
+                    return;
+                }
+                $cont.slideDown("slow");
+                self.showImageContainer = true;
+            };
+
+            self.submitForm = function () {
+                console.log("Form submit");
+                self.showForm = false;
+                self.movie.id = "1";
+                $location.path("movies/add/success/"+self.movie.id);
+            };
+
+            self.refreshImagesList();
     }]);
 
 
@@ -162,9 +231,11 @@
     }]);
 
 
-    app.controller('ImageEditCtrl', ['$scope', '$http', '$routeParams', '$sce', function($scope,$http,$routeParams,$sce) {
+    app.controller('ImageEditCtrl', ['$scope', '$http', '$routeParams', '$sce', '$filter', function($scope,$http,$routeParams,$sce,$filter) {
         var self = this;
         self.imageId = $routeParams.imageId;
+        //var tmp = $sce.trustAsUrl($filter('doubleDecodeUri')($routeParams.returnPath));
+        self.returnPath = $routeParams.returnPath || '#/images';
         self.image = { };
 
         $http.get('/app/json/super-girl-image.json').success(function (data) {
