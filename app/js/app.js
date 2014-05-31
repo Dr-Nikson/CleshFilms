@@ -5,6 +5,7 @@
     // Declare app level module which depends on filters, and services
     var app = angular.module('cleshFilm', [
         'ngRoute',
+        'ngSanitize',
         'cleshFilm.filters',
         'cleshFilm.services',
         'cleshFilm.directives',
@@ -44,10 +45,24 @@
             activeTab: 'movies'
         });
 
+        $routeProvider.when('/images', {
+            templateUrl: 'partials/images.html',
+            controller: 'ImagesPageCtrl',
+            controllerAs: 'imagesPageCtrl',
+            activeTab: 'images'
+        });
+
+        $routeProvider.when('/images/edit/:imageId', {
+            templateUrl: 'partials/image-edit.html',
+            controller: 'ImageEditCtrl',
+            controllerAs: 'imageEditCtrl',
+            activeTab: 'images'
+        });
+
         $routeProvider.when('/images/add', {
             templateUrl: 'partials/image-add.html',
-            /*controller: 'MovieAddCtrl',
-             controllerAs: 'movieAddCtrl',*/
+            controller: 'ImageUploadCtrl',
+            controllerAs: 'imageUploadCtrl',
             activeTab: 'images'
         });
 

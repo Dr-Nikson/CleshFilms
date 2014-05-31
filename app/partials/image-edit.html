@@ -1,0 +1,28 @@
+<div class="row my-row-standard">
+    <div class="col-xs-3">
+        <a href="#/images" class="btn btn-block btn-lg btn-default">Back to images</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-9">
+        <h3 class="edit-movie-title">
+            <a class="btn btn-primary edit-movie-inline-btn" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+            {{imageEditCtrl.image.name}}
+        </h3>
+    </div>
+</div>
+
+<div class="row my-row-standard">
+    <div class="col-xs-9">
+        <img-cropped ng-model="imageEditCtrl.image.url" selected='selected(cords)' aspect-ratio="aspectRatio"></img-cropped>
+    </div>
+    <div class="col-xs-3">
+        <a href="#" class="btn btn-block btn-lg btn-success">Save image</a>
+        <button class="btn btn-block btn-lg btn-info" ng-click="aspectRatio = 16/9">Wide screen(16x9)</button>
+        <button class="btn btn-block btn-lg btn-info" ng-click="aspectRatio = 4/3">Album(4x3)</button>
+        <button class="btn btn-block btn-lg btn-info" ng-click="aspectRatio = 3/4">Album vertical(3x4)</button>
+        <button class="btn btn-block btn-lg btn-info" ng-click="aspectRatio = 1/1.414">A4 paper (210x297)</button>
+        <button class="btn btn-block btn-lg btn-info" ng-click="aspectRatio = 0">Free</button>
+    </div>
+</div>

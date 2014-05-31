@@ -15,8 +15,8 @@
 </div>
 
 
-<div class="row my-row-standard" ng-repeat="moviesRow in moviePageCtrl.movies | filter:moviePageCtrl.filterSearchQuery | partition:moviePageCtrl.getRowMoviesNum() ">
-    <div class="col-xs-3" ng-repeat="movie in moviesRow">
+<div class="row my-row-standard" ng-repeat="row in moviePageCtrl.movies | filter:moviePageCtrl.filterSearchQuery | partition:moviePageCtrl.getRowMoviesNum() ">
+    <div class="col-xs-3" ng-repeat="movie in row">
         <div class="tile tile-movie">
             <img src="{{movie.thumbUrl}}" alt="{{movie.name}}" class="tile-image big-illustration">
             <h3 class="tile-title">{{movie.name | characters:21:true}}</h3>

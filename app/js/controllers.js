@@ -4,7 +4,7 @@
 
 (function(){
 
-    var app = angular.module('cleshFilm.controllers', [ 'truncate' ]);
+    var app = angular.module('cleshFilm.controllers', [ 'truncate', 'angularFileUpload' ]);
 
     app.controller('HatCtr', ['$scope', '$route', function($scope,$route) {
         var self = this;
@@ -110,6 +110,142 @@
         }
 
     }]);
+
+
+    app.controller('ImagesPageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
+        var self = this;
+        self.images = [];
+        // This is what you will bind the filter to
+        self.filterSearchQuery = '';
+
+        $http.get('/app/json/all-images-list.json').success(function(data){
+            self.images = data;
+            //$scope.movies = data;
+        });
+
+        /*$http.get('/app/json/all-movies-list.json').success(function(data){
+         self.movies = data;
+         //$scope.movies = data;
+         });*/
+
+
+
+        // Instantiate these variables outside the watch
+        var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+        $scope.$watch('searchQuery', function (val) {
+            if (filterSearchQueryTimeout)
+                $timeout.cancel(filterSearchQueryTimeout);
+
+            tmpFilterSearchQuery = val;
+
+            filterSearchQueryTimeout = $timeout(function() {
+                self.filterSearchQuery = tmpFilterSearchQuery;
+            }, 250); // delay 250 ms
+        });
+
+        self.getRowNum = function () {
+            return 3;
+        };
+
+        self.calculateIndex = function (index, parent) {
+            return index + parent * self.getRowNum();
+        };
+
+        self.removeImage = function (index) {
+            //$scope.movies.splice(index,1);
+            //$scope.movies.push({ name: 'new', thumbUrl: 'lool'});
+            //console.log(self.movies[index].name);
+            self.images.splice(index,1);
+        };
+
+
+    }]);
+
+
+    app.controller('ImageEditCtrl', ['$scope', '$http', '$routeParams', '$sce', function($scope,$http,$routeParams,$sce) {
+        var self = this;
+        self.imageId = $routeParams.imageId;
+        self.image = { };
+
+        $http.get('/app/json/super-girl-image.json').success(function (data) {
+            self.image = data;
+        });
+
+        $scope.selected = function(x) {
+            console.log("selected",x);
+        };
+
+        $scope.trustSrc = function(src) {
+            return $sce.trustAsResourceUrl(src);
+        }
+
+    }]);
+
+
+    app.controller('ImageUploadCtrl', function ($scope, $fileUploader) {
+        // Creates a uploader
+        var uploader = $scope.uploader = $fileUploader.create({
+            scope: $scope,
+            url: 'upload.php'
+        });
+
+
+        // ADDING FILTERS
+
+        // Images only
+        uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {
+            var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
+            type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        });
+
+
+        // REGISTER HANDLERS
+
+        uploader.bind('afteraddingfile', function (event, item) {
+            console.info('After adding a file', item);
+        });
+
+        uploader.bind('whenaddingfilefailed', function (event, item) {
+            console.info('When adding a file failed', item);
+        });
+
+        uploader.bind('afteraddingall', function (event, items) {
+            console.info('After adding all files', items);
+        });
+
+        uploader.bind('beforeupload', function (event, item) {
+            console.info('Before upload', item);
+        });
+
+        uploader.bind('progress', function (event, item, progress) {
+            console.info('Progress: ' + progress, item);
+        });
+
+        uploader.bind('success', function (event, xhr, item, response) {
+            console.info('Success', xhr, item, response);
+        });
+
+        uploader.bind('cancel', function (event, xhr, item) {
+            console.info('Cancel', xhr, item);
+        });
+
+        uploader.bind('error', function (event, xhr, item, response) {
+            console.info('Error', xhr, item, response);
+        });
+
+        uploader.bind('complete', function (event, xhr, item, response) {
+            console.info('Complete', xhr, item, response);
+        });
+
+        uploader.bind('progressall', function (event, progress) {
+            console.info('Total progress: ' + progress);
+        });
+
+        uploader.bind('completeall', function (event, items) {
+            console.info('Complete all', items);
+        });
+    });
 
 })();
 
