@@ -67,6 +67,20 @@
             activeTab: 'images'
         });
 
+        $routeProvider.when('/professions', {
+            templateUrl: 'partials/professions.html',
+            controller: 'ProfessionsPageCtrl',
+            controllerAs: 'professionsPageCtrl',
+            activeTab: 'professions'
+        });
+
+        $routeProvider.when('/stuff', {
+            templateUrl: 'partials/stuff.html',
+            controller: 'StuffPageCtrl',
+            controllerAs: 'stuffPageCtrl',
+            activeTab: 'stuff'
+        });
+
         $routeProvider.when('/view2', {
             templateUrl: 'partials/partial2.html',
             controller: 'MyCtrl2'

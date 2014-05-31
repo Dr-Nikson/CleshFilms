@@ -1,0 +1,38 @@
+[
+    {
+        "id" : 1,
+        "name" : "producer"
+    },
+    {
+        "id" : 2,
+        "name" : "scenarist"
+    },
+    {
+        "id" : 3,
+        "name" : "soundman"
+    },
+    {
+        "id" : 4,
+        "name" : "operator"
+    },
+    {
+        "id" : 5,
+        "name" : "bitch"
+    },
+    {
+        "id" : 6,
+        "name" : "actor"
+    },
+    {
+        "id" : 7,
+        "name" : "cleaner"
+    },
+    {
+        "id" : 8,
+        "name" : "asshole"
+    },
+    {
+        "id" : 9,
+        "name" : "acarid"
+    }
+]

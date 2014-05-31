@@ -178,6 +178,7 @@
             };
 
             self.refreshImagesList();
+            //$('#imagesContainer').slideUp();
     }]);
 
 
@@ -317,6 +318,92 @@
             console.info('Complete all', items);
         });
     });
+
+
+    app.controller('ProfessionsPageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
+        var self = this;
+        self.professions = [];
+        // This is what you will bind the filter to
+        self.filterSearchQuery = '';
+
+        $http.get('/app/json/all-professions-list.json').success(function(data){
+            self.professions = data;
+            //$scope.movies = data;
+        });
+
+        /*$http.get('/app/json/all-movies-list.json').success(function(data){
+         self.movies = data;
+         //$scope.movies = data;
+         });*/
+
+
+
+        // Instantiate these variables outside the watch
+        var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+        $scope.$watch('searchQuery', function (val) {
+            if (filterSearchQueryTimeout)
+                $timeout.cancel(filterSearchQueryTimeout);
+
+            tmpFilterSearchQuery = val;
+
+            filterSearchQueryTimeout = $timeout(function() {
+                self.filterSearchQuery = tmpFilterSearchQuery;
+            }, 250); // delay 250 ms
+        });
+
+
+        self.removeProfession = function (index) {
+            //$scope.movies.splice(index,1);
+            //$scope.movies.push({ name: 'new', thumbUrl: 'lool'});
+            //console.log(self.movies[index].name);
+            self.professions.splice(index,1);
+        };
+
+
+    }]);
+
+
+    app.controller('StuffPageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
+        var self = this;
+        self.stuff = [];
+        // This is what you will bind the filter to
+        self.filterSearchQuery = '';
+
+        $http.get('/app/json/all-stuff-list.json').success(function(data){
+            self.stuff = data;
+            //$scope.movies = data;
+        });
+
+        /*$http.get('/app/json/all-movies-list.json').success(function(data){
+         self.movies = data;
+         //$scope.movies = data;
+         });*/
+
+
+
+        // Instantiate these variables outside the watch
+        var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+        $scope.$watch('searchQuery', function (val) {
+            if (filterSearchQueryTimeout)
+                $timeout.cancel(filterSearchQueryTimeout);
+
+            tmpFilterSearchQuery = val;
+
+            filterSearchQueryTimeout = $timeout(function() {
+                self.filterSearchQuery = tmpFilterSearchQuery;
+            }, 250); // delay 250 ms
+        });
+
+
+        self.removeProfession = function (index) {
+            //$scope.movies.splice(index,1);
+            //$scope.movies.push({ name: 'new', thumbUrl: 'lool'});
+            //console.log(self.movies[index].name);
+            self.stuff.splice(index,1);
+        };
+
+
+    }]);
 
 })();
 
