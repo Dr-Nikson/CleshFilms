@@ -1,4 +1,8 @@
 /* app css stylesheet */
+.site-title > img
+{
+    margin-top: -27px;
+}
 
 .my-row-standard,
 .standard-margin
@@ -50,6 +54,12 @@
 .my-form-control
 {
     height: 45px;
+}
+
+textarea.my-form-control
+{
+    min-height: 145px;
+    resize: vertical;
 }
 
 
@@ -112,4 +122,16 @@ canvas
 {
     padding-top: 75px;
     padding-bottom: 75px;
+}
+
+
+.my-dowpdown
+{
+    width: 100%;
+}
+
+.form-goup-row
+{
+    margin-top: 200px;
+    margin-bottom: 100px;
 }

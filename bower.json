@@ -16,6 +16,7 @@
     "angular-truncate": null,
     "angular-file-upload": null,
     "jcrop": null,
-    "angular-encode-uri": "~0.0.1"
+    "angular-encode-uri": "~0.0.1",
+    "bootstrap-combobox": "~1.1.6"
   }
 }

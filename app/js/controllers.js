@@ -101,15 +101,33 @@
         {
             var self = this;
 
-            self.movie = {};
+            self.movie = {
+                image : {},
+                crew : [
+                    { staffId:null,professionId:null }
+                ]
+            };
             self.tmpData = {
                 imagePreViewUrl : ""
             };
             self.images = [];
+            self.professions = [];
+            self.staff = [];
             self.showForm = true;
             self.showImageContainer = true;
             self.showLoadMoreBtn = true;
             self.filterImageSearchQuery = '';
+
+
+            $http.get('/app/json/all-professions-list.json').success(function (data) {
+                self.professions = data;
+                self.broadcastDataLoaded();
+            });
+
+            $http.get('/app/json/all-stuff-list.json').success(function (data) {
+                self.staff = data;
+                self.broadcastDataLoaded();
+            });
 
 
             // Instantiate these variables outside the watch
@@ -124,6 +142,23 @@
                     self.filterImageSearchQuery = tmpFilterSearchQuery;
                 }, 250); // delay 250 ms
             });
+
+            self.addStaffMember = function () {
+                self.movie.crew.push({ staffId:null,professionId:null });
+                $timeout(function () {
+                    self.broadcastDataLoaded();
+                },0,false);
+            };
+
+            self.removeStaffMember = function (index) {
+              self.movie.crew.splice(index,1);
+            };
+
+            self.broadcastDataLoaded = function () {
+                if(!self.professions.length || !self.staff.length)
+                    return;
+                $scope.$broadcast('dataloaded');
+            };
 
             self.getRowNum = function () {
                 return 3;
@@ -178,6 +213,8 @@
             };
 
             self.refreshImagesList();
+
+            //$("select[name='herolist']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
             //$('#imagesContainer').slideUp();
     }]);
 

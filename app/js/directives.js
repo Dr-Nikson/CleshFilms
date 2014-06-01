@@ -119,4 +119,52 @@
         };
     });
 
+
+    app.directive('myCombobox', ['$timeout', function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function ($scope, element, attrs) {
+                $scope.$on('dataloaded', function () {
+                    $timeout(function () { // You might need this timeout to be sure its run after DOM render.
+
+                        $(element).combobox({bsVersion: '3', menu: '<ul class="typeahead typeahead-long dropdown-menu dropdown-inverse my-dowpdown" role="menu"></ul>',
+                            item : '<li rel="1" class=""><a tabindex="-1" href="#" class="active"><span class="pull-left"></span></a></li>',
+                            template : function () {
+                                return '<div class="combobox-container"> <input type="hidden" /> <div class="input-group open"> <input type="text" autocomplete="off" /> <span class="input-group-addon dropdown-toggle" data-dropdown="dropdown"> <span class="caret" /> <span class="glyphicon glyphicon-remove" /> </span> </div> </div>';
+                            }
+                        });
+
+                    }, 0, false);
+                })
+            }
+        };
+    }]);
+
+    app.directive('myDropdown', ['$timeout', function ($timeout) {
+        return {
+            link: function ($scope, element, attrs) {
+                $scope.$on('dataloaded', function () {
+                    $timeout(function () { // You might need this timeout to be sure its run after DOM render.
+
+                        $(element).selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
+
+                    }, 0, false);
+                })
+            }
+        };
+    }]);
+
+    app.directive('myGoupBtn', ['$timeout', function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function ($scope, element, attrs) {
+                $(element).click(function () {
+                    $('html, body').stop().animate({
+                        scrollTop: 0
+                    }, 800);
+                });
+            }
+        };
+    }]);
+
 })();

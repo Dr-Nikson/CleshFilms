@@ -39,6 +39,7 @@
         </div>-->
     </div>
 
+    <hr/>
 
     <div class="row">
         <div class="col-xs-11">
@@ -115,6 +116,7 @@
 
     </div>
 
+    <hr/>
 
     <div class="row my-row-standard">
         <div class="col-xs-12">
@@ -127,5 +129,59 @@
             </div>
         </div>
     </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Film crew:</h4>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="employeAddRow in movieAddFormCtrl.movie.crew">
+        <div class="col-xs-3">
+            <div class="form-group">
+                <select name="herolist" value="{{employeAddRow.professionId}}" class="select-block" ng-model="employeAddRow.professionId" my-dropdown required>
+                    <option value="" ng-selected="employeAddRow.professionId === null">Choose a profession</option>
+                    <option ng-repeat="profession in movieAddFormCtrl.professions" value="{{profession.id}}"
+                            ng-selected="employeAddRow.professionId == profession.id">{{profession.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="form-group">
+                <select name="employe" class="combobox form-control" ng-model="employeAddRow.staffId" my-combobox required>
+                    <option value="" ng-selected="employeAddRow.staffId === null">Select an employe</option>
+                    <option ng-repeat="employe in movieAddFormCtrl.staff" value="{{employe.id}}"
+                            ng-selected="employeAddRow.staffId == employe.id">{{employe.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieAddFormCtrl.removeStaffMember($index)"
+                    ng-disabled="movieAddFormCtrl.movie.crew.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieAddFormCtrl.addStaffMember()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <div class="row form-goup-row">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-block btn-lg btn-default" my-goup-btn>
+                <span class="glyphicon glyphicon-arrow-up"></span>
+                Go up
+            </button>
+        </div>
+    </div>
+
 
 </form>
