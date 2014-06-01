@@ -74,11 +74,11 @@
             activeTab: 'professions'
         });
 
-        $routeProvider.when('/stuff', {
+        $routeProvider.when('/staff', {
             templateUrl: 'partials/stuff.html',
             controller: 'StuffPageCtrl',
             controllerAs: 'stuffPageCtrl',
-            activeTab: 'stuff'
+            activeTab: 'staff'
         });
 
         $routeProvider.when('/view2', {

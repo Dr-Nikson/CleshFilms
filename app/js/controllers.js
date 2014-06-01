@@ -219,16 +219,20 @@
     }]);
 
 
-    app.controller('ImagesPageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
+    app.controller('ImagesPageCtrl', ['$scope', '$http', '$timeout', 'Image', function($scope,$http,$timeout,Image) {
         var self = this;
         self.images = [];
         // This is what you will bind the filter to
         self.filterSearchQuery = '';
 
-        $http.get('/app/json/all-images-list.json').success(function(data){
+        self.images = Image.query(function () {
+            console.log("Query callback",self.images.length);
+        });
+
+        /*$http.get('/app/json/all-images-list.json').success(function(data){
             self.images = data;
             //$scope.movies = data;
-        });
+        });*/
 
         /*$http.get('/app/json/all-movies-list.json').success(function(data){
          self.movies = data;
