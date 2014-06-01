@@ -156,9 +156,11 @@
 
     app.directive('myGoupBtn', ['$timeout', function ($timeout) {
         return {
-            restrict: 'A',
+            restrict: 'E',
+            replace: true,
+            templateUrl: '/app/partials/widgets/goup-btn.html',
             link: function ($scope, element, attrs) {
-                $(element).click(function () {
+                $(element).find('button').click(function () {
                     $('html, body').stop().animate({
                         scrollTop: 0
                     }, 800);

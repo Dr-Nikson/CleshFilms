@@ -19,6 +19,7 @@
     <thead>
     <tr>
         <th>#</th>
+        <th>Photo</th>
         <th>Name</th>
         <th>Age</th>
         <th>Gender</th>
@@ -28,10 +29,11 @@
     <tbody>
     <tr ng-repeat="employee in stuffPageCtrl.stuff | filter:stuffPageCtrl.filterSearchQuery">
         <td class="col-xs-1">{{employee.id}}</td>
-        <td class="col-xs-8">{{employee.name}}</td>
+        <td class="col-xs-1"><img src ng-src="{{employee.image.thumbUrl}}" alt="{{employee.image.name}}" class="img-rounded img-responsive standard-margin" /></td>
+        <td class="col-xs-7">{{employee.name}}</td>
         <td class="col-xs-1">{{employee.age}}</td>
         <td class="col-xs-1">{{employee.gender}}</td>
-        <td class="col-xs-2">
+        <td class="col-xs-1">
             <button class="btn btn-danger btn-large btn-block" ng-click="stuffPageCtrl.removeProfession($index)">
                 Remove
             </button>
@@ -39,3 +41,5 @@
     </tr>
     </tbody>
 </table>
+
+<my-goup-btn></my-goup-btn>

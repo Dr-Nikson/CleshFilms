@@ -3,96 +3,208 @@
         "id": "1",
         "name": "Megan Fox",
         "age": "27",
-        "gender": "female"
+        "gender": "female",
+        "image" :
+        {
+            "id" : "51",
+            "name" : "Image name",
+            "url" : "http://cs6033.vk.me/v6033512/5ba4/j2jHKAva0wA.jpg",
+            "thumbUrl" : "http://cs6033.vk.me/v6033512/5ba4/j2jHKAva0wA.jpg"
+        }
     },
     {
         "id": "2",
         "name": "Yvonne Strahovski",
         "age": "27",
-        "gender": "female"
+        "gender": "female",
+        "image" :
+        {
+            "id" : "52",
+            "name" : "Image name",
+            "url" : "http://cs413029.vk.me/v413029101/4df5/1XX2WJWT4TA.jpg",
+            "thumbUrl" : "http://cs413029.vk.me/v413029101/4df5/1XX2WJWT4TA.jpg"
+        }
     },
     {
         "id": "3",
         "name": "Lauren Cohan",
         "age": "26",
-        "gender": "female"
+        "gender": "female",
+        "image" :
+        {
+            "id" : "53",
+            "name" : "Image name",
+            "url" : "http://cs320524.vk.me/v320524528/9897/-6DdfX8YeWw.jpg",
+            "thumbUrl" : "http://cs320524.vk.me/v320524528/9897/-6DdfX8YeWw.jpg"
+        }
     },
     {
         "id": "4",
         "name": "Scarlett Johansson",
         "age": "27",
-        "gender": "female"
+        "gender": "female",
+        "image" :
+        {
+            "id" : "54",
+            "name" : "Image name",
+            "url" : "http://cs616520.vk.me/v616520769/a52/sUG31LKn5Ts.jpg",
+            "thumbUrl" : "http://cs616520.vk.me/v616520769/a52/sUG31LKn5Ts.jpg"
+        }
     },
     {
         "id": "5",
         "name": "Amanda Schull",
         "age": "27",
-        "gender": "female"
+        "gender": "female",
+        "image" :
+        {
+            "id" : "55",
+            "name" : "Image name",
+            "url" : "http://cs616223.vk.me/v616223890/53db/pvqcfHvyo44.jpg",
+            "thumbUrl" : "http://cs616223.vk.me/v616223890/53db/pvqcfHvyo44.jpg"
+        }
     },
     {
         "id": "6",
         "name": "Tatiana Maslany",
         "age": "25",
-        "gender": "female"
+        "gender": "female",
+        "image" :
+        {
+            "id" : "56",
+            "name" : "Image name",
+            "url" : "http://cs608316.vk.me/v608316779/966f/0DEoYrGzAgs.jpg",
+            "thumbUrl" : "http://cs608316.vk.me/v608316779/966f/0DEoYrGzAgs.jpg"
+        }
     },
     {
         "id": "7",
         "name": "Al Pacino",
         "age": "50",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "57",
+            "name" : "Image name",
+            "url" : "http://cs540100.vk.me/c7008/v7008899/edd6/j9e_dXL5-wg.jpg",
+            "thumbUrl" : "http://cs540100.vk.me/c7008/v7008899/edd6/j9e_dXL5-wg.jpg"
+        }
     },
     {
         "id": "8",
         "name": "Tom Hanks",
         "age": "51",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "58",
+            "name" : "Image name",
+            "url" : "http://cs413029.vk.me/v413029101/4df5/1XX2WJWT4TA.jpg",
+            "thumbUrl" : "http://cs413029.vk.me/v413029101/4df5/1XX2WJWT4TA.jpg"
+        }
     },
     {
         "id": "9",
         "name": "Johnny Depp",
         "age": "36",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "59",
+            "name" : "Image name",
+            "url" : "http://cs616223.vk.me/v616223890/53db/pvqcfHvyo44.jpg",
+            "thumbUrl" : "http://cs616223.vk.me/v616223890/53db/pvqcfHvyo44.jpg"
+        }
     },
     {
         "id": "10",
         "name": "Leonardo DiCaprio",
         "age": "35",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "60",
+            "name" : "Image name",
+            "url" : "http://cs616520.vk.me/v616520769/a52/sUG31LKn5Ts.jpg",
+            "thumbUrl" : "http://cs616520.vk.me/v616520769/a52/sUG31LKn5Ts.jpg"
+        }
     },
     {
         "id": "11",
         "name": "Will Smith",
         "age": "34",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "61",
+            "name" : "Image name",
+            "url" : "http://cs413029.vk.me/v413029101/4df5/1XX2WJWT4TA.jpg",
+            "thumbUrl" : "http://cs413029.vk.me/v413029101/4df5/1XX2WJWT4TA.jpg"
+        }
     },
     {
         "id": "12",
         "name": "Brad Pitt",
         "age": "39",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "62",
+            "name" : "Image name",
+            "url" : "http://cs320524.vk.me/v320524528/9897/-6DdfX8YeWw.jpg",
+            "thumbUrl" : "http://cs320524.vk.me/v320524528/9897/-6DdfX8YeWw.jpg"
+        }
     },
     {
         "id": "13",
         "name": "Matt Damon",
         "age": "36",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "63",
+            "name" : "Image name",
+            "url" : "http://cs616223.vk.me/v616223890/53db/pvqcfHvyo44.jpg",
+            "thumbUrl" : "http://cs616223.vk.me/v616223890/53db/pvqcfHvyo44.jpg"
+        }
     },
     {
         "id": "14",
         "name": "Tom Cruise",
         "age": "41",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "64",
+            "name" : "Image name",
+            "url" : "http://cs608316.vk.me/v608316779/966f/0DEoYrGzAgs.jpg",
+            "thumbUrl" : "http://cs608316.vk.me/v608316779/966f/0DEoYrGzAgs.jpg"
+        }
     },
     {
         "id": "15",
         "name": "George Clooney",
         "age": "47",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "65",
+            "name" : "Image name",
+            "url" : "http://cs540100.vk.me/c7008/v7008899/edd6/j9e_dXL5-wg.jpg",
+            "thumbUrl" : "http://cs540100.vk.me/c7008/v7008899/edd6/j9e_dXL5-wg.jpg"
+        }
     },
     {
         "id": "16",
         "name": "Dmitriy Panov",
         "age": "22",
-        "gender": "male"
+        "gender": "male",
+        "image" :
+        {
+            "id" : "66",
+            "name" : "Image name",
+            "url" : "http://cs405421.vk.me/v405421454/2437/I_C0XWuj8z8.jpg",
+            "thumbUrl" : "http://cs405421.vk.me/v405421454/2437/I_C0XWuj8z8.jpg"
+        }
     }
 ]
