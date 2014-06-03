@@ -1,0 +1,53 @@
+<form name="addProfessionForm" class="ang-form"  ng-controller="ProfessionAddFormCtrl as professionAddFormCtrl"
+      ng-submit="professionAddFormCtrl.submitForm()" novalidate>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <a href="#/professions" class="btn btn-block btn-lg btn-default">Back to professions</a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-block btn-lg btn-success" ng-disabled="addProfessionForm.$invalid"
+                    ng-class="{disabled:addProfessionForm.$invalid}">
+                Add profession
+            </button>
+        </div>
+    </div>
+
+    <div class="row double-top-margin" ng-show="professionAddFormCtrl.isSuccessMsgVisible">
+        <div class="col-xs-12">
+            <blockquote>
+                <p>New profession successfully added</p>
+            </blockquote>
+        </div>
+    </div>
+
+    <!-- <div>Form is {{addProfessionForm.$valid}}</div>
+    <div>Form dirty is {{addProfessionForm.$dirty}}</div> -->
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addProfessionForm.professionName.$valid,
+                'has-error': addProfessionForm.professionName.$invalid && addMovieForm.professionName.$dirty}">
+
+                <input type="text" value="" name="professionName" placeholder="Enter movie name"
+                       class="form-control my-form-control" ng-model="professionAddFormCtrl.profession.name"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addProfessionForm.professionName.$valid"></span>
+            </div>
+        </div>
+        <!--<div class="col-xs-6">
+            <h4 class="demo-panel-title">Name:</h4>
+            <div class="form-group">
+                <input type="text" value="" placeholder="Inactive" class="form-control my-form-control">
+            </div>
+        </div>-->
+    </div>
+
+    <hr/>
+
+</form>

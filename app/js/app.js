@@ -11,79 +11,115 @@
         'cleshFilm.services',
         'cleshFilm.directives',
         'cleshFilm.controllers'
-    ]).config(['$routeProvider', function($routeProvider) {
+    ]);
+
+    app.value('ENV',{});
+
+    var loadEnvironmentConfig = function ($http,ENV) {
+        return $http.get('./config.json').then(function (resData) {
+            return $http.get('./'+resData.data.ENV+'.config.json').then(function (configData) {
+                var environmentConfig = {
+                    NAME: resData.data.ENV,
+                    CONFIG: angular.extend({},configData.data)
+                };
+                //app.value('ENV',environmentConfig);
+                angular.extend(ENV,environmentConfig);
+            });
+        });
+    };
+
+    app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/home', {
             templateUrl: 'partials/home.html',
             controller: 'HomePageCtrl',
-            activeTab: 'home'
+            activeTab: 'home',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/movies', {
             templateUrl: 'partials/movies.html',
             controller: 'MoviePageCtrl',
             controllerAs: 'moviePageCtrl',
-            activeTab: 'movies'
+            activeTab: 'movies',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/movies/add', {
             templateUrl: 'partials/movie-add.html',
             /*controller: 'MovieAddCtrl',
             controllerAs: 'movieAddCtrl',*/
-            activeTab: 'movies'
+            activeTab: 'movies',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/movies/add/success/:movieId', {
             templateUrl: 'partials/movie-add-success.html',
             controller: 'MovieAddSuccessCtrl',
             controllerAs: 'movieAddSuccessCtrl',
-            activeTab: 'movies'
+            activeTab: 'movies',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/movies/edit/:movieId', {
             templateUrl: 'partials/movie-edit.html',
             controller: 'MovieEditCtrl',
             controllerAs: 'movieEditCtrl',
-            activeTab: 'movies'
+            activeTab: 'movies',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/images', {
             templateUrl: 'partials/images.html',
             controller: 'ImagesPageCtrl',
             controllerAs: 'imagesPageCtrl',
-            activeTab: 'images'
+            activeTab: 'images',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/images/edit/:imageId/:returnPath?', {
             templateUrl: 'partials/image-edit.html',
             controller: 'ImageEditCtrl',
             controllerAs: 'imageEditCtrl',
-            activeTab: 'images'
+            activeTab: 'images',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/images/add', {
             templateUrl: 'partials/image-add.html',
             controller: 'ImageUploadCtrl',
             controllerAs: 'imageUploadCtrl',
-            activeTab: 'images'
+            activeTab: 'images',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/professions', {
             templateUrl: 'partials/professions.html',
             controller: 'ProfessionsPageCtrl',
             controllerAs: 'professionsPageCtrl',
-            activeTab: 'professions'
+            activeTab: 'professions',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
+        $routeProvider.when('/professions/add', {
+            templateUrl: 'partials/profession-add.html',
+            /*controller: 'ProfessionsPageCtrl',
+            controllerAs: 'professionsPageCtrl',*/
+            activeTab: 'professions',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/staff', {
-            templateUrl: 'partials/stuff.html',
+            templateUrl: 'partials/staff.html',
             controller: 'StuffPageCtrl',
             controllerAs: 'stuffPageCtrl',
-            activeTab: 'staff'
+            activeTab: 'staff',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.when('/view2', {
             templateUrl: 'partials/partial2.html',
-            controller: 'MyCtrl2'
+            controller: 'MyCtrl2',
+            resolve: { loadConf: loadEnvironmentConfig }
         });
 
         $routeProvider.otherwise({redirectTo: '/home'});

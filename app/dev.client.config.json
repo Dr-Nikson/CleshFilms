@@ -1,0 +1,13 @@
+{
+    "IMAGE":
+    {
+        "GET_URL": "./json/images/:id.json",
+        "ADD_URL": "./json/images/add.json"
+    },
+    "PROFESSION":
+    {
+        "GET_URL": "./json/professions/:id.json",
+        "SAVE_URL": "./json/professions/add.json",
+        "SAVE_METHOD": "GET"
+    }
+}

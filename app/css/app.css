@@ -1,4 +1,10 @@
 /* app css stylesheet */
+
+html
+{
+    overflow-y: scroll;
+}
+
 .site-title > img
 {
     margin-top: -27px;
@@ -13,6 +19,11 @@
 .standard-top-margin
 {
     margin-top: 20px;
+}
+
+.double-top-margin
+{
+    margin-top: 40px;
 }
 
 .small-margin

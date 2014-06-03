@@ -158,7 +158,7 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: '/app/partials/widgets/goup-btn.html',
+            templateUrl: './partials/widgets/goup-btn.html',
             link: function ($scope, element, attrs) {
                 $(element).find('button').click(function () {
                     $('html, body').stop().animate({

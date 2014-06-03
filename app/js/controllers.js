@@ -30,7 +30,7 @@
         // This is what you will bind the filter to
         self.filterSearchQuery = '';
 
-        $http.get('/app/json/main-movies-list.json').success(function(data){
+        $http.get('./json/main-movies-list.json').success(function(data){
             self.movies = data;
             //$scope.movies = data;
         });
@@ -78,7 +78,7 @@
         self.movieId = $routeParams.movieId;
         self.movie = { };
 
-        $http.get('/app/json/spider-man-movie.json').success(function (data) {
+        $http.get('./json/spider-man-movie.json').success(function (data) {
             self.movie = data;
         });
 
@@ -89,7 +89,7 @@
         self.movieId = $routeParams.movieId;
         $scope.movie = {};
 
-        $http.get('/app/json/spider-man-movie.json').success(function (data) {
+        $http.get('./json/spider-man-movie.json').success(function (data) {
             $scope.movie = data;
         });
 
@@ -119,12 +119,12 @@
             self.filterImageSearchQuery = '';
 
 
-            $http.get('/app/json/all-professions-list.json').success(function (data) {
+            $http.get('./json/all-professions-list.json').success(function (data) {
                 self.professions = data;
                 self.broadcastDataLoaded();
             });
 
-            $http.get('/app/json/all-stuff-list.json').success(function (data) {
+            $http.get('./json/all-stuff-list.json').success(function (data) {
                 self.staff = data;
                 self.broadcastDataLoaded();
             });
@@ -176,14 +176,14 @@
             };
 
             self.refreshImagesList = function () {
-                $http.get('/app/json/all-images-list.json').success(function (data) {
+                $http.get('./json/all-images-list.json').success(function (data) {
                     self.images = data;
                     self.showLoadMoreBtn = true;
                 });
             };
 
             self.loadMoreImages = function () {
-                $http.get('/app/json/additional-images-list.json').success(function (data) {
+                $http.get('./json/additional-images-list.json').success(function (data) {
                     //self.images = data;
                     for(var i =0; i != data.length; i++)
                     {
@@ -266,6 +266,7 @@
             //$scope.movies.splice(index,1);
             //$scope.movies.push({ name: 'new', thumbUrl: 'lool'});
             //console.log(self.movies[index].name);
+            self.images[index].$remove();
             self.images.splice(index,1);
         };
 
@@ -280,7 +281,7 @@
         self.returnPath = $routeParams.returnPath || '#/images';
         self.image = { };
 
-        $http.get('/app/json/super-girl-image.json').success(function (data) {
+        $http.get('./json/super-girl-image.json').success(function (data) {
             self.image = data;
         });
 
@@ -295,11 +296,11 @@
     }]);
 
 
-    app.controller('ImageUploadCtrl', function ($scope, $fileUploader) {
+    app.controller('ImageUploadCtrl', function ($scope, $fileUploader, ENV) {
         // Creates a uploader
         var uploader = $scope.uploader = $fileUploader.create({
             scope: $scope,
-            url: 'upload.php'
+            url: ENV.CONFIG.IMAGE.ADD_URL
         });
 
 
@@ -361,22 +362,14 @@
     });
 
 
-    app.controller('ProfessionsPageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
+    app.controller('ProfessionsPageCtrl', ['$scope', '$http', '$timeout', 'Profession', function($scope,$http,$timeout,Profession) {
         var self = this;
         self.professions = [];
         // This is what you will bind the filter to
         self.filterSearchQuery = '';
 
-        $http.get('/app/json/all-professions-list.json').success(function(data){
-            self.professions = data;
-            //$scope.movies = data;
-        });
-
-        /*$http.get('/app/json/all-movies-list.json').success(function(data){
-         self.movies = data;
-         //$scope.movies = data;
-         });*/
-
+        self.professions = Profession.query();
+        //self.professions.push(Profession.get({id:1}));
 
 
         // Instantiate these variables outside the watch
@@ -394,14 +387,51 @@
 
 
         self.removeProfession = function (index) {
-            //$scope.movies.splice(index,1);
-            //$scope.movies.push({ name: 'new', thumbUrl: 'lool'});
-            //console.log(self.movies[index].name);
+            //console.log(self.professions[index]);
+            self.professions[index].$remove();
             self.professions.splice(index,1);
         };
 
 
     }]);
+
+
+    app.controller('ProfessionAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Profession',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Profession)
+        {
+            var self = this;
+
+            self.isSuccessMsgVisible = false;
+
+            console.log('Page reloaded');
+
+            /*self.profession = {
+                name : null
+            };*/
+
+            self.profession = new Profession();
+
+            self.submitForm = function () {
+                console.log("Form submit start");
+                //console.log(self.profession);
+                self.profession.$save().then(self.showSuccessMsg);
+
+                //self.showForm = false;
+                //self.movie.id = "1";
+                //$location.path("movies/add/success/"+self.movie.id);
+            };
+
+            self.showSuccessMsg = function (id) {
+                console.log('Show msg');
+                self.isSuccessMsgVisible = true;
+                $timeout(function () {
+                    console.log('Hide msg');
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
+            //self.refreshImagesList();
+        }]);
 
 
     app.controller('StuffPageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
@@ -410,7 +440,7 @@
         // This is what you will bind the filter to
         self.filterSearchQuery = '';
 
-        $http.get('/app/json/all-stuff-list.json').success(function(data){
+        $http.get('./json/all-stuff-list.json').success(function(data){
             self.stuff = data;
             //$scope.movies = data;
         });
