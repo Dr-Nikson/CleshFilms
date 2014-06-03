@@ -1,3 +1,14 @@
+# Configuration docs:
+
+| Property               | Description   
+| ---------------------- | --------------------------------------------------------------------------
+| IMAGE.GET_URL          | Адрес получения картинки. :id - ID картинки. При получении всех изображений ID=all 
+| IMAGE.ADD_URL          | Адрес сохранения картинки.      
+| PROFESSION.GET_URL     | Адрес получения профессии. :id - ID професии. При получении всех профессий ID=all      
+| PROFESSION.SAVE_URL    | Адрес сохранения професии. name передается как POST-data      
+| PROFESSION.SAVE_METHOD | Метод сохранения: для тестов используется GET, для API установить в POST      
+
+
 # angular-seed — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
