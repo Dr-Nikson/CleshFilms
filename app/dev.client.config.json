@@ -10,6 +10,12 @@
         "SAVE_URL": "./json/professions/add.json",
         "SAVE_METHOD": "GET"
     },
+    "GENRE":
+    {
+        "GET_URL": "./json/genres/:id.json",
+        "SAVE_URL": "./json/genres/add.json",
+        "SAVE_METHOD": "GET"
+    },
     "COUNTRY":
     {
         "GET_URL": "./json/countries/:id.json",

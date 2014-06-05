@@ -108,6 +108,22 @@
             resolve: { loadConf: loadEnvironmentConfig }
         });
 
+        $routeProvider.when('/genres', {
+            templateUrl: 'partials/genres.html',
+            controller: 'GenresPageCtrl',
+            controllerAs: 'genresPageCtrl',
+            activeTab: 'genres',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
+        $routeProvider.when('/genres/add', {
+            templateUrl: 'partials/genres-add.html',
+            /*controller: 'ProfessionsPageCtrl',
+            controllerAs: 'professionsPageCtrl',*/
+            activeTab: 'genres',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
         $routeProvider.when('/countries', {
             templateUrl: 'partials/countries.html',
             controller: 'CountriesPageCtrl',
