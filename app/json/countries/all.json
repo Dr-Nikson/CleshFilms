@@ -1,0 +1,38 @@
+[
+    {
+        "id" : 1,
+        "name" : "Russian Federation"
+    },
+    {
+        "id" : 2,
+        "name" : "China"
+    },
+    {
+        "id" : 3,
+        "name" : "Germany"
+    },
+    {
+        "id" : 4,
+        "name" : "Canada"
+    },
+    {
+        "id" : 5,
+        "name" : "France"
+    },
+    {
+        "id" : 6,
+        "name" : "Great Britain"
+    },
+    {
+        "id" : 7,
+        "name" : "Spain"
+    },
+    {
+        "id" : 8,
+        "name" : "Brazil"
+    },
+    {
+        "id" : 9,
+        "name" : "Cuba"
+    }
+]

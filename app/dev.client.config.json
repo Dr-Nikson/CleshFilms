@@ -9,5 +9,11 @@
         "GET_URL": "./json/professions/:id.json",
         "SAVE_URL": "./json/professions/add.json",
         "SAVE_METHOD": "GET"
+    },
+    "COUNTRY":
+    {
+        "GET_URL": "./json/countries/:id.json",
+        "SAVE_URL": "./json/countries/add.json",
+        "SAVE_METHOD": "GET"
     }
 }

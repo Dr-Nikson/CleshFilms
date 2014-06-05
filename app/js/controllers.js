@@ -399,6 +399,7 @@
     app.controller('ProfessionAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Profession',
         function ($scope, $http, $routeParams, $location, $timeout, $filter, Profession)
         {
+
             var self = this;
 
             self.isSuccessMsgVisible = false;
@@ -431,7 +432,66 @@
             };
 
             //self.refreshImagesList();
-        }]);
+    }]);
+
+
+
+
+    app.controller('CountriesPageCtrl', ['$scope', '$http', '$timeout', 'Country', function($scope,$http,$timeout,Country) {
+        var self = this;
+        self.countries = [];
+        // This is what you will bind the filter to
+        self.filterSearchQuery = '';
+        self.countries = Country.query();
+
+
+        // Instantiate these variables outside the watch
+        var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+        $scope.$watch('searchQuery', function (val) {
+            if (filterSearchQueryTimeout)
+                $timeout.cancel(filterSearchQueryTimeout);
+
+            tmpFilterSearchQuery = val;
+
+            filterSearchQueryTimeout = $timeout(function() {
+                self.filterSearchQuery = tmpFilterSearchQuery;
+            }, 250); // delay 250 ms
+        });
+
+
+        self.remove = function (index) {
+            //console.log(self.professions[index]);
+            self.countries[index].$remove();
+            self.countries.splice(index,1);
+        };
+
+
+    }]);
+
+
+    app.controller('CountryAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Country',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Country)
+        {
+
+            var self = this;
+
+            self.isSuccessMsgVisible = false;
+            self.country = new Country();
+
+            self.submitForm = function () {
+                self.country.$save().then(self.showSuccessMsg);
+            };
+
+            self.showSuccessMsg = function (id) {
+                self.isSuccessMsgVisible = true;
+
+                $timeout(function () {
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
+            //self.refreshImagesList();
+    }]);
 
 
     app.controller('StuffPageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {

@@ -18,22 +18,22 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>#</th>
-        <th>Photo</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th></th>
+        <th class="col-xs-1">#</th>
+        <th class="col-xs-1">Photo</th>
+        <th class="col-xs-7">Name</th>
+        <th class="col-xs-1">Age</th>
+        <th class="col-xs-1">Gender</th>
+        <th class="col-xs-1"></th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="employee in stuffPageCtrl.stuff | filter:stuffPageCtrl.filterSearchQuery">
-        <td class="col-xs-1">{{employee.id}}</td>
-        <td class="col-xs-1"><img src ng-src="{{employee.image.thumbUrl}}" alt="{{employee.image.name}}" class="img-rounded img-responsive standard-margin" /></td>
-        <td class="col-xs-7">{{employee.name}}</td>
-        <td class="col-xs-1">{{employee.age}}</td>
-        <td class="col-xs-1">{{employee.gender}}</td>
-        <td class="col-xs-1">
+        <td >{{employee.id}}</td>
+        <td ><img src ng-src="{{employee.image.thumbUrl}}" alt="{{employee.image.name}}" class="img-rounded img-responsive standard-margin" /></td>
+        <td >{{employee.name}}</td>
+        <td >{{employee.age}}</td>
+        <td >{{employee.gender}}</td>
+        <td >
             <button class="btn btn-danger btn-large btn-block" ng-click="stuffPageCtrl.removeProfession($index)">
                 Remove
             </button>

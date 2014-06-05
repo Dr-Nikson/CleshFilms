@@ -1,0 +1,53 @@
+<form name="addCountryForm" class="ang-form"  ng-controller="CountryAddFormCtrl as countryAddFormCtrl"
+      ng-submit="countryAddFormCtrl.submitForm()" novalidate>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <a href="#/countries" class="btn btn-block btn-lg btn-default">Back to countries</a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-block btn-lg btn-success" ng-disabled="addCountryForm.$invalid"
+                    ng-class="{disabled:addCountryForm.$invalid}">
+                Add country
+            </button>
+        </div>
+    </div>
+
+    <div class="row double-top-margin" ng-show="countryAddFormCtrl.isSuccessMsgVisible">
+        <div class="col-xs-12">
+            <blockquote>
+                <p>New country successfully added</p>
+            </blockquote>
+        </div>
+    </div>
+
+    <!-- <div>Form is {{addProfessionForm.$valid}}</div>
+    <div>Form dirty is {{addProfessionForm.$dirty}}</div> -->
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addCountryForm.countryName.$valid,
+                'has-error': addCountryForm.countryName.$invalid && addMovieForm.countryName.$dirty}">
+
+                <input type="text" value="" name="countryName" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="countryAddFormCtrl.country.name"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addCountryForm.countryName.$valid"></span>
+            </div>
+        </div>
+        <!--<div class="col-xs-6">
+            <h4 class="demo-panel-title">Name:</h4>
+            <div class="form-group">
+                <input type="text" value="" placeholder="Inactive" class="form-control my-form-control">
+            </div>
+        </div>-->
+    </div>
+
+    <hr/>
+
+</form>
