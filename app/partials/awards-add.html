@@ -1,0 +1,94 @@
+<form name="addAwardForm" class="ang-form"  ng-controller="AwardAddFormCtrl as awardAddFormCtrl"
+      ng-submit="awardAddFormCtrl.submitForm()" novalidate>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <a href="#/awards" class="btn btn-block btn-lg btn-default">Back to awards</a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-block btn-lg btn-success" ng-disabled="addAwardForm.$invalid"
+                    ng-class="{disabled:addAwardForm.$invalid}">
+                Add award
+            </button>
+        </div>
+    </div>
+
+    <div class="row double-top-margin" ng-show="awardAddFormCtrl.isSuccessMsgVisible">
+        <div class="col-xs-12">
+            <blockquote>
+                <p>New award successfully added</p>
+            </blockquote>
+        </div>
+    </div>
+
+    <!--<div>Form is {{addAwardForm.$valid}}</div>
+    <div>Form dirty is {{addAwardForm.$dirty}}</div>-->
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addAwardForm.countryName.$valid,
+                'has-error': addAwardForm.countryName.$invalid && addAwardForm.countryName.$dirty}">
+
+                <input type="text" value="" name="countryName" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="awardAddFormCtrl.award.name"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addAwardForm.countryName.$valid"></span>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-11">
+            <h4 class="demo-panel-title">Award image: <!--[{{addAwardForm.awardImageId.$valid}}] = {{awardAddFormCtrl.award.image.id}}
+                | Show imgc [{{awardAddFormCtrl.showImageContainer}}]--></h4>
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big"
+                    expanded="awardAddFormCtrl.showImageContainer" slide-toggle="#imagesContainer">
+                <span class="glyphicon glyphicon-chevron-up" ng-class="{
+                    'glyphicon-chevron-up' : awardAddFormCtrl.showImageContainer,
+                    'glyphicon-chevron-down' : !awardAddFormCtrl.showImageContainer,
+                }"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-show="addAwardForm.awardImageId.$valid">
+        <div class="col-xs-3">
+            <img src ng-src="{{awardAddFormCtrl.award.image.thumbUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+        </div>
+        <div class="form-group hidden">
+            <input type="text" value="" name="awardImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                   ng-model="awardAddFormCtrl.award.image.id" required hidden>
+        </div>
+        <div class="col-xs-3">
+        </div>
+    </div>
+
+    <image-input id="imagesContainer" class="d-slidable" ng-model="awardAddFormCtrl.award.image" d-chosen-fun="awardAddFormCtrl.chooseImg()"></image-input>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Description:</h4>
+            <div class="form-group" ng-class="{
+                'has-success': addAwardForm.awardDesc.$valid,
+                'has-error': addAwardForm.awardDesc.$invalid && addAwardForm.awardDesc.$dirty}">
+                <textarea name="awardDesc" placeholder="Enter description" class="form-control my-form-control"
+                          ng-model="awardAddFormCtrl.award.desc" required></textarea>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+</form>

@@ -1,0 +1,43 @@
+<div>
+    <div class="row my-row-standard standard-top-margin">
+        <div class="col-xs-2">
+            <a href="#/images/add" target="_blank" class="btn btn-block btn-lg btn-info">Load images</a>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-info" ng-click="refreshImagesList()">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+        </div>
+        <div class="col-xs-9">
+            <div class="form-group">
+                <input type="text" value="" placeholder="Type to search" class="form-control my-form-control"
+                       ng-model="imageSearchQuery" ng-disabled="false">
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="row in images | filter:filterImageSearchQuery | partition:getRowNum() ">
+        <div class="col-xs-4" ng-repeat="image in row">
+            <div class="tile tile-movie">
+                <img src ng-src="{{image.thumbUrl}}" alt="{{image.name}}" class="tile-image big-illustration wide-screen-img">
+                <h3 class="tile-title">{{image.name | characters:19:true}}</h3>
+                <!-- <p>100% convertable to HTML/CSS layout.</p> -->
+                <button type="button" class="btn btn-info btn-large btn-block"
+                        ng-click="chooseImg(image)" ng-show="image.id != selectedImage.id">
+                    Choose</button>
+                <button type="button" class="btn btn-success btn-large btn-block disabled"
+                        ng-show="image.id == selectedImage.id">
+                    Chosen
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row double-margin" ng-show="showLoadMoreBtn">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-block btn-lg btn-default" ng-click="loadMoreImages()">
+                Load more images
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+    "id" : 1,
+    "name" : "MTV Movie Awards",
+    "desc" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum odio nisi, rutrum id massa sed, blandit pellentesque risus. Nam vulputate at est a suscipit. Vestibulum sollicitudin elementum vulputate. Curabitur et venenatis neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+    "image" :
+    {
+        "id" : "131",
+        "name" : "Image name",
+        "thumbUrl" : "http://bestscreenwallpaper.com/wp-content/uploads/2014/03/Megan-Fox-MTV-Movie-Awards-Award-Corporate-awards-Peoples-Choice-Awards-.jpg",
+        "url" : "http://bestscreenwallpaper.com/wp-content/uploads/2014/03/Megan-Fox-MTV-Movie-Awards-Award-Corporate-awards-Peoples-Choice-Awards-.jpg"
+    }
+}

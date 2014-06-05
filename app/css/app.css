@@ -146,3 +146,34 @@ canvas
     margin-top: 200px;
     margin-bottom: 100px;
 }
+
+.d-slidable
+{
+    display: block;
+}
+
+.my-animated
+{
+    overflow: hidden;
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.my-animated.ng-hide
+{
+    height: 0;
+    opacity:1.0;
+}
+.my-animated.ng-hide,
+.my-animated.ng-remove
+{
+    display: block !important;
+}
+
+
+
+
+
+
+
+

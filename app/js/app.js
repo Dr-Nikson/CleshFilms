@@ -108,6 +108,22 @@
             resolve: { loadConf: loadEnvironmentConfig }
         });
 
+        $routeProvider.when('/awards', {
+            templateUrl: 'partials/awards.html',
+            controller: 'AwardsPageCtrl',
+            controllerAs: 'awardsPageCtrl',
+            activeTab: 'awards',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
+        $routeProvider.when('/awards/add', {
+            templateUrl: 'partials/awards-add.html',
+            /*controller: 'ProfessionsPageCtrl',
+            controllerAs: 'professionsPageCtrl',*/
+            activeTab: 'awards',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
         $routeProvider.when('/genres', {
             templateUrl: 'partials/genres.html',
             controller: 'GenresPageCtrl',

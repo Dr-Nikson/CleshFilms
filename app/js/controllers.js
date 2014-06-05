@@ -362,6 +362,61 @@
     });
 
 
+    app.controller('ImageInputCtrl', ['$scope', '$http', '$routeParams', '$timeout', '$filter', 'Image', function ($scope, $http, $routeParams, $timeout, $filter, Image) {
+        var self = this;
+        self.$scope = $scope;
+        self.$scope.images = [];
+        self.$scope.showLoadMoreBtn = false;
+
+        $scope.getRowNum = function () {
+            return 3;
+        };
+
+        $scope.chooseImg = function (image) {
+            //var tmpImg = $filter('filter')(self.images, { "id": id }, true)[0];
+            self.$scope.selectedImage = image;
+            self.$scope.dChosenFun();
+            //self.toggleImageContainer();
+            //self.tmpData.imagePreViewUrl = tmpImg.thumbUrl;
+            //$scope.addMovieForm.$setDirty();
+        };
+
+        $scope.refreshImagesList = function () {
+            self.$scope.images = Image.query(function (data) {
+                console.log(data);
+                self.$scope.showLoadMoreBtn = false;
+            });
+        };
+
+        /*$scope.loadMoreImages = function () {
+            $http.get('./json/additional-images-list.json').success(function (data) {
+                //self.images = data;
+                for(var i =0; i != data.length; i++)
+                {
+                    self.images.push(data[i]);
+                }
+                self.showLoadMoreBtn = false;
+            });
+        };*/
+
+
+        // Instantiate these variables outside the watch
+        var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+        $scope.$watch('imageSearchQuery', function (val) {
+            if (filterSearchQueryTimeout)
+                $timeout.cancel(filterSearchQueryTimeout);
+
+            tmpFilterSearchQuery = val;
+
+            filterSearchQueryTimeout = $timeout(function() {
+                self.$scope.filterImageSearchQuery = tmpFilterSearchQuery;
+            }, 250); // delay 250 ms
+        });
+
+        $scope.refreshImagesList();
+    }]);
+
+
     app.controller('ProfessionsPageCtrl', ['$scope', '$http', '$timeout', 'Profession', function($scope,$http,$timeout,Profession) {
         var self = this;
         self.professions = [];
@@ -433,6 +488,74 @@
 
             //self.refreshImagesList();
     }]);
+
+
+    app.controller('AwardsPageCtrl', ['$scope', '$http', '$timeout', 'Award', function($scope,$http,$timeout,Award) {
+        var self = this;
+        self.awards = [];
+        // This is what you will bind the filter to
+        self.filterSearchQuery = '';
+        self.awards = Award.query();
+
+
+        // Instantiate these variables outside the watch
+        var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+        $scope.$watch('searchQuery', function (val) {
+            if (filterSearchQueryTimeout)
+                $timeout.cancel(filterSearchQueryTimeout);
+
+            tmpFilterSearchQuery = val;
+
+            filterSearchQueryTimeout = $timeout(function() {
+                self.filterSearchQuery = tmpFilterSearchQuery;
+            }, 250); // delay 250 ms
+        });
+
+
+        self.remove = function (index) {
+            //console.log(self.professions[index]);
+            self.awards[index].$remove();
+            self.awards.splice(index,1);
+        };
+
+
+    }]);
+
+
+    app.controller('AwardAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Award',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Award)
+        {
+
+            var self = this;
+
+            self.isSuccessMsgVisible = false;
+            self.showImageContainer = true;
+            self.award = new Award();
+
+            self.submitForm = function () {
+                self.award.$save().then(self.showSuccessMsg);
+            };
+
+            self.showSuccessMsg = function (id) {
+                self.isSuccessMsgVisible = true;
+
+                $timeout(function () {
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
+            self.chooseImg = function () {
+                self.showImageContainer = false;
+                $scope.addAwardForm.$setDirty();
+                //$scope.addAwardForm.awardImageId.$setValid();
+            };
+
+
+            //self.refreshImagesList();
+    }]);
+
+
+
 
 
     app.controller('GenresPageCtrl', ['$scope', '$http', '$timeout', 'Genre', function($scope,$http,$timeout,Genre) {
