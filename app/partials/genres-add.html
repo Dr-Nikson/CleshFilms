@@ -29,7 +29,7 @@
 
             <div class="form-group" ng-class="{
                 'has-success': addGenreForm.genreName.$valid,
-                'has-error': addGenreForm.genreName.$invalid && addMovieForm.genreName.$dirty}">
+                'has-error': addGenreForm.genreName.$invalid && addGenreForm.genreName.$dirty}">
 
                 <input type="text" value="" name="genreName" placeholder="Enter genre name"
                        class="form-control my-form-control" ng-model="genreAddFormCtrl.genre.name"

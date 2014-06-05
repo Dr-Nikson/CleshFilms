@@ -32,7 +32,7 @@
 
             <div class="form-group" ng-class="{
                 'has-success': addCountryForm.countryName.$valid,
-                'has-error': addCountryForm.countryName.$invalid && addMovieForm.countryName.$dirty}">
+                'has-error': addCountryForm.countryName.$invalid && addCountryForm.countryName.$dirty}">
 
                 <input type="text" value="" name="countryName" placeholder="Enter country name"
                        class="form-control my-form-control" ng-model="countryAddFormCtrl.country.name"
