@@ -106,6 +106,74 @@
             self.showMovieImageContainer = true;
             self.showLoadMoreBtn = true;
             self.filterImageSearchQuery = '';
+            self.formattedDate = {
+              'movieYear' : null
+            };
+
+
+            /*$scope.$watch('movieAddFormCtrl.movie.year', function (nv) {
+                nv = $filter('date')(nv,'yyyy');
+                console.log(nv);
+                self.formattedDate.movieYear = nv;
+                //self.onTimeSet('movieYearInput',nv);
+            });*/
+
+            var oldMovieYear = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.year', function (nv) {
+
+                if(nv == oldMovieYear)
+                    return;
+
+                nv = $filter('date')(nv,'yyyy');
+                self.movie.year = nv;
+                oldMovieYear = nv;
+            });
+
+            var oldMovieWorldPremiere = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.worldPremiere', function (nv) {
+
+                if(nv == oldMovieWorldPremiere)
+                    return;
+
+                nv = $filter('date')(nv,'dd-mm-yyyy');
+                self.movie.worldPremiere = nv;
+                oldMovieWorldPremiere = nv;
+            });
+
+            var oldMovieRussiaPremiere = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.russiaPremiere', function (nv) {
+
+                if(nv == oldMovieRussiaPremiere)
+                    return;
+
+                nv = $filter('date')(nv,'dd-mm-yyyy');
+                self.movie.russiaPremiere = nv;
+                oldMovieRussiaPremiere = nv;
+            });
+
+            var oldMovieRussiaRelease = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.russiaRelease', function (nv) {
+
+                if(nv == oldMovieRussiaRelease)
+                    return;
+
+                nv = $filter('date')(nv,'yyyy');
+                self.movie.russiaRelease = nv;
+                oldMovieRussiaRelease = nv;
+            });
+
+            var oldMovieRussiaBlueRayRelease = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.russiaBlueRayRelease', function (nv) {
+
+                if(nv == oldMovieRussiaBlueRayRelease)
+                    return;
+
+                nv = $filter('date')(nv,'yyyy');
+                self.movie.russiaBlueRayRelease = nv;
+                oldMovieRussiaBlueRayRelease = nv;
+            });
+
+
 
 
             /*$http.get('./json/all-professions-list.json').success(function (data) {
@@ -162,6 +230,12 @@
                 self.showScreenImageContainer = false;
                 $scope.addMovieForm.$setDirty();
             };
+
+            /*self.onTimeSet = function (targetName , newDate) {
+                console.log(newDate);
+                $scope.addMovieForm[targetName] = newDate;
+                //console.log(oldDate);
+            };*/
 
             /*self.chooseImg = function (id) {
                 var tmpImg = $filter('filter')(self.images, { "id": id }, true)[0];

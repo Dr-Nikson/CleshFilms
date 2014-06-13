@@ -37,12 +37,34 @@
             <div class="form-group" ng-class="{
                 'has-success': addMovieForm.movieYear.$valid,
                 'has-error': addMovieForm.movieYear.$invalid && addMovieForm.movieYear.$dirty}">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieYearDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieYear"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.year"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.year"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieYearDropdown', startView:'year', minView:'year' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
+            </div>
+
+            <!--<div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieYear.$valid,
+                'has-error': addMovieForm.movieYear.$invalid && addMovieForm.movieYear.$dirty}">
 
                 <input type="text" value="" name="movieYear" placeholder="Enter movie year"
                        class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.year"
                        ng-minlength="3" required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieYear.$valid"></span>
-            </div>
+            </div>-->
         </div>
     </div>
 
