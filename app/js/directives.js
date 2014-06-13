@@ -188,11 +188,18 @@
             replace: true,
             templateUrl: './partials/widgets/profession-input.html',
             controller: 'ProfessionsInputCtrl',
-            controllerAs: 'professionsInputCtrl',
-            link: function(scope, element, attrs)
-            {
-                console.log('Here!');
-            }
+            controllerAs: 'professionsInputCtrl'
+        };
+    });
+
+    app.directive('staffInput', function () {
+        return {
+            scope: { selected:'=ngModel' },
+            restrict: 'E',
+            replace: true,
+            templateUrl: './partials/widgets/staff-input.html',
+            controller: 'StaffInputCtrl',
+            controllerAs: 'staffInputCtrl'
         };
     });
 

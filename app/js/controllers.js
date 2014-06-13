@@ -723,10 +723,10 @@
     }]);
 
 
-    app.controller('StaffInputCtrl', ['$scope', '$http', '$routeParams', 'Staff', function ($scope, $http, $routeParams, Profession) {
+    app.controller('StaffInputCtrl', ['$scope', '$http', '$routeParams', 'Staff', function ($scope, $http, $routeParams, Staff) {
         var self = this;
         self.$scope = $scope;
-        self.$scope.professions = Profession.query(function()
+        self.$scope.staff = Staff.query(function()
         {
             self.$scope.$broadcast('dataloaded');
         });

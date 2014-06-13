@@ -314,13 +314,7 @@
             <profession-input ng-model="employeAddRow.profession"></profession-input>
         </div>
         <div class="col-xs-8">
-            <div class="form-group">
-                <select name="employe" class="combobox form-control" ng-model="employeAddRow.staffId" my-combobox required>
-                    <option value="" ng-selected="employeAddRow.staffId === null">Select an employe</option>
-                    <option ng-repeat="employe in movieAddFormCtrl.staff" value="{{employe.id}}"
-                            ng-selected="employeAddRow.staffId == employe.id">{{employe.name}}</option>
-                </select>
-            </div>
+            <staff-input ng-model="employeAddRow.staff"></staff-input>
         </div>
         <div class="col-xs-1">
             <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieAddFormCtrl.removeStaffMember($index)"

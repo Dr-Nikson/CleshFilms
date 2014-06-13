@@ -10,7 +10,8 @@
         'cleshFilm.filters',
         'cleshFilm.services',
         'cleshFilm.directives',
-        'cleshFilm.controllers'
+        'cleshFilm.controllers',
+        'ui.bootstrap.datetimepicker'
     ]);
 
     app.value('ENV',{});

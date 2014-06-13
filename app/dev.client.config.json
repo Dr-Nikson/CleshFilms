@@ -5,6 +5,12 @@
         "SAVE_URL": "./json/movies/add.json",
         "SAVE_METHOD": "POST"
     },
+    "STAFF":
+    {
+        "GET_URL": "./json/staff/:id.json",
+        "SAVE_URL": "./json/staff/add.json",
+        "SAVE_METHOD": "POST"
+    },
     "IMAGE":
     {
         "GET_URL": "./json/images/:id.json",
