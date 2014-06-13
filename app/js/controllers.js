@@ -201,9 +201,16 @@
             });
 
             self.addStaffMember = function () {
-                self.movie.crew.push({ staffId:null,professionId:null });
+                self.movie.crew.push({ });
                 $timeout(function () {
-                    self.broadcastDataLoaded();
+                    //self.broadcastDataLoaded();
+                },0,false);
+            };
+
+            self.addAward = function () {
+                self.movie.awards.push({  });
+                $timeout(function () {
+                    //self.broadcastDataLoaded();
                 },0,false);
             };
 
@@ -211,11 +218,15 @@
               self.movie.crew.splice(index,1);
             };
 
-            self.broadcastDataLoaded = function () {
+            self.removeAward = function (index) {
+              self.movie.awards.splice(index,1);
+            };
+
+            /*self.broadcastDataLoaded = function () {
                 if(!self.professions.length || !self.staff.length)
                     return;
                 $scope.$broadcast('dataloaded');
-            };
+            };*/
 
             self.getRowNum = function () {
                 return 3;
@@ -601,6 +612,16 @@
         };
 
 
+    }]);
+
+
+    app.controller('AwardInputCtrl', ['$scope', '$http', '$routeParams', 'Award', function ($scope, $http, $routeParams, Award) {
+        var self = this;
+        self.$scope = $scope;
+        self.$scope.awards = Award.query(function()
+        {
+            self.$scope.$broadcast('dataloaded');
+        });
     }]);
 
 

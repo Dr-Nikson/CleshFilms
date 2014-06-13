@@ -225,6 +225,17 @@
         };
     });
 
+    app.directive('awardInput', function () {
+        return {
+            scope: { selected:'=ngModel' },
+            restrict: 'E',
+            replace: true,
+            templateUrl: './partials/widgets/award-input.html',
+            controller: 'AwardInputCtrl',
+            controllerAs: 'awardInputCtrl'
+        };
+    });
+
 
     /*app.directive('slideable', function () {
         return {

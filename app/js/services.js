@@ -18,6 +18,7 @@
         return function (value) {
             var obj = new resource(value);
             obj.crew = [{}];
+            obj.awards = [{}];
             //obj.crew.push({ profession: {}, staff: {} });
             return obj;
         };
