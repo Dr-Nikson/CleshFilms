@@ -135,7 +135,7 @@
                 if(nv == oldMovieWorldPremiere)
                     return;
 
-                nv = $filter('date')(nv,'dd-mm-yyyy');
+                nv = $filter('date')(nv,'dd-MM-yyyy');
                 self.movie.worldPremiere = nv;
                 oldMovieWorldPremiere = nv;
             });
@@ -146,7 +146,7 @@
                 if(nv == oldMovieRussiaPremiere)
                     return;
 
-                nv = $filter('date')(nv,'dd-mm-yyyy');
+                nv = $filter('date')(nv,'dd-MM-yyyy');
                 self.movie.russiaPremiere = nv;
                 oldMovieRussiaPremiere = nv;
             });
@@ -157,7 +157,7 @@
                 if(nv == oldMovieRussiaRelease)
                     return;
 
-                nv = $filter('date')(nv,'yyyy');
+                nv = $filter('date')(nv,'dd-MM-yyyy');
                 self.movie.russiaRelease = nv;
                 oldMovieRussiaRelease = nv;
             });
@@ -168,7 +168,7 @@
                 if(nv == oldMovieRussiaBlueRayRelease)
                     return;
 
-                nv = $filter('date')(nv,'yyyy');
+                nv = $filter('date')(nv,'dd-MM-yyyy');
                 self.movie.russiaBlueRayRelease = nv;
                 oldMovieRussiaBlueRayRelease = nv;
             });

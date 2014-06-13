@@ -149,10 +149,23 @@
                 'has-success': addMovieForm.movieWorldPremiere.$valid,
                 'has-error': addMovieForm.movieWorldPremiere.$invalid && addMovieForm.movieWorldPremiere.$dirty}">
 
-                <input type="text" value="" name="movieWorldPremiere" placeholder="Enter date"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.worldPremiere"
-                       ng-minlength="3" required>
-                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieWorldPremiere.$valid"></span>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieWorldPremiereDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieWorldPremiere"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.worldPremiere"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.worldPremiere"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieWorldPremiereDropdown', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="col-xs-3">
@@ -162,10 +175,23 @@
                 'has-success': addMovieForm.movieRussiaPremiere.$valid,
                 'has-error': addMovieForm.movieRussiaPremiere.$invalid && addMovieForm.movieRussiaPremiere.$dirty}">
 
-                <input type="text" value="" name="movieRussiaPremiere" placeholder="Enter date"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.russiaPremiere"
-                       ng-minlength="3" required>
-                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRussiaPremiere.$valid"></span>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieRussianPremiereDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieRussiaPremiere"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.russiaPremiere"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.russiaPremiere"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieRussianPremiereDropdown', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="col-xs-3">
@@ -175,10 +201,23 @@
                 'has-success': addMovieForm.movieRussiaRelease.$valid,
                 'has-error': addMovieForm.movieRussiaRelease.$invalid && addMovieForm.movieRussiaRelease.$dirty}">
 
-                <input type="text" value="" name="movieRussiaRelease" placeholder="Enter date"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.russiaRelease"
-                       ng-minlength="3" required>
-                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRussiaRelease.$valid"></span>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieRussiaReleaseDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieRussiaRelease"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.russiaRelease"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.russiaRelease"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieRussiaReleaseDropdown', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="col-xs-3">
@@ -188,10 +227,23 @@
                 'has-success': addMovieForm.movieRussiaBlueRayRelease.$valid,
                 'has-error': addMovieForm.movieRussiaBlueRayRelease.$invalid && addMovieForm.movieRussiaBlueRayRelease.$dirty}">
 
-                <input type="text" value="" name="movieRussiaBlueRayRelease" placeholder="Enter date"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.russiaBlueRayRelease"
-                       ng-minlength="3" required>
-                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRussiaBlueRayRelease.$valid"></span>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieRussiaBlueRayReleaseDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieRussiaBlueRayRelease"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.russiaBlueRayRelease"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.russiaBlueRayRelease"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieRussiaBlueRayRelease', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -352,6 +404,35 @@
         </div>
         <div class="col-xs-1">
             <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieAddFormCtrl.addStaffMember()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Video film:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieVideoFilm.$valid,
+                'has-error': addMovieForm.movieVideoFilm.$invalid && addMovieForm.movieVideoFilm.$dirty}">
+
+                <input type="text" value="" name="movieVideoFilm" placeholder="Enter here"
+                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.video.film"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieVideoFilm.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Video trailer:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieVideoTrailer.$valid,
+                'has-error': addMovieForm.movieVideoTrailer.$invalid && addMovieForm.movieVideoTrailer.$dirty}">
+
+                <input type="text" value="" name="movieVideoTrailer" placeholder="Enter here"
+                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.video.trailer"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieVideoTrailer.$valid"></span>
+            </div>
         </div>
     </div>
 
