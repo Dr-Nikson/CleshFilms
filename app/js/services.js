@@ -9,6 +9,14 @@
 
     //app.constant('API_URL_UPLOAD_IMAGE','upload.php');
 
+    app.factory('Movie', [ '$resource', 'ENV', function ($resource,ENV) {
+        var CONFIG = ENV.CONFIG.MOVIE;
+        return $resource(CONFIG.GET_URL, { id: '@id' }, {
+            query: {method:'GET', params:{ id: 'all'}, isArray:true},
+            save: {method: CONFIG.SAVE_METHOD, url: CONFIG.SAVE_URL}
+        });
+    }]);
+
     app.factory('Image', [ '$resource', 'ENV', function ($resource,ENV) {
         var CONFIG = ENV.CONFIG.IMAGE;
         return $resource(CONFIG.GET_URL, { id: '@id' }, {
