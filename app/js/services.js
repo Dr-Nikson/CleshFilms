@@ -15,13 +15,16 @@
             query: {method:'GET', params:{ id: 'all'}, isArray:true},
             save: {method: CONFIG.SAVE_METHOD, url: CONFIG.SAVE_URL}
         });
-        return function (value) {
+
+        return resource;
+
+        /*return function (value) {
             var obj = new resource(value);
             obj.crew = [{}];
             obj.awards = [{}];
             //obj.crew.push({ profession: {}, staff: {} });
             return obj;
-        };
+        };*/
     }]);
 
 

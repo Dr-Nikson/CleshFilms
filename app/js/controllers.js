@@ -24,22 +24,11 @@
 
     }]);
 
-    app.controller('MoviePageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
+    app.controller('MoviePageCtrl', ['$scope', '$http', '$timeout', 'Movie', function($scope,$http,$timeout,Movie) {
         var self = this;
-        self.movies = [];
+        self.movies = Movie.query();
         // This is what you will bind the filter to
         self.filterSearchQuery = '';
-
-        $http.get('./json/main-movies-list.json').success(function(data){
-            self.movies = data;
-            //$scope.movies = data;
-        });
-
-        /*$http.get('/app/json/all-movies-list.json').success(function(data){
-            self.movies = data;
-            //$scope.movies = data;
-        });*/
-
 
 
         // Instantiate these variables outside the watch
@@ -73,26 +62,15 @@
 
     }]);
 
-    app.controller('MovieEditCtrl', ['$scope', '$http', '$routeParams', function($scope,$http,$routeParams) {
+    app.controller('MovieEditCtrl', ['$scope', '$http', '$routeParams', 'Movie', function($scope,$http,$routeParams,Movie) {
         var self = this;
-        self.movieId = $routeParams.movieId;
-        self.movie = { };
-
-        $http.get('./json/spider-man-movie.json').success(function (data) {
-            self.movie = data;
-        });
-
+        //self.movieId = $routeParams.movieId;
+        self.movie = Movie.get({id:$routeParams.movieId});
     }]);
 
-    app.controller('MovieAddSuccessCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    app.controller('MovieAddSuccessCtrl', ['$scope', '$http', '$routeParams', 'Movie', function ($scope, $http, $routeParams,Movie) {
         var self = this;
-        self.movieId = $routeParams.movieId;
-        $scope.movie = {};
-
-        $http.get('./json/spider-man-movie.json').success(function (data) {
-            $scope.movie = data;
-        });
-
+        $scope.movie = Movie.get({id:$routeParams.movieId});
     }]);
 
 
@@ -102,6 +80,8 @@
             var self = this;
 
             self.movie = new Movie();
+            self.movie.crew = [{}];
+            self.movie.awards = [{}];
 
             self.showMovieImageContainer = true;
             self.showLoadMoreBtn = true;
@@ -795,16 +775,17 @@
     }]);
 
 
-    app.controller('StuffPageCtrl', ['$scope', '$http', '$timeout', function($scope,$http,$timeout) {
+    app.controller('StuffPageCtrl', ['$scope', '$http', '$timeout', 'Staff',function($scope,$http,$timeout,Staff) {
         var self = this;
         self.stuff = [];
         // This is what you will bind the filter to
         self.filterSearchQuery = '';
+        self.stuff = Staff.query();
 
-        $http.get('./json/all-stuff-list.json').success(function(data){
+        /*$http.get('./json/all-stuff-list.json').success(function(data){
             self.stuff = data;
             //$scope.movies = data;
-        });
+        });*/
 
         /*$http.get('/app/json/all-movies-list.json').success(function(data){
          self.movies = data;
@@ -831,7 +812,9 @@
             //$scope.movies.splice(index,1);
             //$scope.movies.push({ name: 'new', thumbUrl: 'lool'});
             //console.log(self.movies[index].name);
+            self.stuff[index].$remove();
             self.stuff.splice(index,1);
+
         };
 
 
