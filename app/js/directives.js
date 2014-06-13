@@ -181,6 +181,22 @@
     });
 
 
+    app.directive('professionInput', function () {
+        return {
+            scope: { selected:'=ngModel' },
+            restrict: 'E',
+            replace: true,
+            templateUrl: './partials/widgets/profession-input.html',
+            controller: 'ProfessionsInputCtrl',
+            controllerAs: 'professionsInputCtrl',
+            link: function(scope, element, attrs)
+            {
+                console.log('Here!');
+            }
+        };
+    });
+
+
     /*app.directive('slideable', function () {
         return {
             restrict:'C',

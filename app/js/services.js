@@ -11,10 +11,16 @@
 
     app.factory('Movie', [ '$resource', 'ENV', function ($resource,ENV) {
         var CONFIG = ENV.CONFIG.MOVIE;
-        return $resource(CONFIG.GET_URL, { id: '@id' }, {
+        var resource = $resource(CONFIG.GET_URL, { id: '@id' }, {
             query: {method:'GET', params:{ id: 'all'}, isArray:true},
             save: {method: CONFIG.SAVE_METHOD, url: CONFIG.SAVE_URL}
         });
+        return function (value) {
+            var obj = new resource(value);
+            obj.crew = [{}];
+            //obj.crew.push({ profession: {}, staff: {} });
+            return obj;
+        };
     }]);
 
     app.factory('Image', [ '$resource', 'ENV', function ($resource,ENV) {

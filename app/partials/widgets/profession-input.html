@@ -1,0 +1,7 @@
+<div class="form-group">
+    <select name="herolist" value="{{selected.id}}" class="select-block" ng-model="selected" my-dropdown required>
+        <option value="" ng-selected="!selected.id">Choose a profession</option>
+        <option ng-repeat="profession in professions" value="{{profession.id}}"
+                ng-selected="selected.id == profession.id">{{profession.name}}</option>
+    </select>
+</div>

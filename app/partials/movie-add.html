@@ -1,5 +1,5 @@
 <form name="addMovieForm" class="ang-form"  ng-controller="MovieAddFormCtrl as movieAddFormCtrl"
-      ng-submit="movieAddFormCtrl.submitForm()" ng-show="movieAddFormCtrl.showForm" novalidate>
+      ng-submit="movieAddFormCtrl.submitForm()" novalidate>
 
     <div class="row my-row-standard">
         <div class="col-xs-3">
@@ -44,12 +44,6 @@
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieYear.$valid"></span>
             </div>
         </div>
-        <!--<div class="col-xs-6">
-            <h4 class="demo-panel-title">Name:</h4>
-            <div class="form-group">
-                <input type="text" value="" placeholder="Inactive" class="form-control my-form-control">
-            </div>
-        </div>-->
     </div>
 
     <hr/>
@@ -184,14 +178,16 @@
 
     <div class="row">
         <div class="col-xs-11">
-            <h4 class="demo-panel-title">Movie image: [{{addMovieForm.movieImageId.$valid}}]</h4>
+            <h4 class="demo-panel-title">Movie image: <!--[{{addAwardForm.awardImageId.$valid}}] = {{awardAddFormCtrl.award.image.id}}
+                | Show imgc [{{awardAddFormCtrl.showImageContainer}}]--></h4>
 
         </div>
         <div class="col-xs-1">
-            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big" ng-click="movieAddFormCtrl.toggleImageContainer()">
+            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big"
+                    expanded="movieAddFormCtrl.showMovieImageContainer" slide-toggle="#movieImagesContainer">
                 <span class="glyphicon glyphicon-chevron-up" ng-class="{
-                    'glyphicon-chevron-up' : movieAddFormCtrl.showImageContainer,
-                    'glyphicon-chevron-down' : !movieAddFormCtrl.showImageContainer,
+                    'glyphicon-chevron-up' : movieAddFormCtrl.showMovieImageContainer,
+                    'glyphicon-chevron-down' : !movieAddFormCtrl.showMovieImageContainer,
                 }"></span>
             </button>
         </div>
@@ -199,63 +195,51 @@
 
     <div class="row my-row-standard" ng-show="addMovieForm.movieImageId.$valid">
         <div class="col-xs-3">
-            <img src="{{movieAddFormCtrl.tmpData.imagePreViewUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+            <img src ng-src="{{movieAddFormCtrl.movie.image.thumbUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+        </div>
+        <div class="form-group hidden">
+            <input type="text" value="" name="movieImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                   ng-model="movieAddFormCtrl.movie.image.id" required hidden>
         </div>
         <div class="col-xs-3">
-            <div class="form-group hidden" ng-class="{
-                'has-success': addMovieForm.movieImageId.$valid,
-                'has-error': addMovieForm.movieImageId.$invalid && addMovieForm.movieImageId.$dirty}">
-                <input type="text" value="" name="movieImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
-                       ng-model="movieAddFormCtrl.movie.imageId" required hidden>
-            </div>
         </div>
     </div>
 
-    <div id="imagesContainer">
+    <image-input id="movieImagesContainer" class="d-slidable" ng-model="movieAddFormCtrl.movie.image" d-chosen-fun="movieAddFormCtrl.chooseMovieImg()"></image-input>
 
-        <div class="row my-row-standard standard-top-margin">
-            <div class="col-xs-2">
-                <a href="#/images/add" target="_blank" class="btn btn-block btn-lg btn-info">Load images</a>
-            </div>
-            <div class="col-xs-1">
-                <button type="button" class="btn btn-block btn-lg btn-info" ng-click="movieAddFormCtrl.refreshImagesList()">
-                    <span class="glyphicon glyphicon-refresh"></span>
-                </button>
-            </div>
-            <div class="col-xs-9">
-                <div class="form-group">
-                    <input type="text" value="" placeholder="Type image name to search" class="form-control my-form-control"
-                           ng-model="imageSearchQuery" ng-disabled="!movieAddFormCtrl.showImageContainer">
-                </div>
-            </div>
+    <hr/>
+
+
+    <div class="row">
+        <div class="col-xs-11">
+            <h4 class="demo-panel-title">Screen image: <!--[{{addAwardForm.awardImageId.$valid}}] = {{awardAddFormCtrl.award.image.id}}
+                | Show imgc [{{awardAddFormCtrl.showImageContainer}}]--></h4>
+
         </div>
-
-        <div class="row my-row-standard" ng-repeat="row in movieAddFormCtrl.images | filter:movieAddFormCtrl.filterImageSearchQuery | partition:movieAddFormCtrl.getRowNum() ">
-            <div class="col-xs-4" ng-repeat="image in row">
-                <div class="tile tile-movie">
-                    <img src="{{image.thumbUrl}}" alt="{{image.name}}" class="tile-image big-illustration wide-screen-img">
-                    <h3 class="tile-title">{{image.name | characters:21:true}}</h3>
-                    <!-- <p>100% convertable to HTML/CSS layout.</p> -->
-                    <button type="button" class="btn btn-info btn-large btn-block"
-                            ng-click="movieAddFormCtrl.chooseImg(image.id)" ng-show="image.id != movieAddFormCtrl.movie.imageId">
-                        Choose</button>
-                    <button type="button" class="btn btn-success btn-large btn-block disabled"
-                            ng-show="image.id == movieAddFormCtrl.movie.imageId">
-                        Chosen
-                    </button>
-                </div>
-            </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big"
+                    expanded="movieAddFormCtrl.showScreenImageContainer" slide-toggle="#movieScreenContainer">
+                <span class="glyphicon glyphicon-chevron-up" ng-class="{
+                    'glyphicon-chevron-up' : movieAddFormCtrl.showScreenImageContainer,
+                    'glyphicon-chevron-down' : !movieAddFormCtrl.showScreenImageContainer,
+                }"></span>
+            </button>
         </div>
-
-        <div class="row double-margin" ng-show="movieAddFormCtrl.showLoadMoreBtn">
-            <div class="col-xs-12">
-                <button type="button" class="btn btn-block btn-lg btn-default" ng-click="movieAddFormCtrl.loadMoreImages()">
-                    Load more images
-                </button>
-            </div>
-        </div>
-
     </div>
+
+    <div class="row my-row-standard" ng-show="addMovieForm.screenImageId.$valid">
+        <div class="col-xs-3">
+            <img src ng-src="{{movieAddFormCtrl.movie.screen.thumbUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+        </div>
+        <div class="form-group hidden">
+            <input type="text" value="" name="screenImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                   ng-model="movieAddFormCtrl.movie.screen.id" required hidden>
+        </div>
+        <div class="col-xs-3">
+        </div>
+    </div>
+
+    <image-input id="movieScreenContainer" class="d-slidable" ng-model="movieAddFormCtrl.movie.screen" d-chosen-fun="movieAddFormCtrl.chooseScreenImg()"></image-input>
 
     <hr/>
 
@@ -325,15 +309,9 @@
         </div>
     </div>
 
-    <!--<div class="row my-row-standard" ng-repeat="employeAddRow in movieAddFormCtrl.movie.crew">
+    <div class="row my-row-standard" ng-repeat="employeAddRow in movieAddFormCtrl.movie.crew">
         <div class="col-xs-3">
-            <div class="form-group">
-                <select name="herolist" value="{{employeAddRow.professionId}}" class="select-block" ng-model="employeAddRow.professionId" my-dropdown required>
-                    <option value="" ng-selected="employeAddRow.professionId === null">Choose a profession</option>
-                    <option ng-repeat="profession in movieAddFormCtrl.professions" value="{{profession.id}}"
-                            ng-selected="employeAddRow.professionId == profession.id">{{profession.name}}</option>
-                </select>
-            </div>
+            <profession-input ng-model="employeAddRow.profession"></profession-input>
         </div>
         <div class="col-xs-8">
             <div class="form-group">
@@ -350,7 +328,7 @@
                 <span class="glyphicon glyphicon-remove"></span>
             </button>
         </div>
-    </div>-->
+    </div>
 
     <div class="row my-row-standard">
         <div class="col-xs-11">

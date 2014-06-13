@@ -96,30 +96,19 @@
     }]);
 
 
-    app.controller('MovieAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter',
-        function ($scope, $http, $routeParams, $location, $timeout, $filter)
+    app.controller('MovieAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter','Movie',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Movie)
         {
             var self = this;
 
-            self.movie = {
-                image : {},
-                crew : [
-                    { staffId:null,professionId:null }
-                ]
-            };
-            self.tmpData = {
-                imagePreViewUrl : ""
-            };
-            self.images = [];
-            self.professions = [];
-            self.staff = [];
-            self.showForm = true;
-            self.showImageContainer = true;
+            self.movie = new Movie();
+
+            self.showMovieImageContainer = true;
             self.showLoadMoreBtn = true;
             self.filterImageSearchQuery = '';
 
 
-            $http.get('./json/all-professions-list.json').success(function (data) {
+            /*$http.get('./json/all-professions-list.json').success(function (data) {
                 self.professions = data;
                 self.broadcastDataLoaded();
             });
@@ -127,7 +116,7 @@
             $http.get('./json/all-stuff-list.json').success(function (data) {
                 self.staff = data;
                 self.broadcastDataLoaded();
-            });
+            });*/
 
 
             // Instantiate these variables outside the watch
@@ -164,7 +153,17 @@
                 return 3;
             };
 
-            self.chooseImg = function (id) {
+            self.chooseMovieImg = function () {
+                self.showMovieImageContainer = false;
+                $scope.addMovieForm.$setDirty();
+            };
+
+            self.chooseScreenImg = function () {
+                self.showScreenImageContainer = false;
+                $scope.addMovieForm.$setDirty();
+            };
+
+            /*self.chooseImg = function (id) {
                 var tmpImg = $filter('filter')(self.images, { "id": id }, true)[0];
                 //self.movie.image = $filter('filter')(self.images, { "id": id }, true)[0];
                 self.movie.imageId = id;
@@ -173,16 +172,16 @@
                 $scope.addMovieForm.$setDirty();
                 //$scope.addMovieForm.movieImageId.$setValidity('required', true);
                 //console.log(self.movie.image);
-            };
+            };*/
 
-            self.refreshImagesList = function () {
+            /*self.refreshImagesList = function () {
                 $http.get('./json/all-images-list.json').success(function (data) {
                     self.images = data;
                     self.showLoadMoreBtn = true;
                 });
-            };
+            };*/
 
-            self.loadMoreImages = function () {
+            /*self.loadMoreImages = function () {
                 $http.get('./json/additional-images-list.json').success(function (data) {
                     //self.images = data;
                     for(var i =0; i != data.length; i++)
@@ -191,9 +190,9 @@
                     }
                     self.showLoadMoreBtn = false;
                 });
-            };
+            };*/
 
-            self.toggleImageContainer = function () {
+            /*self.toggleImageContainer = function () {
                 var $cont = $('#imagesContainer');
                 if(self.showImageContainer)
                 {
@@ -203,16 +202,15 @@
                 }
                 $cont.slideDown("slow");
                 self.showImageContainer = true;
-            };
+            };*/
 
             self.submitForm = function () {
                 console.log("Form submit");
-                self.showForm = false;
-                self.movie.id = "1";
-                $location.path("movies/add/success/"+self.movie.id);
+                self.movie.$save();
+                //$location.path("movies/add/success/"+self.movie.id);
             };
 
-            self.refreshImagesList();
+            //self.refreshImagesList();
 
             //$("select[name='herolist']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
             //$('#imagesContainer').slideUp();
@@ -448,6 +446,16 @@
         };
 
 
+    }]);
+
+
+    app.controller('ProfessionsInputCtrl', ['$scope', '$http', '$routeParams', 'Profession', function ($scope, $http, $routeParams, Profession) {
+        var self = this;
+        self.$scope = $scope;
+        self.$scope.professions = Profession.query(function()
+        {
+            self.$scope.$broadcast('dataloaded');
+        });
     }]);
 
 
@@ -712,6 +720,16 @@
         };
 
 
+    }]);
+
+
+    app.controller('StaffInputCtrl', ['$scope', '$http', '$routeParams', 'Staff', function ($scope, $http, $routeParams, Profession) {
+        var self = this;
+        self.$scope = $scope;
+        self.$scope.professions = Profession.query(function()
+        {
+            self.$scope.$broadcast('dataloaded');
+        });
     }]);
 
 })();
