@@ -203,6 +203,28 @@
         };
     });
 
+    app.directive('countryInput', function () {
+        return {
+            scope: { selected:'=ngModel' },
+            restrict: 'E',
+            replace: true,
+            templateUrl: './partials/widgets/country-input.html',
+            controller: 'CountryInputCtrl',
+            controllerAs: 'countryInputCtrl'
+        };
+    });
+
+    app.directive('genreInput', function () {
+        return {
+            scope: { selected:'=ngModel' },
+            restrict: 'E',
+            replace: true,
+            templateUrl: './partials/widgets/genre-input.html',
+            controller: 'GenreInputCtrl',
+            controllerAs: 'genreInputCtrl'
+        };
+    });
+
 
     /*app.directive('slideable', function () {
         return {

@@ -1,0 +1,7 @@
+<div class="form-group">
+    <select name="country" class="combobox form-control" ng-model="selected.id" my-combobox required>
+        <option value="" ng-selected="!selected.id">Select a country</option>
+        <option ng-repeat="country in countries" value="{{country.id}}"
+                ng-selected="selected.id == country.id">{{country.name}}</option>
+    </select>
+</div>

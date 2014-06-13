@@ -1,0 +1,7 @@
+<div class="form-group">
+    <select name="genre" class="combobox form-control" ng-model="selected.id" my-combobox required>
+        <option value="" ng-selected="!selected.id">Select a genre</option>
+        <option ng-repeat="genre in genres" value="{{genre.id}}"
+                ng-selected="selected.id == genre.id">{{genre.name}}</option>
+    </select>
+</div>

@@ -672,6 +672,16 @@
     }]);
 
 
+    app.controller('GenreInputCtrl', ['$scope', '$http', '$routeParams', 'Genre', function ($scope, $http, $routeParams, Genre) {
+        var self = this;
+        self.$scope = $scope;
+        self.$scope.genres = Genre.query(function()
+        {
+            self.$scope.$broadcast('dataloaded');
+        });
+    }]);
+
+
     app.controller('GenreAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Genre',
         function ($scope, $http, $routeParams, $location, $timeout, $filter, Genre)
         {
@@ -751,6 +761,16 @@
             };
 
             //self.refreshImagesList();
+    }]);
+
+
+    app.controller('CountryInputCtrl', ['$scope', '$http', '$routeParams', 'Country', function ($scope, $http, $routeParams, Country) {
+        var self = this;
+        self.$scope = $scope;
+        self.$scope.countries = Country.query(function()
+        {
+            self.$scope.$broadcast('dataloaded');
+        });
     }]);
 
 
