@@ -2,6 +2,6 @@
     <select name="employe" class="combobox form-control" ng-model="selected.id" my-combobox required>
         <option value="" ng-selected="!selected.id">Select an employe</option>
         <option ng-repeat="employe in staff" value="{{employe.id}}"
-                ng-selected="selected.id == employe.id">{{employe.name}}</option>
+                ng-selected="selected.id == employe.id">{{employe.firstName}} {{employe.lastName}}</option>
     </select>
 </div>

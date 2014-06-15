@@ -1,165 +1,154 @@
-<form name="addMovieForm" class="ang-form"  ng-controller="MovieAddFormCtrl as movieAddFormCtrl"
-      ng-submit="movieAddFormCtrl.submitForm()" ng-show="movieAddFormCtrl.showForm" novalidate>
+<form name="addStaffForm" class="ang-form"  ng-controller="StaffAddFormCtrl as staffAddFormCtrl"
+      ng-submit="staffAddFormCtrl.submitForm()" novalidate>
+
 
     <div class="row my-row-standard">
         <div class="col-xs-3">
-            <a href="#/movies" class="btn btn-block btn-lg btn-default">Back to movies</a>
+            <a href="#/staff" class="btn btn-block btn-lg btn-default">Back to staff</a>
         </div>
         <div class="col-xs-6"></div>
         <div class="col-xs-3">
-            <button type="submit" class="btn btn-block btn-lg btn-success" ng-disabled="addMovieForm.$invalid"
-                    ng-class="{disabled:addMovieForm.$invalid}">
-                Add movie
+            <button type="submit" class="btn btn-block btn-lg btn-success" ng-disabled="addStaffForm.$invalid"
+                    ng-class="{disabled:addStaffForm.$invalid}">
+                Add staff
             </button>
         </div>
     </div>
 
-    <div>Form is {{addMovieForm.$valid}}</div>
-    <div>Form dirty is {{addMovieForm.$dirty}}</div>
+    <div class="row double-top-margin" ng-show="staffAddFormCtrl.isSuccessMsgVisible">
+        <div class="col-xs-12">
+            <blockquote>
+                <p>New staff successfully added</p>
+            </blockquote>
+        </div>
+    </div>
+
+    <!--<div>Form is {{addStaffForm.$valid}}</div>
+    <div>Form dirty is {{addStaffForm.$dirty}}</div>-->
 
     <div class="row my-row-standard">
         <div class="col-xs-6">
-            <h4 class="demo-panel-title">Name:</h4>
+            <h4 class="demo-panel-title">First Name:</h4>
 
             <div class="form-group" ng-class="{
-                'has-success': addMovieForm.movieName.$valid,
-                'has-error': addMovieForm.movieName.$invalid && addMovieForm.movieName.$dirty}">
+                'has-success': addStaffForm.staffFirstName.$valid,
+                'has-error': addStaffForm.staffFirstName.$invalid && addStaffForm.staffFirstName.$dirty}">
 
-                <input type="text" value="" name="movieName" placeholder="Enter movie name"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.name"
+                <input type="text" value="" name="staffFirstName" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="staffAddFormCtrl.staff.firstName"
                        ng-minlength="3" required>
-                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieName.$valid"></span>
+                <span class="input-icon fui-check-inverted" ng-show="addStaffForm.staffFirstName.$valid"></span>
             </div>
         </div>
-        <!--<div class="col-xs-6">
-            <h4 class="demo-panel-title">Name:</h4>
-            <div class="form-group">
-                <input type="text" value="" placeholder="Inactive" class="form-control my-form-control">
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Last Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addStaffForm.staffLastName.$valid,
+                'has-error': addStaffForm.staffLastName.$invalid && addStaffForm.staffLastName.$dirty}">
+
+                <input type="text" value="" name="staffLastName" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="staffAddFormCtrl.staff.lastName"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addStaffForm.staffLastName.$valid"></span>
             </div>
-        </div>-->
+        </div>
+        
+    </div>
+
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-8">
+            <h4 class="demo-panel-title">Birth place:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addStaffForm.staffBirthPlace.$valid,
+                'has-error': addStaffForm.staffBirthPlace.$invalid && addStaffForm.staffBirthPlace.$dirty}">
+
+                <input type="text" value="" name="staffBirthPlace" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="staffAddFormCtrl.staff.birthPlace"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addStaffForm.staffBirthPlace.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="demo-panel-title">Birth date:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addStaffForm.birthYear.$valid,
+                'has-error': addStaffForm.birthYear.$invalid && addStaffForm.birthYear.$dirty}">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="staffBirthYearDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="birthYear"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="staffAddFormCtrl.staff.birthYear"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="staffAddFormCtrl.staff.birthYear"
+                                        data-datetimepicker-config="{ dropdownSelector: '#staffBirthYearDropdown', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <hr/>
 
     <div class="row">
         <div class="col-xs-11">
-            <h4 class="demo-panel-title">Movie image: [{{addMovieForm.movieImageId.$valid}}]</h4>
+            <h4 class="demo-panel-title">Photo: <!--[{{addStaffForm.staffImageId.$valid}}] = {{staffAddFormCtrl.award.image.id}}
+                | Show imgc [{{staffAddFormCtrl.showImageContainer}}]--></h4>
 
         </div>
         <div class="col-xs-1">
-            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big" ng-click="movieAddFormCtrl.toggleImageContainer()">
+            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big"
+                    expanded="staffAddFormCtrl.showImageContainer" slide-toggle="#imagesContainer">
                 <span class="glyphicon glyphicon-chevron-up" ng-class="{
-                    'glyphicon-chevron-up' : movieAddFormCtrl.showImageContainer,
-                    'glyphicon-chevron-down' : !movieAddFormCtrl.showImageContainer,
+                    'glyphicon-chevron-up' : staffAddFormCtrl.showImageContainer,
+                    'glyphicon-chevron-down' : !staffAddFormCtrl.showImageContainer,
                 }"></span>
             </button>
         </div>
     </div>
 
-    <div class="row my-row-standard" ng-show="addMovieForm.movieImageId.$valid">
+    <div class="row my-row-standard" ng-show="addStaffForm.staffImageId.$valid">
         <div class="col-xs-3">
-            <img src="{{movieAddFormCtrl.tmpData.imagePreViewUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+            <img src ng-src="{{staffAddFormCtrl.staff.image.thumbUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+        </div>
+        <div class="form-group hidden">
+            <input type="text" value="" name="staffImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                   ng-model="staffAddFormCtrl.staff.image.id" required hidden>
         </div>
         <div class="col-xs-3">
-            <div class="form-group hidden" ng-class="{
-                'has-success': addMovieForm.movieImageId.$valid,
-                'has-error': addMovieForm.movieImageId.$invalid && addMovieForm.movieImageId.$dirty}">
-                <input type="text" value="" name="movieImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
-                       ng-model="movieAddFormCtrl.movie.imageId" required hidden>
-            </div>
         </div>
     </div>
 
-    <div id="imagesContainer">
-
-        <div class="row my-row-standard standard-top-margin">
-            <div class="col-xs-2">
-                <a href="#/images/add" target="_blank" class="btn btn-block btn-lg btn-info">Load images</a>
-            </div>
-            <div class="col-xs-1">
-                <button type="button" class="btn btn-block btn-lg btn-info" ng-click="movieAddFormCtrl.refreshImagesList()">
-                    <span class="glyphicon glyphicon-refresh"></span>
-                </button>
-            </div>
-            <div class="col-xs-9">
-                <div class="form-group">
-                    <input type="text" value="" placeholder="Type image name to search" class="form-control my-form-control"
-                           ng-model="imageSearchQuery" ng-disabled="!movieAddFormCtrl.showImageContainer">
-                </div>
-            </div>
-        </div>
-
-        <div class="row my-row-standard" ng-repeat="row in movieAddFormCtrl.images | filter:movieAddFormCtrl.filterImageSearchQuery | partition:movieAddFormCtrl.getRowNum() ">
-            <div class="col-xs-4" ng-repeat="image in row">
-                <div class="tile tile-movie">
-                    <img src="{{image.thumbUrl}}" alt="{{image.name}}" class="tile-image big-illustration wide-screen-img">
-                    <h3 class="tile-title">{{image.name | characters:21:true}}</h3>
-                    <!-- <p>100% convertable to HTML/CSS layout.</p> -->
-                    <button type="button" class="btn btn-info btn-large btn-block"
-                            ng-click="movieAddFormCtrl.chooseImg(image.id)" ng-show="image.id != movieAddFormCtrl.movie.imageId">
-                        Choose</button>
-                    <button type="button" class="btn btn-success btn-large btn-block disabled"
-                            ng-show="image.id == movieAddFormCtrl.movie.imageId">
-                        Chosen
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="row double-margin" ng-show="movieAddFormCtrl.showLoadMoreBtn">
-            <div class="col-xs-12">
-                <button type="button" class="btn btn-block btn-lg btn-default" ng-click="movieAddFormCtrl.loadMoreImages()">
-                    Load more images
-                </button>
-            </div>
-        </div>
-
-    </div>
+    <image-input id="imagesContainer" class="d-slidable" ng-model="staffAddFormCtrl.staff.image" d-chosen-fun="staffAddFormCtrl.chooseImg()"></image-input>
 
     <hr/>
 
-    <div class="row my-row-standard">
-        <div class="col-xs-12">
-            <h4 class="demo-panel-title">Description:</h4>
-            <div class="form-group" ng-class="{
-                'has-success': addMovieForm.movieDesc.$valid,
-                'has-error': addMovieForm.movieDesc.$invalid && addMovieForm.movieDesc.$dirty}">
-                <textarea name="movieDesc" placeholder="Enter movie description" class="form-control my-form-control"
-                          ng-model="movieAddFormCtrl.movie.desc" required></textarea>
-            </div>
-        </div>
-    </div>
-
-    <hr/>
 
     <div class="row my-row-standard">
         <div class="col-xs-12">
-            <h4 class="demo-panel-title">Film crew:</h4>
+            <h4 class="demo-panel-title">Career:</h4>
         </div>
     </div>
 
-    <div class="row my-row-standard" ng-repeat="employeAddRow in movieAddFormCtrl.movie.crew">
-        <div class="col-xs-3">
-            <div class="form-group">
-                <select name="herolist" value="{{employeAddRow.professionId}}" class="select-block" ng-model="employeAddRow.professionId" my-dropdown required>
-                    <option value="" ng-selected="employeAddRow.professionId === null">Choose a profession</option>
-                    <option ng-repeat="profession in movieAddFormCtrl.professions" value="{{profession.id}}"
-                            ng-selected="employeAddRow.professionId == profession.id">{{profession.name}}</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-xs-8">
-            <div class="form-group">
-                <select name="employe" class="combobox form-control" ng-model="employeAddRow.staffId" my-combobox required>
-                    <option value="" ng-selected="employeAddRow.staffId === null">Select an employe</option>
-                    <option ng-repeat="employe in movieAddFormCtrl.staff" value="{{employe.id}}"
-                            ng-selected="employeAddRow.staffId == employe.id">{{employe.name}}</option>
-                </select>
-            </div>
+    <div class="row my-row-standard" ng-repeat="employeAddRow in staffAddFormCtrl.staff.professions">
+        <div class="col-xs-11">
+            <profession-input ng-model="employeAddRow"></profession-input>
         </div>
         <div class="col-xs-1">
-            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieAddFormCtrl.removeStaffMember($index)"
-                    ng-disabled="movieAddFormCtrl.movie.crew.length < 2">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="staffAddFormCtrl.removeStaffProfession($index)"
+                    ng-disabled="staffAddFormCtrl.staff.professions.length < 2">
                 <span class="glyphicon glyphicon-remove"></span>
             </button>
         </div>
@@ -170,10 +159,13 @@
 
         </div>
         <div class="col-xs-1">
-            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieAddFormCtrl.addStaffMember()"><span class="glyphicon glyphicon-plus"></span></button>
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="staffAddFormCtrl.addStaffProfession()"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
 
+    <hr/>
+
     <my-goup-btn></my-goup-btn>
+
 
 </form>

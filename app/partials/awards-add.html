@@ -27,7 +27,7 @@
     <div>Form dirty is {{addAwardForm.$dirty}}</div>-->
 
     <div class="row my-row-standard">
-        <div class="col-xs-12">
+        <div class="col-xs-8">
             <h4 class="demo-panel-title">Name:</h4>
 
             <div class="form-group" ng-class="{
@@ -38,6 +38,32 @@
                        class="form-control my-form-control" ng-model="awardAddFormCtrl.award.name"
                        ng-minlength="3" required>
                 <span class="input-icon fui-check-inverted" ng-show="addAwardForm.countryName.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="demo-panel-title">Year:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addAwardForm.awardYear.$valid,
+                'has-error': addAwardForm.awardYear.$invalid && addAwardForm.awardYear.$dirty}">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="awardYearDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="awardYear"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="awardAddFormCtrl.award.year"
+                                   ng-pattern="/^[0-9]+$/"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="awardAddFormCtrl.award.year"
+                                        data-datetimepicker-config="{ dropdownSelector: '#awardYearDropdown', startView:'year', minView:'year' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -90,5 +116,8 @@
     </div>
 
     <hr/>
+
+    <my-goup-btn></my-goup-btn>
+
 
 </form>

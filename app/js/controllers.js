@@ -615,6 +615,17 @@
             self.showImageContainer = true;
             self.award = new Award();
 
+            var oldAwardYear = undefined;
+            $scope.$watch('awardAddFormCtrl.award.year', function (nv) {
+
+                if(nv == oldAwardYear)
+                    return;
+
+                nv = $filter('date')(nv,'yyyy');
+                self.award.year = nv;
+                oldAwardYear = nv;
+            });
+
             self.submitForm = function () {
                 self.award.$save().then(self.showSuccessMsg);
             };
@@ -819,6 +830,59 @@
 
 
     }]);
+
+
+    app.controller('StaffAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Staff',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Staff)
+        {
+
+            var self = this;
+
+            self.isSuccessMsgVisible = false;
+            self.showImageContainer = true;
+            self.staff = new Staff();
+            self.staff.professions = [{}];
+
+            var oldYear = undefined;
+            $scope.$watch('staffAddFormCtrl.staff.birthYear', function (nv) {
+
+                if(nv == oldYear)
+                    return;
+
+                nv = $filter('date')(nv,'dd-MM-yyyy');
+                self.staff.birthYear = nv;
+                oldYear = nv;
+            });
+
+            self.submitForm = function () {
+                self.staff.$save().then(self.showSuccessMsg);
+            };
+
+            self.showSuccessMsg = function (id) {
+                self.isSuccessMsgVisible = true;
+
+                $timeout(function () {
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
+            self.chooseImg = function () {
+                self.showImageContainer = false;
+                $scope.addStaffForm.$setDirty();
+                //$scope.addAwardForm.awardImageId.$setValid();
+            };
+
+            self.addStaffProfession = function () {
+                self.staff.professions.push({ });
+            };
+
+
+            self.removeStaffProfession = function (index) {
+                self.staff.professions.splice(index,1);
+            };
+
+            //self.refreshImagesList();
+        }]);
 
 
     app.controller('StaffInputCtrl', ['$scope', '$http', '$routeParams', 'Staff', function ($scope, $http, $routeParams, Staff) {

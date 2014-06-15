@@ -14,9 +14,6 @@
         </div>
     </div>
 
-    <div>Form is {{addMovieForm.$valid}}</div>
-    <div>Form dirty is {{addMovieForm.$dirty}}</div>
-
     <div class="row my-row-standard">
         <div class="col-xs-8">
             <h4 class="demo-panel-title">Name:</h4>
@@ -44,6 +41,7 @@
                                    name="movieYear"
                                    class="form-control  my-form-control"
                                    data-ng-model="movieAddFormCtrl.movie.year"
+                                   ng-pattern="/^[0-9]+$/"
                                    required>
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
@@ -92,9 +90,15 @@
                 'has-success': addMovieForm.movieBudget.$valid,
                 'has-error': addMovieForm.movieBudget.$invalid && addMovieForm.movieBudget.$dirty}">
 
-                <input type="text" value="" name="movieBudget" placeholder="Enter movie budget"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.budget"
-                       ng-minlength="3" required>
+                <input type="text"
+                       value=""
+                       name="movieBudget"
+                       placeholder="Enter movie budget"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.budget"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieBudget.$valid"></span>
             </div>
         </div>
@@ -105,9 +109,15 @@
                 'has-success': addMovieForm.movieFeesWorld.$valid,
                 'has-error': addMovieForm.movieFeesWorld.$invalid && addMovieForm.movieFeesWorld.$dirty}">
 
-                <input type="text" value="" name="movieFeesWorld" placeholder="Enter world fees"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.feesWorld"
-                       ng-minlength="3" required>
+                <input type="text"
+                       value=""
+                       name="movieFeesWorld"
+                       placeholder="Enter world fees"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.feesWorld"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieFeesWorld.$valid"></span>
             </div>
         </div>
@@ -118,9 +128,15 @@
                 'has-success': addMovieForm.movieFeesUSA.$valid,
                 'has-error': addMovieForm.movieFeesUSA.$invalid && addMovieForm.movieFeesUSA.$dirty}">
 
-                <input type="text" value="" name="movieFeesUSA" placeholder="Enter USA fees"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.feesUSA"
-                       ng-minlength="3" required>
+                <input type="text"
+                       value=""
+                       name="movieFeesUSA"
+                       placeholder="Enter USA fees"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.feesUSA"
+                       ng-pattern="/^[0-9]+$/"
+                       ng-minlength="3"
+                       required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieFeesUSA.$valid"></span>
             </div>
         </div>
@@ -131,9 +147,15 @@
                 'has-success': addMovieForm.movieFeesRussia.$valid,
                 'has-error': addMovieForm.movieFeesRussia.$invalid && addMovieForm.movieFeesRussia.$dirty}">
 
-                <input type="text" value="" name="movieFeesRussia" placeholder="Enter Russian fees"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.feesRussia"
-                       ng-minlength="3" required>
+                <input type="text"
+                       value=""
+                       name="movieFeesRussia"
+                       placeholder="Enter Russian fees"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.feesRussia"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieFeesRussia.$valid"></span>
             </div>
         </div>
@@ -340,9 +362,15 @@
                 'has-success': addMovieForm.movieDuration.$valid,
                 'has-error': addMovieForm.movieDuration.$invalid && addMovieForm.movieDuration.$dirty}">
 
-                <input type="text" value="" name="movieDuration" placeholder="Enter date"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.duration"
-                       ng-minlength="3" required>
+                <input type="text"
+                       value=""
+                       name="movieDuration"
+                       placeholder="Enter date"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.duration"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieDuration.$valid"></span>
             </div>
         </div>
@@ -353,9 +381,15 @@
                 'has-success': addMovieForm.movieRating.$valid,
                 'has-error': addMovieForm.movieRating.$invalid && addMovieForm.movieRating.$dirty}">
 
-                <input type="text" value="" name="movieRating" placeholder="Enter date"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.rating"
-                       ng-minlength="3" required>
+                <input type="text"
+                       value=""
+                       name="movieRating"
+                       placeholder="Enter date"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.rating"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRating.$valid"></span>
             </div>
         </div>
@@ -366,9 +400,15 @@
                 'has-success': addMovieForm.movieRestAge.$valid,
                 'has-error': addMovieForm.movieRestAge.$invalid && addMovieForm.movieRestAge.$dirty}">
 
-                <input type="text" value="" name="movieRestAge" placeholder="Enter date"
-                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.restAge"
-                       ng-minlength="3" required>
+                <input type="text"
+                       value=""
+                       name="movieRestAge"
+                       placeholder="Enter date"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.restAge"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRestAge.$valid"></span>
             </div>
         </div>
@@ -477,6 +517,23 @@
         </div>
         <div class="col-xs-1">
             <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieAddFormCtrl.addAward()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Tags:</h4>
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieTags.$valid,
+                'has-error': addMovieForm.movieTags.$invalid && addMovieForm.movieTags.$dirty}">
+
+                <input type="text" value="" name="movieTags" placeholder="Enter here"
+                       class="tagsinput my-form-control" ng-model="movieAddFormCtrl.movie.tags"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieTags.$valid"></span>
+            </div>
         </div>
     </div>
 
