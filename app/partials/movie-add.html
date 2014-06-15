@@ -368,7 +368,7 @@
                        placeholder="Enter date"
                        class="form-control my-form-control"
                        ng-model="movieAddFormCtrl.movie.duration"
-                       ng-minlength="3"
+                       ng-minlength="1"
                        ng-pattern="/^[0-9]+$/"
                        required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieDuration.$valid"></span>
@@ -387,7 +387,7 @@
                        placeholder="Enter date"
                        class="form-control my-form-control"
                        ng-model="movieAddFormCtrl.movie.rating"
-                       ng-minlength="3"
+                       ng-minlength="1"
                        ng-pattern="/^[0-9]+$/"
                        required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRating.$valid"></span>
@@ -406,7 +406,7 @@
                        placeholder="Enter date"
                        class="form-control my-form-control"
                        ng-model="movieAddFormCtrl.movie.restAge"
-                       ng-minlength="3"
+                       ng-minlength="1"
                        ng-pattern="/^[0-9]+$/"
                        required>
                 <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRestAge.$valid"></span>
@@ -525,14 +525,9 @@
     <div class="row my-row-standard">
         <div class="col-xs-12">
             <h4 class="demo-panel-title">Tags:</h4>
-            <div class="form-group" ng-class="{
-                'has-success': addMovieForm.movieTags.$valid,
-                'has-error': addMovieForm.movieTags.$invalid && addMovieForm.movieTags.$dirty}">
-
+            <div class="form-group">
                 <input type="text" value="" name="movieTags" placeholder="Enter here"
-                       class="tagsinput my-form-control" ng-model="movieAddFormCtrl.movie.tags"
-                       ng-minlength="3" required>
-                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieTags.$valid"></span>
+                       class="my-form-control tagsinput" ng-model="movieAddFormCtrl.movie.tags"  required>
             </div>
         </div>
     </div>

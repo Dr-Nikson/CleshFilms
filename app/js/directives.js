@@ -294,7 +294,9 @@
         return {
             restrict: 'C',
             link: function(scope, element, attrs) {
-                $(element).tagsInput();
+                $(element).tagsInput().change(function () {
+                    console.log("HELLLLLLOO");
+                });
             }
         }
     });

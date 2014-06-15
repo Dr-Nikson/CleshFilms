@@ -11,7 +11,8 @@
         'cleshFilm.services',
         'cleshFilm.directives',
         'cleshFilm.controllers',
-        'ui.bootstrap.datetimepicker'
+        'ui.bootstrap.datetimepicker',
+        'bootstrap-tagsinput'
     ]);
 
     app.value('ENV',{});
