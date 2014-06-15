@@ -83,6 +83,7 @@
             self.movie.crew = [{}];
             self.movie.awards = [{}];
 
+            self.isSuccessMsgVisible = false;
             self.showMovieImageContainer = true;
             self.showLoadMoreBtn = true;
             self.filterImageSearchQuery = '';
@@ -269,9 +270,17 @@
                 self.showImageContainer = true;
             };*/
 
+            self.showSuccessMsg = function (id) {
+                self.isSuccessMsgVisible = true;
+
+                $timeout(function () {
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
             self.submitForm = function () {
                 console.log("Form submit");
-                self.movie.$save();
+                self.movie.$save().then(self.showSuccessMsg);
                 //$location.path("movies/add/success/"+self.movie.id);
             };
 
