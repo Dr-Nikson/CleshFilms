@@ -1,0 +1,27 @@
+<div class="row my-row-standard">
+    <div class="col-xs-3">
+        <a href="#/movies" class="btn btn-block btn-lg btn-default">Back to movies</a>
+    </div>
+</div>
+
+<div class="row my-row-standard">
+    <div class="col-xs-3">
+        <img src="{{movieEditCtrl.movie.image.thumbUrl}}" alt="{{movieEditCtrl.movie.name}}" class="img-rounded img-responsive standard-margin"/>
+        <a href="#/images/edit/{{movieEditCtrl.movie.image.id}}/{{'#/movies/edit/'+movieEditCtrl.movie.id | doubleEncodeUri}}" class="btn btn-block btn-lg btn-primary">Edit image</a>
+    </div>
+    <div class="col-xs-9">
+        <h3 class="edit-movie-title">
+            <a class="btn btn-primary edit-movie-inline-btn" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+            {{movieEditCtrl.movie.name}}
+        </h3>
+        <h4 class="edit-movie-desc-title">
+            <a class="btn btn-primary edit-movie-inline-btn" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+            Description:
+        </h4>
+        <p class="edit-movie-desc">
+            {{movieEditCtrl.movie.desc}}
+        </p>
+    </div>
+</div>
+
+<my-goup-btn></my-goup-btn>

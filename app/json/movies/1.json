@@ -1,12 +1,144 @@
 {
-    "id" : "1",
-    "name" : "Новый человек паук 2",
-    "desc" : "В детстве Питер Паркер был оставлен своими родителями, и поэтому воспитывался дядей и тётей. Шли годы, Питер был обычным примерным школьником, подвергался нападкам хулиганов и был влюблён в свою одноклассницу Гвен Стэйси, которая сама втайне отвечала ему взаимностью. Но после укуса генетически изменённого паука, Питер получает невероятные сверхспособности и его жизнь меняется навсегда. Однако его не перестаёт мучить вопрос о том, что случилось с его родителями. Он знакомится с давним другом и партнёром своего отца — генетиком Куртом Коннорсом, который вместе с отцом Питера разрабатывал формулу регенерации. Питер помогает её закончить, а Коннорс, всю жизнь мечтавший восстановить свою правую руку, вводит формулу себе и становится Ящером. Осознавая свою вину, Питер начинает новую жизнь в образе таинственного супергероя Человека-паука и становится грозой преступников, одновременно пытаясь найти способ остановить Коннорса.",
-    "image" :
+    "id":"1",
+    "name": "Название",
+    "year": "2011",
+    "slogan": "слоган пиу пиу",
+    "budget": "1232331",
+    "feesWorld": "1111111",
+    "feesUSA": "22222",
+    "feesRussia": "333333",
+    "worldPremiere": "12-02-2010",
+    "russiaPremiere": "12-02-2011",
+    "russiaRelease": "12-02-2012",
+    "russiaBlueRayRelease": "12-02-2013",
+    "desc": "вфывфыв описание",
+    "duration": "120",
+    "rating": "4",
+    "restAge": "12",
+    "tags": "хуй,пизда,джигурда",
+    "video":
     {
-        "id" : "1",
-        "name" : "Image name",
-        "url" : "http://fanlife.ru/images/uploads/reviews/2/9/6/6/00b.jpg?1337941676",
-        "thumbUrl" : "http://fanlife.ru/images/uploads/reviews/2/9/6/6/00b.jpg?1337941676"
+        "film": "viedo movie",
+        "trailer": "viedo trailer"
+    },
+    "crew":
+    [
+        {
+            "profession":
+            {
+                "id" : 1,
+                "name" : "producer"
+            },
+            "staff":
+            {
+                "id": "1",
+                "firstName": "Megan",
+                "lastName": "Fox",
+                "birthDate": "13-06-1991",
+                "birthPlace": "g. Leningrad",
+                "image" :
+                {
+                    "id" : "51",
+                    "name" : "Image name",
+                    "url" : "http://cs6033.vk.me/v6033512/5ba4/j2jHKAva0wA.jpg",
+                    "thumbUrl" : "http://cs6033.vk.me/v6033512/5ba4/j2jHKAva0wA.jpg"
+                },
+                "professions":
+                [
+                    {
+                        "id" : 1,
+                        "name" : "producer"
+                    },
+                    {
+                        "id" : 2,
+                        "name" : "actor"
+                    }
+                ]
+            }
+        },
+        {
+            "profession":
+            {
+                "id" : 9,
+                "name" : "ascarid"
+            },
+            "staff":
+            {
+                "id": "2",
+                "firstName": "Dmitriy",
+                "lastName": "Panov",
+                "birthDate": "13-06-1991",
+                "birthPlace": "g. Leningrad",
+                "image" :
+                {
+                    "id" : "51",
+                    "name" : "Image name",
+                    "url" : "http://cs6033.vk.me/v6033512/5ba4/j2jHKAva0wA.jpg",
+                    "thumbUrl" : "http://cs6033.vk.me/v6033512/5ba4/j2jHKAva0wA.jpg"
+                },
+                "professions":
+                [
+                    {
+                        "id" : 1,
+                        "name" : "producer"
+                    },
+                    {
+                        "id" : 2,
+                        "name" : "actor"
+                    }
+                ]
+            }
+        }
+    ],
+    "awards":
+    [
+        {
+            "id" : 1,
+            "name" : "MTV Movie Awards",
+            "desc" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum odio nisi, rutrum id massa sed, blandit pellentesque risus. Nam vulputate at est a suscipit. Vestibulum sollicitudin elementum vulputate. Curabitur et venenatis neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+            "image" :
+            {
+                "id" : "131",
+                "name" : "Image name",
+                "thumbUrl" : "http://bestscreenwallpaper.com/wp-content/uploads/2014/03/Megan-Fox-MTV-Movie-Awards-Award-Corporate-awards-Peoples-Choice-Awards-.jpg",
+                "url" : "http://bestscreenwallpaper.com/wp-content/uploads/2014/03/Megan-Fox-MTV-Movie-Awards-Award-Corporate-awards-Peoples-Choice-Awards-.jpg"
+            }
+        },
+        {
+            "id" : 3,
+            "name" : "MTV Best Bitch award",
+            "desc" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum odio nisi, rutrum id massa sed, blandit pellentesque risus. Nam vulputate at est a suscipit. Vestibulum sollicitudin elementum vulputate. Curabitur et venenatis neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+            "image" :
+            {
+                "id" : "131",
+                "name" : "Image name",
+                "thumbUrl" : "http://bestscreenwallpaper.com/wp-content/uploads/2014/03/Megan-Fox-MTV-Movie-Awards-Award-Corporate-awards-Peoples-Choice-Awards-.jpg",
+                "url" : "http://bestscreenwallpaper.com/wp-content/uploads/2014/03/Megan-Fox-MTV-Movie-Awards-Award-Corporate-awards-Peoples-Choice-Awards-.jpg"
+            }
+        }
+    ],
+    "image":
+    {
+        "id": "1",
+        "name": "Super Megan Fox",
+        "url": "http://wallpapershared.com/wp-content/uploads/2013/04/Megan-Fox-Body.jpg",
+        "thumbUrl": "http://wallpapershared.com/wp-content/uploads/2013/04/Megan-Fox-Body.jpg"
+    },
+    "screen":
+    {
+        "id": "8",
+        "name": "Super girl",
+        "url": "http://hdwallpapersly.com/wp-content/uploads/2014/01/megan-fox-armani-wallpaper-high-resolution.jpg",
+        "thumbUrl": "http://hdwallpapersly.com/wp-content/uploads/2014/01/megan-fox-armani-wallpaper-high-resolution.jpg"
+    },
+    "country":
+    {
+        "id" : 1,
+        "name" : "Russian Federation"
+    },
+    "genre":
+    {
+        "id" : 1,
+        "name" : "Comedy"
     }
 }

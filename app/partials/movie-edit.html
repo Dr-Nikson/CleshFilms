@@ -1,27 +1,547 @@
-<div class="row my-row-standard">
-    <div class="col-xs-3">
-        <a href="#/movies" class="btn btn-block btn-lg btn-default">Back to movies</a>
-    </div>
-</div>
+<form name="addMovieForm" class="ang-form"  ng-controller="MovieAddFormCtrl as movieAddFormCtrl"
+      ng-submit="movieAddFormCtrl.submitForm()" novalidate>
 
-<div class="row my-row-standard">
-    <div class="col-xs-3">
-        <img src="{{movieEditCtrl.movie.image.thumbUrl}}" alt="{{movieEditCtrl.movie.name}}" class="img-rounded img-responsive standard-margin"/>
-        <a href="#/images/edit/{{movieEditCtrl.movie.image.id}}/{{'#/movies/edit/'+movieEditCtrl.movie.id | doubleEncodeUri}}" class="btn btn-block btn-lg btn-primary">Edit image</a>
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <a href="#/movies" class="btn btn-block btn-lg btn-default">Back to movies</a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-block btn-lg btn-success" >
+                Add movie
+            </button>
+        </div>
     </div>
-    <div class="col-xs-9">
-        <h3 class="edit-movie-title">
-            <a class="btn btn-primary edit-movie-inline-btn" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-            {{movieEditCtrl.movie.name}}
-        </h3>
-        <h4 class="edit-movie-desc-title">
-            <a class="btn btn-primary edit-movie-inline-btn" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-            Description:
-        </h4>
-        <p class="edit-movie-desc">
-            {{movieEditCtrl.movie.desc}}
-        </p>
-    </div>
-</div>
 
-<my-goup-btn></my-goup-btn>
+    <div class="row double-top-margin" ng-show="movieAddFormCtrl.isSuccessMsgVisible">
+        <div class="col-xs-12">
+            <blockquote>
+                <p>New movie successfully added</p>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-8">
+            <h4 class="demo-panel-title">Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieName.$valid,
+                'has-error': addMovieForm.movieName.$invalid && addMovieForm.movieName.$dirty}">
+
+                <input type="text" value="" name="movieName" placeholder="Enter movie name"
+                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.name"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieName.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="demo-panel-title">Year:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieYear.$valid,
+                'has-error': addMovieForm.movieYear.$invalid && addMovieForm.movieYear.$dirty}">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieYearDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieYear"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.year"
+                                   ng-pattern="/^[0-9]+$/"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.year"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieYearDropdown', startView:'year', minView:'year' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
+            </div>
+
+            <!--<div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieYear.$valid,
+                'has-error': addMovieForm.movieYear.$invalid && addMovieForm.movieYear.$dirty}">
+
+                <input type="text" value="" name="movieYear" placeholder="Enter movie year"
+                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.year"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieYear.$valid"></span>
+            </div>-->
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Slogan:</h4>
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieSlogan.$valid,
+                'has-error': addMovieForm.movieSlogan.$invalid && addMovieForm.movieSlogan.$dirty}">
+                <textarea name="movieSlogan" placeholder="Enter movie slogan" class="form-control my-form-control"
+                          ng-model="movieAddFormCtrl.movie.slogan" required></textarea>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <h4 class="demo-panel-title">Budget:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieBudget.$valid,
+                'has-error': addMovieForm.movieBudget.$invalid && addMovieForm.movieBudget.$dirty}">
+
+                <input type="text"
+                       value=""
+                       name="movieBudget"
+                       placeholder="Enter movie budget"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.budget"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieBudget.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="demo-panel-title">World fees:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieFeesWorld.$valid,
+                'has-error': addMovieForm.movieFeesWorld.$invalid && addMovieForm.movieFeesWorld.$dirty}">
+
+                <input type="text"
+                       value=""
+                       name="movieFeesWorld"
+                       placeholder="Enter world fees"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.feesWorld"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieFeesWorld.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="demo-panel-title">USA fees:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieFeesUSA.$valid,
+                'has-error': addMovieForm.movieFeesUSA.$invalid && addMovieForm.movieFeesUSA.$dirty}">
+
+                <input type="text"
+                       value=""
+                       name="movieFeesUSA"
+                       placeholder="Enter USA fees"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.feesUSA"
+                       ng-pattern="/^[0-9]+$/"
+                       ng-minlength="3"
+                       required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieFeesUSA.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="demo-panel-title">Russia fees:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieFeesRussia.$valid,
+                'has-error': addMovieForm.movieFeesRussia.$invalid && addMovieForm.movieFeesRussia.$dirty}">
+
+                <input type="text"
+                       value=""
+                       name="movieFeesRussia"
+                       placeholder="Enter Russian fees"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.feesRussia"
+                       ng-minlength="3"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieFeesRussia.$valid"></span>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <h4 class="demo-panel-title">Worlds premiere:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieWorldPremiere.$valid,
+                'has-error': addMovieForm.movieWorldPremiere.$invalid && addMovieForm.movieWorldPremiere.$dirty}">
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieWorldPremiereDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieWorldPremiere"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.worldPremiere"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.worldPremiere"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieWorldPremiereDropdown', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="demo-panel-title">Russian premiere:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieRussiaPremiere.$valid,
+                'has-error': addMovieForm.movieRussiaPremiere.$invalid && addMovieForm.movieRussiaPremiere.$dirty}">
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieRussianPremiereDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieRussiaPremiere"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.russiaPremiere"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.russiaPremiere"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieRussianPremiereDropdown', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="demo-panel-title">Release in Rus:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieRussiaRelease.$valid,
+                'has-error': addMovieForm.movieRussiaRelease.$invalid && addMovieForm.movieRussiaRelease.$dirty}">
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieRussiaReleaseDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieRussiaRelease"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.russiaRelease"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.russiaRelease"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieRussiaReleaseDropdown', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <h4 class="demo-panel-title">BlueRay release:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieRussiaBlueRayRelease.$valid,
+                'has-error': addMovieForm.movieRussiaBlueRayRelease.$invalid && addMovieForm.movieRussiaBlueRayRelease.$dirty}">
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="movieRussiaBlueRayReleaseDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="movieRussiaBlueRayRelease"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="movieAddFormCtrl.movie.russiaBlueRayRelease"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="movieAddFormCtrl.movie.russiaBlueRayRelease"
+                                        data-datetimepicker-config="{ dropdownSelector: '#movieRussiaBlueRayRelease', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-11">
+            <h4 class="demo-panel-title">Movie image: <!--[{{addAwardForm.awardImageId.$valid}}] = {{awardAddFormCtrl.award.image.id}}
+                | Show imgc [{{awardAddFormCtrl.showImageContainer}}]--></h4>
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big"
+                    expanded="movieAddFormCtrl.showMovieImageContainer" slide-toggle="#movieImagesContainer">
+                <span class="glyphicon glyphicon-chevron-up" ng-class="{
+                    'glyphicon-chevron-up' : movieAddFormCtrl.showMovieImageContainer,
+                    'glyphicon-chevron-down' : !movieAddFormCtrl.showMovieImageContainer,
+                }"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-show="addMovieForm.movieImageId.$valid">
+        <div class="col-xs-3">
+            <img src ng-src="{{movieAddFormCtrl.movie.image.thumbUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+        </div>
+        <div class="form-group hidden">
+            <input type="text" value="" name="movieImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                   ng-model="movieAddFormCtrl.movie.image.id" required hidden>
+        </div>
+        <div class="col-xs-3">
+        </div>
+    </div>
+
+    <image-input id="movieImagesContainer" class="d-slidable" ng-model="movieAddFormCtrl.movie.image" d-chosen-fun="movieAddFormCtrl.chooseMovieImg()"></image-input>
+
+    <hr/>
+
+
+    <div class="row">
+        <div class="col-xs-11">
+            <h4 class="demo-panel-title">Screen image: <!--[{{addAwardForm.awardImageId.$valid}}] = {{awardAddFormCtrl.award.image.id}}
+                | Show imgc [{{awardAddFormCtrl.showImageContainer}}]--></h4>
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big"
+                    expanded="movieAddFormCtrl.showScreenImageContainer" slide-toggle="#movieScreenContainer">
+                <span class="glyphicon glyphicon-chevron-up" ng-class="{
+                    'glyphicon-chevron-up' : movieAddFormCtrl.showScreenImageContainer,
+                    'glyphicon-chevron-down' : !movieAddFormCtrl.showScreenImageContainer,
+                }"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-show="addMovieForm.screenImageId.$valid">
+        <div class="col-xs-3">
+            <img src ng-src="{{movieAddFormCtrl.movie.screen.thumbUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+        </div>
+        <div class="form-group hidden">
+            <input type="text" value="" name="screenImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                   ng-model="movieAddFormCtrl.movie.screen.id" required hidden>
+        </div>
+        <div class="col-xs-3">
+        </div>
+    </div>
+
+    <image-input id="movieScreenContainer" class="d-slidable" ng-model="movieAddFormCtrl.movie.screen" d-chosen-fun="movieAddFormCtrl.chooseScreenImg()"></image-input>
+
+    <hr/>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Description:</h4>
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieDesc.$valid,
+                'has-error': addMovieForm.movieDesc.$invalid && addMovieForm.movieDesc.$dirty}">
+                <textarea name="movieDesc" placeholder="Enter movie description" class="form-control my-form-control"
+                          ng-model="movieAddFormCtrl.movie.desc" required></textarea>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-4">
+            <h4 class="demo-panel-title">Movie duration:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieDuration.$valid,
+                'has-error': addMovieForm.movieDuration.$invalid && addMovieForm.movieDuration.$dirty}">
+
+                <input type="text"
+                       value=""
+                       name="movieDuration"
+                       placeholder="Enter date"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.duration"
+                       ng-minlength="1"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieDuration.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="demo-panel-title">Rating:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieRating.$valid,
+                'has-error': addMovieForm.movieRating.$invalid && addMovieForm.movieRating.$dirty}">
+
+                <input type="text"
+                       value=""
+                       name="movieRating"
+                       placeholder="Enter date"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.rating"
+                       ng-minlength="1"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRating.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="demo-panel-title">Rest age????!:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieRestAge.$valid,
+                'has-error': addMovieForm.movieRestAge.$invalid && addMovieForm.movieRestAge.$dirty}">
+
+                <input type="text"
+                       value=""
+                       name="movieRestAge"
+                       placeholder="Enter date"
+                       class="form-control my-form-control"
+                       ng-model="movieAddFormCtrl.movie.restAge"
+                       ng-minlength="1"
+                       ng-pattern="/^[0-9]+$/"
+                       required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieRestAge.$valid"></span>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Movie crew:</h4>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="employeAddRow in movieAddFormCtrl.movie.crew">
+        <div class="col-xs-3">
+            <profession-input ng-model="employeAddRow.profession"></profession-input>
+        </div>
+        <div class="col-xs-8">
+            <staff-input ng-model="employeAddRow.staff"></staff-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieAddFormCtrl.removeStaffMember($index)"
+                    ng-disabled="movieAddFormCtrl.movie.crew.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieAddFormCtrl.addStaffMember()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Video movie:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieVideoFilm.$valid,
+                'has-error': addMovieForm.movieVideoFilm.$invalid && addMovieForm.movieVideoFilm.$dirty}">
+
+                <input type="text" value="" name="movieVideoFilm" placeholder="Enter here"
+                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.video.film"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieVideoFilm.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Video trailer:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addMovieForm.movieVideoTrailer.$valid,
+                'has-error': addMovieForm.movieVideoTrailer.$invalid && addMovieForm.movieVideoTrailer.$dirty}">
+
+                <input type="text" value="" name="movieVideoTrailer" placeholder="Enter here"
+                       class="form-control my-form-control" ng-model="movieAddFormCtrl.movie.video.trailer"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addMovieForm.movieVideoTrailer.$valid"></span>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Country:</h4>
+            <country-input ng-model="movieAddFormCtrl.movie.country"></country-input>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Genre:</h4>
+            <genre-input ng-model="movieAddFormCtrl.movie.genre"></genre-input>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Movie awards:</h4>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="awardAddRow in movieAddFormCtrl.movie.awards">
+        <div class="col-xs-11">
+            <award-input ng-model="awardAddRow"></award-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieAddFormCtrl.removeAward($index)"
+                    ng-disabled="movieAddFormCtrl.movie.awards.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieAddFormCtrl.addAward()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Tags:</h4>
+            <div class="form-group">
+                <!-- IMPORTANT TAGS INPUT WORKS ONLY IF INPUT>CHANGE EVENET FIRED -->
+                <input type="text" value="" name="movieTags" placeholder="Enter here"
+                       class="my-form-control tagsinput" ng-model="movieAddFormCtrl.movie.tags"  required>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <my-goup-btn></my-goup-btn>
+
+</form>
