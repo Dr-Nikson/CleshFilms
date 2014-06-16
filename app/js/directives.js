@@ -288,14 +288,28 @@
                 });
             }
         }
-    })
+    });
 
     app.directive('tagsinput', function() {
         return {
             restrict: 'C',
+            scope: {
+                model:'=ngModel'
+            },
             link: function(scope, element, attrs) {
                 $(element).tagsInput().change(function () {
                     console.log("HELLLLLLOO");
+
+                });
+                scope.$watch('model', function (nv) {
+                    console.log("HELLLLLLOO2");
+                    if(!nv)
+                        return;
+                    $(element).importTags(nv);
+                    //$(element).tagf
+                    //console.log($target);
+                    //$target.slideToggle(900);
+                    //$target.attr('expanded',nv);
                 });
             }
         }

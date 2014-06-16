@@ -64,8 +64,8 @@
 
         $routeProvider.when('/movies/edit/:movieId', {
             templateUrl: 'partials/movie-edit.html',
-            controller: 'MovieEditCtrl',
-            controllerAs: 'movieEditCtrl',
+            /*controller: 'MovieEditCtrl',
+            controllerAs: 'movieEditCtrl',*/
             activeTab: 'movies',
             resolve: { loadConf: loadEnvironmentConfig }
         });

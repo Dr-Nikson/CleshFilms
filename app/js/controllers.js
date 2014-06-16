@@ -302,6 +302,156 @@
     }]);
 
 
+    app.controller('MovieEditFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter','Movie',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Movie)
+        {
+            var self = this;
+
+            self.isSuccessMsgVisible = false;
+            self.showMovieImageContainer = false;
+            self.showScreenImageContainer = false;
+            self.showLoadMoreBtn = true;
+            self.filterImageSearchQuery = '';
+            self.formattedDate = {
+                'movieYear' : null
+            };
+
+            self.initMovie = function () {
+                self.movie = new Movie.get({"id":$routeParams.movieId});
+                //self.movie.crew = [{}];
+                //self.movie.awards = [{}];
+            };
+
+            self.initMovie();
+
+            var oldMovieYear = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.year', function (nv) {
+
+                if(nv == oldMovieYear)
+                    return;
+
+                nv = $filter('date')(nv,'yyyy');
+                self.movie.year = nv;
+                oldMovieYear = nv;
+            });
+
+            var oldMovieWorldPremiere = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.worldPremiere', function (nv) {
+
+                if(nv == oldMovieWorldPremiere)
+                    return;
+
+                nv = $filter('date')(nv,'dd-MM-yyyy');
+                self.movie.worldPremiere = nv;
+                oldMovieWorldPremiere = nv;
+            });
+
+            var oldMovieRussiaPremiere = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.russiaPremiere', function (nv) {
+
+                if(nv == oldMovieRussiaPremiere)
+                    return;
+
+                nv = $filter('date')(nv,'dd-MM-yyyy');
+                self.movie.russiaPremiere = nv;
+                oldMovieRussiaPremiere = nv;
+            });
+
+            var oldMovieRussiaRelease = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.russiaRelease', function (nv) {
+
+                if(nv == oldMovieRussiaRelease)
+                    return;
+
+                nv = $filter('date')(nv,'dd-MM-yyyy');
+                self.movie.russiaRelease = nv;
+                oldMovieRussiaRelease = nv;
+            });
+
+            var oldMovieRussiaBlueRayRelease = undefined;
+            $scope.$watch('movieAddFormCtrl.movie.russiaBlueRayRelease', function (nv) {
+
+                if(nv == oldMovieRussiaBlueRayRelease)
+                    return;
+
+                nv = $filter('date')(nv,'dd-MM-yyyy');
+                self.movie.russiaBlueRayRelease = nv;
+                oldMovieRussiaBlueRayRelease = nv;
+            });
+
+
+            // Instantiate these variables outside the watch
+            var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+            $scope.$watch('imageSearchQuery', function (val) {
+                if (filterSearchQueryTimeout)
+                    $timeout.cancel(filterSearchQueryTimeout);
+
+                tmpFilterSearchQuery = val;
+
+                filterSearchQueryTimeout = $timeout(function() {
+                    self.filterImageSearchQuery = tmpFilterSearchQuery;
+                }, 250); // delay 250 ms
+            });
+
+            self.addStaffMember = function () {
+                self.movie.crew.push({ });
+                $timeout(function () {
+                    //self.broadcastDataLoaded();
+                },0,false);
+            };
+
+            self.addAward = function () {
+                self.movie.awards.push({  });
+                $timeout(function () {
+                    //self.broadcastDataLoaded();
+                },0,false);
+            };
+
+            self.removeStaffMember = function (index) {
+                self.movie.crew.splice(index,1);
+            };
+
+            self.removeAward = function (index) {
+                self.movie.awards.splice(index,1);
+            };
+
+            self.getRowNum = function () {
+                return 3;
+            };
+
+            self.chooseMovieImg = function () {
+                self.showMovieImageContainer = false;
+                $scope.addMovieForm.$setDirty();
+            };
+
+            self.chooseScreenImg = function () {
+                self.showScreenImageContainer = false;
+                $scope.addMovieForm.$setDirty();
+            };
+
+
+            self.showSuccessMsg = function (id) {
+                self.isSuccessMsgVisible = true;
+
+                $timeout(function () {
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
+            self.submitForm = function () {
+                console.log("Form submit");
+                self.movie.$update().then(function () {
+                    //self.showScreenImageContainer = true;
+                    //self.showMovieImageContainer = true;
+                    //self.initMovie();
+                    self.showSuccessMsg();
+                });
+                //$location.path("movies/add/success/"+self.movie.id);
+            };
+
+        }]);
+
+
     app.controller('ImagesPageCtrl', ['$scope', '$http', '$timeout', 'Image', function($scope,$http,$timeout,Image) {
         var self = this;
         self.images = [];
