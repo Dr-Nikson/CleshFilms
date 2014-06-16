@@ -1,13 +1,25 @@
 {
     "id": "1",
-    "name": "Megan Fox",
-    "age": "27",
-    "gender": "female",
+    "firstName": "Megan",
+    "lastName": "Fox",
+    "birthDate": "13-06-1991",
+    "birthPlace": "g. Leningrad",
     "image" :
     {
         "id" : "51",
         "name" : "Image name",
         "url" : "http://cs6033.vk.me/v6033512/5ba4/j2jHKAva0wA.jpg",
         "thumbUrl" : "http://cs6033.vk.me/v6033512/5ba4/j2jHKAva0wA.jpg"
-    }
+    },
+    "professions":
+    [
+        {
+            "id" : 1,
+            "name" : "producer"
+        },
+        {
+            "id" : 2,
+            "name" : "actor"
+        }
+    ]
 }

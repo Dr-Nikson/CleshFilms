@@ -79,12 +79,10 @@
         {
             var self = this;
 
-            self.movie = new Movie();
-            self.movie.crew = [{}];
-            self.movie.awards = [{}];
 
             self.isSuccessMsgVisible = false;
             self.showMovieImageContainer = true;
+            self.showScreenImageContainer = true;
             self.showLoadMoreBtn = true;
             self.filterImageSearchQuery = '';
             self.formattedDate = {
@@ -98,6 +96,14 @@
                 self.formattedDate.movieYear = nv;
                 //self.onTimeSet('movieYearInput',nv);
             });*/
+
+            self.initMovie = function () {
+                self.movie = new Movie();
+                self.movie.crew = [{}];
+                self.movie.awards = [{}];
+            };
+
+            self.initMovie();
 
             var oldMovieYear = undefined;
             $scope.$watch('movieAddFormCtrl.movie.year', function (nv) {
@@ -280,7 +286,12 @@
 
             self.submitForm = function () {
                 console.log("Form submit");
-                self.movie.$save().then(self.showSuccessMsg);
+                self.movie.$save().then(function () {
+                    self.showScreenImageContainer = true;
+                    self.showMovieImageContainer = true;
+                    self.initMovie();
+                    self.showSuccessMsg();
+                });
                 //$location.path("movies/add/success/"+self.movie.id);
             };
 
@@ -849,8 +860,14 @@
 
             self.isSuccessMsgVisible = false;
             self.showImageContainer = true;
-            self.staff = new Staff();
-            self.staff.professions = [{}];
+
+
+            self.initStaff = function () {
+                self.staff = new Staff();
+                self.staff.professions = [{}];
+            };
+
+            self.initStaff();
 
             var oldYear = undefined;
             $scope.$watch('staffAddFormCtrl.staff.birthYear', function (nv) {
@@ -864,7 +881,11 @@
             });
 
             self.submitForm = function () {
-                self.staff.$save().then(self.showSuccessMsg);
+                self.staff.$save().then(function () {
+                    self.showImageContainer = true;
+                    self.initStaff();
+                    self.showSuccessMsg();
+                });
             };
 
             self.showSuccessMsg = function (id) {
