@@ -164,6 +164,35 @@
 
     <hr/>
 
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Awards:</h4>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="awardAddRow in staffAddFormCtrl.staff.awards">
+        <div class="col-xs-11">
+            <award-input ng-model="awardAddRow"></award-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="staffAddFormCtrl.removeAward($index)"
+                    ng-disabled="staffAddFormCtrl.staf.awards.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="staffAddFormCtrl.addAward()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <hr/>
+
     <my-goup-btn></my-goup-btn>
 
 

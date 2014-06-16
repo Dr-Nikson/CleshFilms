@@ -1015,6 +1015,7 @@
             self.initStaff = function () {
                 self.staff = new Staff();
                 self.staff.professions = [{}];
+                self.staff.awards = [{}];
             };
 
             self.initStaff();
@@ -1056,6 +1057,17 @@
                 self.staff.professions.push({ });
             };
 
+            self.addStaffProfession = function () {
+                self.staff.professions.push({ });
+            };
+
+            self.addAward = function () {
+                self.staff.awards.push({  });
+            };
+
+            self.removeAward = function (index) {
+                self.staff.awards.splice(index,1);
+            };
 
             self.removeStaffProfession = function (index) {
                 self.staff.professions.splice(index,1);
