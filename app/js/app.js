@@ -128,6 +128,20 @@
             resolve: { loadConf: loadEnvironmentConfig }
         });
 
+        $routeProvider.when('/categories', {
+            templateUrl: 'partials/categories.html',
+            controller: 'CategoriesPageCtrl',
+            controllerAs: 'categoriesPageCtrl',
+            activeTab: 'categories',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
+        $routeProvider.when('/categories/add', {
+            templateUrl: 'partials/categories-add.html',
+            activeTab: 'categories',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
         $routeProvider.when('/genres', {
             templateUrl: 'partials/genres.html',
             controller: 'GenresPageCtrl',

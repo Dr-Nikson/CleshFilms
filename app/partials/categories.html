@@ -1,0 +1,46 @@
+<h3>
+    Genres: adding,editing,removing
+</h3>
+
+<div class="row my-row-standard">
+    <div class="col-xs-3">
+        <a href="#/categories/add" class="btn btn-block btn-lg btn-primary">Add categories</a>
+    </div>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th class="col-xs-5">Tree</th>
+        <th class="col-xs-1">Selected #</th>
+        <th class="col-xs-3">Selected Name</th>
+        <th class="col-xs-2"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <category-input ng-model="selectedCategoryId" categories-data="categories"></category-input>
+        </td>
+        <td>{{selectedCategory.id}}</td>
+        <td>{{selectedCategory.name}}</td>
+        <td>
+            <button class="btn btn-danger btn-large btn-block" ng-click="remove()" ng-show="selectedCategory.id">
+                Remove
+            </button>
+        </td>
+    </tr>
+    <!--<tr ng-repeat="genre in genresPageCtrl.genres | filter:genresPageCtrl.filterSearchQuery">
+        <td>{{genre.id}}</td>
+        <td>{{genre.name}}</td>
+        <td>
+            <button class="btn btn-danger btn-large btn-block" ng-click="genresPageCtrl.remove($index)">
+                Remove
+            </button>
+        </td>
+    </tr>-->
+    </tbody>
+</table>
+
+<my-goup-btn></my-goup-btn>

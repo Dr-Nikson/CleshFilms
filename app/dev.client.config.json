@@ -39,5 +39,11 @@
         "GET_URL": "./json/countries/:id.json",
         "SAVE_URL": "./json/countries/add.json",
         "SAVE_METHOD": "GET"
+    },
+    "CATEGORY":
+    {
+        "GET_URL": "./json/categories/:id.json",
+        "SAVE_URL": "./json/categories/add.json",
+        "SAVE_METHOD": "POST"
     }
 }

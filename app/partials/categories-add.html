@@ -1,0 +1,44 @@
+<form name="addGenreForm" class="ang-form"  ng-controller="GenreAddFormCtrl as genreAddFormCtrl"
+      ng-submit="genreAddFormCtrl.submitForm()" novalidate>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <a href="#/genres" class="btn btn-block btn-lg btn-default">Back to genres</a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-block btn-lg btn-success" ng-disabled="addGenreForm.$invalid"
+                    ng-class="{disabled:addGenreForm.$invalid}">
+                Add genre
+            </button>
+        </div>
+    </div>
+
+    <div class="row double-top-margin" ng-show="genreAddFormCtrl.isSuccessMsgVisible">
+        <div class="col-xs-12">
+            <blockquote>
+                <p>New genre successfully added</p>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addGenreForm.genreName.$valid,
+                'has-error': addGenreForm.genreName.$invalid && addGenreForm.genreName.$dirty}">
+
+                <input type="text" value="" name="genreName" placeholder="Enter genre name"
+                       class="form-control my-form-control" ng-model="genreAddFormCtrl.genre.name"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addGenreForm.genreName.$valid"></span>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+</form>

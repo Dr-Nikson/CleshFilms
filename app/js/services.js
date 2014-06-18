@@ -81,4 +81,12 @@
         });
     }]);
 
+    app.factory('Category', [ '$resource', 'ENV', function ($resource,ENV) {
+        var CONFIG = ENV.CONFIG.CATEGORY;
+        return $resource(CONFIG.GET_URL, { id: '@id' }, {
+            query: {method:'GET', params:{ id: 'all'}, isArray:true},
+            save: {method: CONFIG.SAVE_METHOD, url: CONFIG.SAVE_URL}
+        });
+    }]);
+
 })();

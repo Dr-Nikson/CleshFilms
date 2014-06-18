@@ -90,58 +90,7 @@
               'movieYear' : null
             };
 
-            self.example_treedata = [
-                {
-                    label: 'Movies',
-                    children: [
-                        {
-                            label: 'Serialllli',
-                            id: 1,
-                            data: {
-                                description: "man's best friend"
-                            },
-                            onSelect : function (branch) {
-                                console.log(branch);
-                            }
-                        }, {
-                            label: 'Cat',
-                            data: {
-                                description: "Felis catus"
-                            }
-                        }, {
-                            label: 'Hippopotamus',
-                            data: {
-                                description: "hungry, hungry"
-                            }
-                        }, {
-                            label: 'Chicken',
-                            children: ['White Leghorn', 'Rhode Island Red', 'Jersey Giant']
-                        }
-                    ]
-                }, {
-                    label: 'Vegetable',
-                    data: {
-                        definition: "A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.",
-                        data_can_contain_anything: true
-                    },
-                    children: [
-                        {
-                            label: 'Oranges'
-                        }, {
-                            label: 'Apples',
-                            children: [
-                                {
-                                    label: 'Granny Smith'
-                                }, {
-                                    label: 'Red Delicous'
-                                }, {
-                                    label: 'Fuji'
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ];
+
 
             self.initMovie = function () {
                 self.movie = new Movie();
@@ -1130,6 +1079,189 @@
         {
             self.$scope.$broadcast('dataloaded');
         });
+    }]);
+
+
+    app.controller('CategoriesPageCtrl', ['$scope', '$http', '$timeout', 'Category', function($scope,$http,$timeout,Category) {
+        var self = this;
+        self.$scope = $scope;
+        self.$scope.selectedCategoryId = null;
+        self.$scope.selectedCategory = null;
+        self.$scope.categories = [];
+        self.$scope.categories = Category.query();
+
+        var findById = function (categories,id) {
+            var result;
+            angular.forEach(categories, function (value, key) {
+
+                if(result)
+                    return;
+
+                if(value.id == id)
+                {
+                    result = value;
+                    return;
+                }
+
+                if(value.children.length)
+                    result = findById(value.children,id);
+            });
+            return result;
+        };
+
+        self.$scope.$watch('selectedCategoryId', function (nv) {
+            //self.$scope.selectedCategory.get();
+            //console.log("Cat selected id="+nv);
+            //self.$scope.selectedCategory = $filter('filter')(self.$scope.categories,{id:nv})[0];
+            self.$scope.selectedCategory = findById(self.$scope.categories,nv);
+            console.log("Cat selected =",self.$scope.selectedCategory);
+        });
+
+        self.$scope.remove = function () {
+            //console.log(self.professions[index]);
+            //self.genres[index].$remove();
+            //self.genres.splice(index,1);
+            //console.log('removing');
+            console.log("deleting",self.$scope.selectedCategory);
+            var tmpCat = new Category();
+            tmpCat.id = self.$scope.selectedCategory.id;
+            tmpCat.$remove();
+            self.$scope.categories = Category.query();
+            self.$scope.selectedCategory = {};
+            /*self.$scope.categories = [
+                {
+                    "id" : "1",
+                    "name" : "Category 1",
+                    "children" : [
+                        {
+                            "id" : "2",
+                            "name" : "Category 1.1",
+                            "children" : []
+                        },
+                        {
+                            "id" : "3",
+                            "name" : "Category 1.2",
+                            "children" : [
+                                {
+                                    "id" : "5",
+                                    "name" : "Category 1.2.1",
+                                    "children" : []
+                                },
+                                {
+                                    "id" : "6",
+                                    "name" : "Category 1.2.2",
+                                    "children" : []
+                                }
+                            ]
+                        },
+                        {
+                            "id" : "4",
+                            "name" : "Category 1.3",
+                            "children" : []
+                        }
+                    ]
+                }
+            ];*/
+
+        };
+
+
+    }]);
+
+
+    app.controller('CategoriesAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Genre',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Genre)
+        {
+
+            var self = this;
+
+            self.isSuccessMsgVisible = false;
+            self.genre = new Genre();
+
+            self.submitForm = function () {
+                self.genre.$save().then(self.showSuccessMsg);
+            };
+
+            self.showSuccessMsg = function (id) {
+                self.isSuccessMsgVisible = true;
+
+                $timeout(function () {
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
+            //self.refreshImagesList();
+        }]);
+
+
+    app.controller('CategoryInputCtrl', ['$scope', '$http', '$routeParams', '$timeout', 'Category', function ($scope, $http, $routeParams, $timeout, Category) {
+        var self = this;
+        self.$scope = $scope;
+
+        //console.log("HERE");
+        self.$scope.treeData = [];
+
+        self.$scope.chooseCategory = function (cat) {
+            console.log("Cat chosen id="+cat.id);
+            self.$scope.selected = cat.id;
+        };
+
+        var addChildren = function (children) {
+            var ret = [];
+
+            angular.forEach(children, function (value, key) {
+                var cat = {
+                    id: value.id,
+                    label: value.name,
+                    //onSelect: chooseCategory,
+                    children: []
+                };
+
+                if(value.children.length)
+                    cat.children = addChildren(value.children);
+
+                ret.push(cat);
+            });
+
+            return ret;
+        };
+
+        var processCategoriesData = function (categoriesData) {
+
+            if(categoriesData.$promise === undefined || categoriesData.$resolved === true)
+            {
+                // it's not a promise or promise resolved
+                self.$scope.treeData = addChildren(categoriesData);
+                //console.log("Tree data =",self.$scope.treeData);
+                return;
+            }
+
+            // else - let's wait for promise
+            categoriesData.$promise.then(function (data) {
+                self.$scope.treeData = addChildren(data);
+                //console.log("Tree data =",self.$scope.treeData);
+            });
+        };
+
+        if(!self.$scope.categoriesData)
+        {
+            //console.log("Data bad",self.$scope.categoriesData);
+            Category.query(function (data) {
+                console.log(data);
+                //console.log("Categories tree data:",trData);
+                self.$scope.treeData = addChildren(data);
+                //console.log("Tree data =",self.$scope.treeData);
+            });
+        }
+        else
+        {
+            //console.log("Data ok",self.$scope.categoriesData);
+            processCategoriesData(self.$scope.categoriesData);
+            self.$scope.$watch('categoriesData', function (nv) {
+                processCategoriesData(nv);
+            });
+        }
+
     }]);
 
 })();

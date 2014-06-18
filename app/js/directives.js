@@ -236,6 +236,16 @@
         };
     });
 
+    app.directive('categoryInput', function () {
+        return {
+            scope: { selected:'=ngModel', categoriesData:'=' },
+            restrict: 'E',
+            templateUrl: './partials/widgets/category-input.html',
+            controller: 'CategoryInputCtrl',
+            controllerAs: 'categoryInputCtrl'
+        };
+    });
+
 
     /*app.directive('slideable', function () {
         return {
