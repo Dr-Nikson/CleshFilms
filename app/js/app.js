@@ -12,7 +12,9 @@
         'cleshFilm.directives',
         'cleshFilm.controllers',
         'ui.bootstrap.datetimepicker',
-        'bootstrap-tagsinput'
+        'bootstrap-tagsinput',
+        'angularBootstrapNavTree',
+        'ngAnimate'
     ]);
 
     app.value('ENV',{});

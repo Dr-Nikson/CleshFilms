@@ -56,6 +56,7 @@
             //$scope.movies.splice(index,1);
             //$scope.movies.push({ name: 'new', thumbUrl: 'lool'});
             //console.log(self.movies[index].name);
+            self.movies[index].$delete();
             self.movies.splice(index,1);
         };
 
@@ -89,13 +90,58 @@
               'movieYear' : null
             };
 
-
-            /*$scope.$watch('movieAddFormCtrl.movie.year', function (nv) {
-                nv = $filter('date')(nv,'yyyy');
-                console.log(nv);
-                self.formattedDate.movieYear = nv;
-                //self.onTimeSet('movieYearInput',nv);
-            });*/
+            self.example_treedata = [
+                {
+                    label: 'Movies',
+                    children: [
+                        {
+                            label: 'Serialllli',
+                            id: 1,
+                            data: {
+                                description: "man's best friend"
+                            },
+                            onSelect : function (branch) {
+                                console.log(branch);
+                            }
+                        }, {
+                            label: 'Cat',
+                            data: {
+                                description: "Felis catus"
+                            }
+                        }, {
+                            label: 'Hippopotamus',
+                            data: {
+                                description: "hungry, hungry"
+                            }
+                        }, {
+                            label: 'Chicken',
+                            children: ['White Leghorn', 'Rhode Island Red', 'Jersey Giant']
+                        }
+                    ]
+                }, {
+                    label: 'Vegetable',
+                    data: {
+                        definition: "A plant or part of a plant used as food, typically as accompaniment to meat or fish, such as a cabbage, potato, carrot, or bean.",
+                        data_can_contain_anything: true
+                    },
+                    children: [
+                        {
+                            label: 'Oranges'
+                        }, {
+                            label: 'Apples',
+                            children: [
+                                {
+                                    label: 'Granny Smith'
+                                }, {
+                                    label: 'Red Delicous'
+                                }, {
+                                    label: 'Fuji'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ];
 
             self.initMovie = function () {
                 self.movie = new Movie();

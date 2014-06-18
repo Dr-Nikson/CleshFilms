@@ -19,6 +19,8 @@
     "angular-file-upload": null,
     "jcrop": null,
     "bootstrap-combobox": "~1.1.6",
-    "angular-bootstrap-datetimepicker": "~0.2.4"
+    "angular-bootstrap-datetimepicker": "~0.2.4",
+    "angular-bootstrap-nav-tree": "*",
+    "angular-animate": "~1.2.18"
   }
 }
