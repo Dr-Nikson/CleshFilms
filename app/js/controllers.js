@@ -1169,17 +1169,28 @@
     }]);
 
 
-    app.controller('CategoriesAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Genre',
-        function ($scope, $http, $routeParams, $location, $timeout, $filter, Genre)
+    app.controller('CategoriesAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Category',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Category)
         {
-
             var self = this;
+            self.$scope = $scope;
 
             self.isSuccessMsgVisible = false;
-            self.genre = new Genre();
+            self.category = new Category();
+            self.$scope.categories = Category.query();
+            /*self.$scope.categories = [];
+            Category.query(function (data) {
+                self.$scope.categories.push(
+                    {
+                        "id":0,
+                        "name":"No category",
+                        "children":data
+                    }
+                );
+            });*/
 
             self.submitForm = function () {
-                self.genre.$save().then(self.showSuccessMsg);
+                self.category.$save().then(self.showSuccessMsg);
             };
 
             self.showSuccessMsg = function (id) {
@@ -1257,7 +1268,9 @@
         {
             //console.log("Data ok",self.$scope.categoriesData);
             processCategoriesData(self.$scope.categoriesData);
-            self.$scope.$watch('categoriesData', function (nv) {
+            self.$scope.$watch(function () {
+                return self.$scope.categoriesData;
+            }, function (nv) {
                 processCategoriesData(nv);
             });
         }
