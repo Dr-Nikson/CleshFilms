@@ -488,13 +488,60 @@
     <hr/>
 
     <div class="row my-row-standard">
-        <div class="col-xs-6">
-            <h4 class="demo-panel-title">Country:</h4>
-            <country-input ng-model="movieAddFormCtrl.movie.country"></country-input>
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Countries:</h4>
+
         </div>
-        <div class="col-xs-6">
-            <h4 class="demo-panel-title">Genre:</h4>
-            <genre-input ng-model="movieAddFormCtrl.movie.genre"></genre-input>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="countryAddRow in movieAddFormCtrl.movie.countries">
+        <div class="col-xs-11">
+            <country-input ng-model="countryAddRow"></country-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieAddFormCtrl.removeCountry($index)"
+                    ng-disabled="movieAddFormCtrl.movie.countries.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieAddFormCtrl.addCountry()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Genres:</h4>
+
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="genreAddRow in movieAddFormCtrl.movie.genres">
+        <div class="col-xs-11">
+            <genre-input ng-model="genreAddRow"></genre-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieAddFormCtrl.removeGenre($index)"
+                    ng-disabled="movieAddFormCtrl.movie.genres.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieAddFormCtrl.addGenre()"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
 

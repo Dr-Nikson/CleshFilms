@@ -94,6 +94,8 @@
 
             self.initMovie = function () {
                 self.movie = new Movie();
+                self.movie.countries = [{}];
+                self.movie.genres = [{}];
                 self.movie.crew = [{}];
                 self.movie.awards = [{}];
             };
@@ -196,12 +198,29 @@
                 },0,false);
             };
 
+
+            self.addCountry = function () {
+                self.movie.countries.push({  });
+            };
+
+            self.addGenre = function () {
+                self.movie.genres.push({  });
+            };
+
             self.removeStaffMember = function (index) {
               self.movie.crew.splice(index,1);
             };
 
             self.removeAward = function (index) {
               self.movie.awards.splice(index,1);
+            };
+
+            self.removeCountry = function (index) {
+              self.movie.countries.splice(index,1);
+            };
+
+            self.removeGenre = function (index) {
+              self.movie.genres.splice(index,1);
             };
 
             /*self.broadcastDataLoaded = function () {
