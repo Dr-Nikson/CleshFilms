@@ -174,6 +174,22 @@
             resolve: { loadConf: loadEnvironmentConfig }
         });
 
+        $routeProvider.when('/rightholders', {
+            templateUrl: 'partials/rightholders.html',
+            controller: 'RightholdersPageCtrl',
+            controllerAs: 'rightholdersPageCtrl',
+            activeTab: 'rightholders',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
+        $routeProvider.when('/rightholders/add', {
+            templateUrl: 'partials/rightholders-add.html',
+            /*controller: 'ProfessionsPageCtrl',
+            controllerAs: 'professionsPageCtrl',*/
+            activeTab: 'rightholders',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
         $routeProvider.when('/staff', {
             templateUrl: 'partials/staff.html',
             controller: 'StuffPageCtrl',

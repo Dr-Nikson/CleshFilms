@@ -1,0 +1,65 @@
+<form name="addRightholderForm" class="ang-form"  ng-controller="RightholderAddFormCtrl as rightholderAddFormCtrl"
+      ng-submit="rightholderAddFormCtrl.submitForm()" novalidate>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <a href="#/rightholders" class="btn btn-block btn-lg btn-default">Back to rightholders</a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-block btn-lg btn-success" ng-disabled="addRightholderForm.$invalid"
+                    ng-class="{disabled:addRightholderForm.$invalid}">
+                Add rightholder
+            </button>
+        </div>
+    </div>
+
+    <div class="row double-top-margin" ng-show="rightholderAddFormCtrl.isSuccessMsgVisible">
+        <div class="col-xs-12">
+            <blockquote>
+                <p>New country successfully added</p>
+            </blockquote>
+        </div>
+    </div>
+
+    <!-- <div>Form is {{addProfessionForm.$valid}}</div>
+    <div>Form dirty is {{addProfessionForm.$dirty}}</div> -->
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Contract:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addRightholderForm.rightholderContract.$valid,
+                'has-error': addRightholderForm.rightholderContract.$invalid && addRightholderForm.rightholderContract.$dirty}">
+
+                <textarea name="rightholderContract" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="rightholderAddFormCtrl.rightholder.contract"
+                       ng-minlength="3" required></textarea>
+                <span class="input-icon fui-check-inverted" ng-show="addRightholderForm.rightholderContract.$valid"></span>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Main:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addRightholderForm.rightholderMain.$valid,
+                'has-error': addRightholderForm.rightholderMain.$invalid && addRightholderForm.rightholderMain.$dirty}">
+
+                <textarea name="rightholderMain" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="rightholderAddFormCtrl.rightholder.main"
+                       ng-minlength="3" required></textarea>
+                <span class="input-icon fui-check-inverted" ng-show="addRightholderForm.rightholderMain.$valid"></span>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+</form>

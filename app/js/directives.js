@@ -214,6 +214,17 @@
         };
     });
 
+    app.directive('rightholderInput', function () {
+        return {
+            scope: { selected:'=ngModel' },
+            restrict: 'E',
+            replace: true,
+            templateUrl: './partials/widgets/rightholder-input.html',
+            controller: 'RightholderInputCtrl',
+            controllerAs: 'rightholderInputCtrl'
+        };
+    });
+
     app.directive('genreInput', function () {
         return {
             scope: { selected:'=ngModel' },

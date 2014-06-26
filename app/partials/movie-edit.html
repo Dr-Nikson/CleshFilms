@@ -488,13 +488,60 @@
     <hr/>
 
     <div class="row my-row-standard">
-        <div class="col-xs-6">
-            <h4 class="demo-panel-title">Country:</h4>
-            <country-input ng-model="movieEditFormCtrl.movie.country"></country-input>
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Countries:</h4>
+
         </div>
-        <div class="col-xs-6">
-            <h4 class="demo-panel-title">Genre:</h4>
-            <genre-input ng-model="movieEditFormCtrl.movie.genre"></genre-input>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="countryAddRow in movieEditFormCtrl.movie.countries">
+        <div class="col-xs-11">
+            <country-input ng-model="countryAddRow"></country-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieEditFormCtrl.removeCountry($index)"
+                    ng-disabled="movieEditFormCtrl.movie.countries.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieEditFormCtrl.addCountry()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Genres:</h4>
+
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="genreAddRow in movieEditFormCtrl.movie.genres">
+        <div class="col-xs-11">
+            <genre-input ng-model="genreAddRow"></genre-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="movieEditFormCtrl.removeGenre($index)"
+                    ng-disabled="movieEditFormCtrl.movie.genres.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="movieEditFormCtrl.addGenre()"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
 
@@ -537,6 +584,19 @@
                 <input type="text" name="movieTags" placeholder="Enter here"
                        class="my-form-control tagsinput" ng-model="movieEditFormCtrl.movie.tags" required>
             </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Category:</h4>
+            <category-input ng-model="movieEditFormCtrl.movie.category.id"></category-input>
+        </div>
+        <div class="form-group hidden">
+            <input type="text" value="" name="movieCategoryId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                   ng-model="movieEditFormCtrl.movie.category.id" required hidden>
         </div>
     </div>
 

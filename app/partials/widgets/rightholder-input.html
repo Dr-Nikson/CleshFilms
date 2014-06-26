@@ -1,0 +1,7 @@
+<div class="form-group">
+    <select name="rightholder" class="combobox form-control" ng-model="selected.id" my-combobox required>
+        <option value="" ng-selected="!selected.id">Select a rightholder</option>
+        <option ng-repeat="rightholder in rightholders" value="{{rightholder.id}}"
+                ng-selected="selected.id == rightholder.id">{{rightholder.contract}} {{rightholder.main}}</option>
+    </select>
+</div>

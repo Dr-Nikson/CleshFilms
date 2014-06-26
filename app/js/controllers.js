@@ -421,12 +421,29 @@
                 },0,false);
             };
 
+            self.addCountry = function () {
+                self.movie.countries.push({  });
+            };
+
+            self.addGenre = function () {
+                self.movie.genres.push({  });
+            };
+
             self.removeStaffMember = function (index) {
                 self.movie.crew.splice(index,1);
             };
 
             self.removeAward = function (index) {
                 self.movie.awards.splice(index,1);
+            };
+
+
+            self.removeCountry = function (index) {
+                self.movie.countries.splice(index,1);
+            };
+
+            self.removeGenre = function (index) {
+                self.movie.genres.splice(index,1);
             };
 
             self.getRowNum = function () {
@@ -964,6 +981,74 @@
         var self = this;
         self.$scope = $scope;
         self.$scope.countries = Country.query(function()
+        {
+            self.$scope.$broadcast('dataloaded');
+        });
+    }]);
+
+
+
+    app.controller('RightholdersPageCtrl', ['$scope', '$http', '$timeout', 'Rightholder', function($scope,$http,$timeout,Rightholder) {
+        var self = this;
+        self.rightholders  = [];
+        // This is what you will bind the filter to
+        self.filterSearchQuery = '';
+        self.rightholders = Rightholder.query();
+
+
+        // Instantiate these variables outside the watch
+        var tmpFilterSearchQuery = '',filterSearchQueryTimeout;
+        $scope.$watch('searchQuery', function (val) {
+            if (filterSearchQueryTimeout)
+                $timeout.cancel(filterSearchQueryTimeout);
+
+            tmpFilterSearchQuery = val;
+
+            filterSearchQueryTimeout = $timeout(function() {
+                self.filterSearchQuery = tmpFilterSearchQuery;
+            }, 250); // delay 250 ms
+        });
+
+
+        self.remove = function (index) {
+            //console.log(self.professions[index]);
+            self.rightholders [index].$remove();
+            self.rightholders .splice(index,1);
+        };
+
+
+    }]);
+
+
+    app.controller('RightholderAddFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Rightholder',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Rightholder)
+        {
+
+            var self = this;
+
+            self.isSuccessMsgVisible = false;
+            self.rightholder = new Rightholder();
+
+            self.submitForm = function () {
+                self.rightholder.$save().then(self.showSuccessMsg);
+            };
+
+            self.showSuccessMsg = function (id) {
+                self.isSuccessMsgVisible = true;
+
+                $timeout(function () {
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
+            //self.refreshImagesList();
+        }]);
+
+
+    app.controller('RightholderInputCtrl', ['$scope', '$http', '$routeParams', 'Rightholder', function ($scope, $http, $routeParams, Rightholder) {
+        var self = this;
+        self.$scope = $scope;
+        self.$scope.rightholders = Rightholder.query(function()
         {
             self.$scope.$broadcast('dataloaded');
         });

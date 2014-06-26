@@ -131,14 +131,23 @@
         "url": "http://hdwallpapersly.com/wp-content/uploads/2014/01/megan-fox-armani-wallpaper-high-resolution.jpg",
         "thumbUrl": "http://hdwallpapersly.com/wp-content/uploads/2014/01/megan-fox-armani-wallpaper-high-resolution.jpg"
     },
-    "country":
+    "countries":
+    [
+        {
+            "id" : 1,
+            "name" : "Russian Federation"
+        }
+    ],
+    "genres":
+    [
+        {
+            "id" : 1,
+            "name" : "Comedy"
+        }
+    ],
+    "category":
     {
-        "id" : 1,
-        "name" : "Russian Federation"
-    },
-    "genre":
-    {
-        "id" : 1,
-        "name" : "Comedy"
+        "id" : "1",
+        "name" : "Category 1"
     }
 }

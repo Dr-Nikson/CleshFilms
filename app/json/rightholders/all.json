@@ -1,0 +1,47 @@
+[
+    {
+        "id" : 1,
+        "contract" : "Russian Federation",
+        "main": "blah blah blah"
+    },
+    {
+        "id" : 2,
+        "contract" : "China",
+        "main": "blah blah blah"
+    },
+    {
+        "id" : 3,
+        "contract" : "Germany",
+        "main": "blah blah blah"
+    },
+    {
+        "id" : 4,
+        "contract" : "Canada",
+        "main": "blah blah blah"
+    },
+    {
+        "id" : 5,
+        "contract" : "France",
+        "main": "blah blah blah"
+    },
+    {
+        "id" : 6,
+        "contract" : "Great Britain",
+        "main": "blah blah blah"
+    },
+    {
+        "id" : 7,
+        "contract" : "Spain",
+        "main": "blah blah blah"
+    },
+    {
+        "id" : 8,
+        "contract" : "Brazil",
+        "main": "blah blah blah"
+    },
+    {
+        "id" : 9,
+        "contract" : "Cuba",
+        "main": "blah blah blah"
+    }
+]

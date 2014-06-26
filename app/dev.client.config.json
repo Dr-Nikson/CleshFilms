@@ -40,6 +40,12 @@
         "SAVE_URL": "./json/countries/add.json",
         "SAVE_METHOD": "GET"
     },
+    "RIGHTHOLDER":
+    {
+        "GET_URL": "./json/rightholders/:id.json",
+        "SAVE_URL": "./json/rightholders/add.json",
+        "SAVE_METHOD": "POST"
+    },
     "CATEGORY":
     {
         "GET_URL": "./json/categories/:id.json",
