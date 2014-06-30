@@ -1,4 +1,5 @@
 {
     "id" : 1,
-    "name" : "Russian Federation"
+    "contract" : "Russian Federation",
+    "main": "blah blah blah"
 }

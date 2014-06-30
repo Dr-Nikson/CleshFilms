@@ -149,5 +149,11 @@
     {
         "id" : "1",
         "name" : "Category 1"
+    },
+    "rightholder":
+    {
+        "id" : 1,
+        "contract" : "Russian Federation",
+        "main": "blah blah blah"
     }
 }
