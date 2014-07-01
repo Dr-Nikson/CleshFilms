@@ -1316,9 +1316,30 @@
         //console.log("HERE");
         self.$scope.treeData = [];
 
+        if(!self.$scope.selected)
+            self.$scope.selected = [];
+
         self.$scope.chooseCategory = function (cat) {
             console.log("Cat chosen id="+cat.id);
-            self.$scope.selected = cat.id;
+            //self.$scope.selected = cat.id;
+            self.$scope.active = cat;
+        };
+
+        self.$scope.addChosenCategory = function () {
+            var flag = false;
+            angular.forEach(self.$scope.selected, function (value, key) {
+                flag = flag || (value.id == self.$scope.active.id);
+            });
+
+            if(flag)
+                return;
+
+            self.$scope.selected.push(Category.get({"id":self.$scope.active.id}));
+        };
+
+        self.$scope.removeChosenCategory = function (index) {
+
+            self.$scope.selected.splice(index,1);
         };
 
         var addChildren = function (children) {

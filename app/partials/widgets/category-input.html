@@ -1,1 +1,31 @@
-<abn-tree tree-data="treeData" on-select="chooseCategory(branch)"></abn-tree>
+<div class="row my-row-standard" ng-repeat="category in selected">
+    <div class="col-xs-11">
+        <b>{{category.name}}</b>
+    </div>
+    <div class="col-xs-1">
+        <button type="button"
+                class="btn btn-block btn-lg btn-danger"
+                ng-click="removeChosenCategory($index)">
+                <span class="glyphicon glyphicon-remove"></span>
+                </button>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row my-row-standard">
+    <div class="col-xs-6">
+        <abn-tree tree-data="treeData" on-select="chooseCategory(branch)"></abn-tree>
+    </div>
+
+    <div class="col-xs-4">
+        <h6>{{active.label}}</h6>
+    </div>
+
+    <div class="col-xs-2">
+        <button type="button"
+                class="btn btn-block btn-lg btn-primary"
+                ng-click="addChosenCategory()"
+                ng-show="active.id"><span class="glyphicon glyphicon-plus"></span></button>
+    </div>
+</div>
