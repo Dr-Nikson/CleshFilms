@@ -331,7 +331,9 @@
             };
 
             self.initMovie = function () {
-                self.movie = new Movie.get({"id":$routeParams.movieId});
+                self.movie = new Movie.get({"id":$routeParams.movieId}, function (data) {
+                    oldMovieYear = data.year;
+                });
                 //self.movie.crew = [{}];
                 //self.movie.awards = [{}];
             };
@@ -339,7 +341,7 @@
             self.initMovie();
 
             var oldMovieYear = undefined;
-            $scope.$watch('movieAddFormCtrl.movie.year', function (nv) {
+            $scope.$watch('movieEditFormCtrl.movie.year', function (nv) {
 
                 if(nv == oldMovieYear)
                     return;
@@ -350,7 +352,7 @@
             });
 
             var oldMovieWorldPremiere = undefined;
-            $scope.$watch('movieAddFormCtrl.movie.worldPremiere', function (nv) {
+            $scope.$watch('movieEditFormCtrl.movie.worldPremiere', function (nv) {
 
                 if(nv == oldMovieWorldPremiere)
                     return;
@@ -361,7 +363,7 @@
             });
 
             var oldMovieRussiaPremiere = undefined;
-            $scope.$watch('movieAddFormCtrl.movie.russiaPremiere', function (nv) {
+            $scope.$watch('movieEditFormCtrl.movie.russiaPremiere', function (nv) {
 
                 if(nv == oldMovieRussiaPremiere)
                     return;
@@ -372,7 +374,7 @@
             });
 
             var oldMovieRussiaRelease = undefined;
-            $scope.$watch('movieAddFormCtrl.movie.russiaRelease', function (nv) {
+            $scope.$watch('movieEditFormCtrl.movie.russiaRelease', function (nv) {
 
                 if(nv == oldMovieRussiaRelease)
                     return;
@@ -383,7 +385,7 @@
             });
 
             var oldMovieRussiaBlueRayRelease = undefined;
-            $scope.$watch('movieAddFormCtrl.movie.russiaBlueRayRelease', function (nv) {
+            $scope.$watch('movieEditFormCtrl.movie.russiaBlueRayRelease', function (nv) {
 
                 if(nv == oldMovieRussiaBlueRayRelease)
                     return;
@@ -1132,6 +1134,84 @@
 
             self.submitForm = function () {
                 self.staff.$save().then(function () {
+                    self.showImageContainer = true;
+                    self.initStaff();
+                    self.showSuccessMsg();
+                });
+            };
+
+            self.showSuccessMsg = function (id) {
+                self.isSuccessMsgVisible = true;
+
+                $timeout(function () {
+                    self.isSuccessMsgVisible = false;
+                },3000);
+            };
+
+            self.chooseImg = function () {
+                self.showImageContainer = false;
+                $scope.addStaffForm.$setDirty();
+                //$scope.addAwardForm.awardImageId.$setValid();
+            };
+
+            self.addStaffProfession = function () {
+                self.staff.professions.push({ });
+            };
+
+            self.addStaffProfession = function () {
+                self.staff.professions.push({ });
+            };
+
+            self.addAward = function () {
+                self.staff.awards.push({  });
+            };
+
+            self.removeAward = function (index) {
+                self.staff.awards.splice(index,1);
+            };
+
+            self.removeStaffProfession = function (index) {
+                self.staff.professions.splice(index,1);
+            };
+
+            //self.refreshImagesList();
+        }]);
+
+
+    app.controller('StaffEditFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter', 'Staff',
+        function ($scope, $http, $routeParams, $location, $timeout, $filter, Staff)
+        {
+
+            var self = this;
+
+            self.isSuccessMsgVisible = false;
+            self.showImageContainer = true;
+
+
+            self.staff = new Staff.get({'id':$routeParams.id});
+
+
+            /*self.initStaff = function () {
+                self.staff = new Staff();
+                self.staff.professions = [{}];
+                self.staff.awards = [{}];
+            };
+
+            self.initStaff();*/
+
+            var oldYear = undefined;
+            $scope.$watch('staffEditFormCtrl.staff.birthDate', function (nv) {
+
+                if(nv == oldYear)
+                    return;
+
+                nv = $filter('date')(nv,'dd-MM-yyyy');
+                self.staff.birthDate = nv;
+                oldYear = nv;
+            });
+
+            self.submitForm = function () {
+                self.staff.$update().then(function () {
                     self.showImageContainer = true;
                     self.initStaff();
                     self.showSuccessMsg();

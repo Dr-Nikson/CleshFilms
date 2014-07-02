@@ -34,6 +34,9 @@
         <td >{{employee.birthDate}}</td>
         <td >{{employee.birthPlace}}</td>
         <td >
+            <a href="#/staff/edit/{{employee.id}}" class="btn btn-primary btn-large btn-block">
+                Edit
+            </a>
             <button class="btn btn-danger btn-large btn-block" ng-click="stuffPageCtrl.removeProfession($index)">
                 Remove
             </button>

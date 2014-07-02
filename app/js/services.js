@@ -33,7 +33,8 @@
         var CONFIG = ENV.CONFIG.STAFF;
         return $resource(CONFIG.GET_URL, { id: '@id' }, {
             query: {method:'GET', params:{ id: 'all'}, isArray:true},
-            save: {method: CONFIG.SAVE_METHOD, url: CONFIG.SAVE_URL}
+            save: {method: CONFIG.SAVE_METHOD, url: CONFIG.SAVE_URL},
+            update: {method: "POST"}
         });
     }]);
 

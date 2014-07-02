@@ -1,0 +1,199 @@
+<form name="addStaffForm" class="ang-form"  ng-controller="StaffEditFormCtrl as staffEditFormCtrl"
+      ng-submit="staffEditFormCtrl.submitForm()" novalidate>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-3">
+            <a href="#/staff" class="btn btn-block btn-lg btn-default">Back to staff</a>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-block btn-lg btn-success">
+                Save changes
+            </button>
+        </div>
+    </div>
+
+    <div class="row double-top-margin" ng-show="staffEditFormCtrl.isSuccessMsgVisible">
+        <div class="col-xs-12">
+            <blockquote>
+                <p>Staff successfully changed</p>
+            </blockquote>
+        </div>
+    </div>
+
+    <!--<div>Form is {{addStaffForm.$valid}}</div>
+    <div>Form dirty is {{addStaffForm.$dirty}}</div>-->
+
+    <div class="row my-row-standard">
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">First Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addStaffForm.staffFirstName.$valid,
+                'has-error': addStaffForm.staffFirstName.$invalid && addStaffForm.staffFirstName.$dirty}">
+
+                <input type="text" value="" name="staffFirstName" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="staffEditFormCtrl.staff.firstName"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addStaffForm.staffFirstName.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="demo-panel-title">Last Name:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addStaffForm.staffLastName.$valid,
+                'has-error': addStaffForm.staffLastName.$invalid && addStaffForm.staffLastName.$dirty}">
+
+                <input type="text" value="" name="staffLastName" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="staffEditFormCtrl.staff.lastName"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addStaffForm.staffLastName.$valid"></span>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-8">
+            <h4 class="demo-panel-title">Birth place:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addStaffForm.staffBirthPlace.$valid,
+                'has-error': addStaffForm.staffBirthPlace.$invalid && addStaffForm.staffBirthPlace.$dirty}">
+
+                <input type="text" value="" name="staffBirthPlace" placeholder="Enter country name"
+                       class="form-control my-form-control" ng-model="staffEditFormCtrl.staff.birthPlace"
+                       ng-minlength="3" required>
+                <span class="input-icon fui-check-inverted" ng-show="addStaffForm.staffBirthPlace.$valid"></span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="demo-panel-title">Birth date:</h4>
+
+            <div class="form-group" ng-class="{
+                'has-success': addStaffForm.birthYear.$valid,
+                'has-error': addStaffForm.birthYear.$invalid && addStaffForm.birthYear.$dirty}">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="staffBirthYearDropdown" role="button" data-toggle="dropdown" data-target="#" href>
+                        <div class="input-group">
+                            <input type="text"
+                                   name="birthYear"
+                                   class="form-control  my-form-control"
+                                   data-ng-model="staffEditFormCtrl.staff.birthDate"
+                                   required>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="staffEditFormCtrl.staff.birthDate"
+                                        data-datetimepicker-config="{ dropdownSelector: '#staffBirthYearDropdown', startView:'year', minView:'day' }"
+                                        ng-required="true" />
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-11">
+            <h4 class="demo-panel-title">Photo: <!--[{{addStaffForm.staffImageId.$valid}}] = {{staffEditFormCtrl.award.image.id}}
+                | Show imgc [{{staffEditFormCtrl.showImageContainer}}]--></h4>
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-info edit-movie-inline-btn-big"
+                    expanded="staffEditFormCtrl.showImageContainer" slide-toggle="#imagesContainer">
+                <span class="glyphicon glyphicon-chevron-up" ng-class="{
+                    'glyphicon-chevron-up' : staffEditFormCtrl.showImageContainer,
+                    'glyphicon-chevron-down' : !staffEditFormCtrl.showImageContainer,
+                }"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-show="addStaffForm.staffImageId.$valid">
+        <div class="col-xs-3">
+            <img src ng-src="{{staffEditFormCtrl.staff.image.thumbUrl}}" alt="Choosen img" class="img-rounded img-responsive"/>
+        </div>
+        <div class="form-group hidden">
+            <input type="text" value="" name="staffImageId" placeholder="Enter thumbnail url" class="form-control my-form-control" title="dasda"
+                   ng-model="staffEditFormCtrl.staff.image.id" required hidden>
+        </div>
+        <div class="col-xs-3">
+        </div>
+    </div>
+
+    <image-input id="imagesContainer" class="d-slidable" ng-model="staffEditFormCtrl.staff.image" d-chosen-fun="staffEditFormCtrl.chooseImg()"></image-input>
+
+    <hr/>
+
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Career:</h4>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="employeAddRow in staffEditFormCtrl.staff.professions">
+        <div class="col-xs-11">
+            <profession-input ng-model="employeAddRow"></profession-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="staffEditFormCtrl.removeStaffProfession($index)"
+                    ng-disabled="staffEditFormCtrl.staff.professions.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="staffEditFormCtrl.addStaffProfession()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-12">
+            <h4 class="demo-panel-title">Awards:</h4>
+        </div>
+    </div>
+
+    <div class="row my-row-standard" ng-repeat="awardAddRow in staffEditFormCtrl.staff.awards">
+        <div class="col-xs-11">
+            <award-input ng-model="awardAddRow"></award-input>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-danger" ng-click="staffEditFormCtrl.removeAward($index)"
+                    ng-disabled="staffEditFormCtrl.staf.awards.length < 2">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row my-row-standard">
+        <div class="col-xs-11">
+
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-block btn-lg btn-primary" ng-click="staffEditFormCtrl.addAward()"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <my-goup-btn></my-goup-btn>
+
+
+</form>

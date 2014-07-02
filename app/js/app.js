@@ -206,6 +206,14 @@
             resolve: { loadConf: loadEnvironmentConfig }
         });
 
+        $routeProvider.when('/staff/edit/:id', {
+            templateUrl: 'partials/staff-edit.html',
+            /*controller: 'StuffPageCtrl',
+             controllerAs: 'stuffPageCtrl',*/
+            activeTab: 'staff',
+            resolve: { loadConf: loadEnvironmentConfig }
+        });
+
         $routeProvider.when('/view2', {
             templateUrl: 'partials/partial2.html',
             controller: 'MyCtrl2',
