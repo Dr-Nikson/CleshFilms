@@ -22,7 +22,7 @@
             <h3 class="tile-title">{{movie.name | characters:21:true}}</h3>
             <!-- <p>100% convertable to HTML/CSS layout.</p> -->
             <a class="btn btn-info btn-large btn-block" href="#/movies/edit/{{movie.id}}">Изменить</a>
-            <button class="btn btn-danger btn-large btn-block" ng-click="moviePageCtrl.removeMovie(moviePageCtrl.calculateIndex($index,$parent.$index))">
+            <button class="btn btn-danger btn-large btn-block" ng-click="moviePageCtrl.showAModal(moviePageCtrl.calculateIndex($index,$parent.$index))">
                 Удалить
             </button>
         </div>

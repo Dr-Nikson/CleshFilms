@@ -14,7 +14,8 @@
         'ui.bootstrap.datetimepicker',
         'bootstrap-tagsinput',
         'angularBootstrapNavTree',
-        'ngAnimate'
+        'ngAnimate',
+        'angularModalService'
     ]);
 
     app.value('ENV',{});

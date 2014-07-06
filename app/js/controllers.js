@@ -24,11 +24,13 @@
 
     }]);
 
-    app.controller('MoviePageCtrl', ['$scope', '$http', '$timeout', 'Movie', function($scope,$http,$timeout,Movie) {
+    app.controller('MoviePageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Movie', function($scope,$http,$timeout,ModalService,Movie) {
         var self = this;
         self.movies = Movie.query();
         // This is what you will bind the filter to
         self.filterSearchQuery = '';
+
+        //self.modalIsShown = false;
 
 
         // Instantiate these variables outside the watch
@@ -56,8 +58,36 @@
             //$scope.movies.splice(index,1);
             //$scope.movies.push({ name: 'new', thumbUrl: 'lool'});
             //console.log(self.movies[index].name);
+
+
             self.movies[index].$delete();
             self.movies.splice(index,1);
+        };
+
+        self.showAModal = function(index) {
+
+            /*if(self.modalIsShown)
+                return;
+
+            self.modalIsShown = true;*/
+
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "partials/widgets/confirm-modal.html",
+                controller: "YesNoController"
+            }).then(function(modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    //self.modalIsShown = false;
+                    if(result)
+                        self.removeMovie(index);
+
+                });
+            });
+
         };
 
 
@@ -1479,6 +1509,14 @@
                 processCategoriesData(nv);
             });
         }
+
+    }]);
+
+    app.controller('YesNoController', ['$scope', 'close', function($scope, close) {
+
+        $scope.close = function(result) {
+            close(result, 500); // close, but give 500ms for bootstrap to animate
+        };
 
     }]);
 
