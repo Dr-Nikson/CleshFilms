@@ -21,12 +21,12 @@
     <tbody>
     <tr>
         <td>
-            <category-input ng-model="selectedCategoryId" categories-data="categories"></category-input>
+            <category-single-input ng-model="selectedCategoryId" categories-data="categories"></category-single-input>
         </td>
         <td>{{selectedCategory.id}}</td>
         <td>{{selectedCategory.name}}</td>
         <td>
-            <button class="btn btn-danger btn-large btn-block" ng-click="remove()" ng-show="selectedCategory.id">
+            <button class="btn btn-danger btn-large btn-block" ng-click="showAModal()" ng-show="selectedCategory.id">
                 Remove
             </button>
         </td>

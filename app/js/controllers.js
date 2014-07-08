@@ -713,7 +713,7 @@
     }]);
 
 
-    app.controller('ProfessionsPageCtrl', ['$scope', '$http', '$timeout', 'Profession', function($scope,$http,$timeout,Profession) {
+    app.controller('ProfessionsPageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Profession', function($scope,$http,$timeout,ModalService,Profession) {
         var self = this;
         self.professions = [];
         // This is what you will bind the filter to
@@ -741,6 +741,32 @@
             //console.log(self.professions[index]);
             self.professions[index].$remove();
             self.professions.splice(index,1);
+        };
+
+        self.showAModal = function(index) {
+
+            /*if(self.modalIsShown)
+             return;
+
+             self.modalIsShown = true;*/
+
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "partials/widgets/confirm-modal.html",
+                controller: "YesNoController"
+            }).then(function(modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    //self.modalIsShown = false;
+                    if(result)
+                        self.removeProfession(index);
+
+                });
+            });
+
         };
 
 
@@ -796,7 +822,7 @@
     }]);
 
 
-    app.controller('AwardsPageCtrl', ['$scope', '$http', '$timeout', 'Award', function($scope,$http,$timeout,Award) {
+    app.controller('AwardsPageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Award', function($scope,$http,$timeout,ModalService,Award) {
         var self = this;
         self.awards = [];
         // This is what you will bind the filter to
@@ -824,6 +850,31 @@
             self.awards.splice(index,1);
         };
 
+        self.showAModal = function(index) {
+
+            /*if(self.modalIsShown)
+             return;
+
+             self.modalIsShown = true;*/
+
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "partials/widgets/confirm-modal.html",
+                controller: "YesNoController"
+            }).then(function(modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    //self.modalIsShown = false;
+                    if(result)
+                        self.remove(index);
+
+                });
+            });
+
+        };
 
     }]);
 
@@ -885,7 +936,7 @@
 
 
 
-    app.controller('GenresPageCtrl', ['$scope', '$http', '$timeout', 'Genre', function($scope,$http,$timeout,Genre) {
+    app.controller('GenresPageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Genre', function($scope,$http,$timeout,ModalService,Genre) {
         var self = this;
         self.genres = [];
         // This is what you will bind the filter to
@@ -911,6 +962,32 @@
             //console.log(self.professions[index]);
             self.genres[index].$remove();
             self.genres.splice(index,1);
+        };
+
+        self.showAModal = function(index) {
+
+            /*if(self.modalIsShown)
+             return;
+
+             self.modalIsShown = true;*/
+
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "partials/widgets/confirm-modal.html",
+                controller: "YesNoController"
+            }).then(function(modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    //self.modalIsShown = false;
+                    if(result)
+                        self.remove(index);
+
+                });
+            });
+
         };
 
 
@@ -952,7 +1029,7 @@
     }]);
 
 
-    app.controller('CountriesPageCtrl', ['$scope', '$http', '$timeout', 'Country', function($scope,$http,$timeout,Country) {
+    app.controller('CountriesPageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Country', function($scope,$http,$timeout,ModalService,Country) {
         var self = this;
         self.countries = [];
         // This is what you will bind the filter to
@@ -978,6 +1055,32 @@
             //console.log(self.professions[index]);
             self.countries[index].$remove();
             self.countries.splice(index,1);
+        };
+
+        self.showAModal = function(index) {
+
+            /*if(self.modalIsShown)
+             return;
+
+             self.modalIsShown = true;*/
+
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "partials/widgets/confirm-modal.html",
+                controller: "YesNoController"
+            }).then(function(modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    //self.modalIsShown = false;
+                    if(result)
+                        self.remove(index);
+
+                });
+            });
+
         };
 
 
@@ -1020,7 +1123,7 @@
 
 
 
-    app.controller('RightholdersPageCtrl', ['$scope', '$http', '$timeout', 'Rightholder', function($scope,$http,$timeout,Rightholder) {
+    app.controller('RightholdersPageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Rightholder', function($scope,$http,$timeout,ModalService,Rightholder) {
         var self = this;
         self.rightholders  = [];
         // This is what you will bind the filter to
@@ -1046,6 +1149,32 @@
             //console.log(self.professions[index]);
             self.rightholders [index].$remove();
             self.rightholders .splice(index,1);
+        };
+
+        self.showAModal = function(index) {
+
+            /*if(self.modalIsShown)
+             return;
+
+             self.modalIsShown = true;*/
+
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "partials/widgets/confirm-modal.html",
+                controller: "YesNoController"
+            }).then(function(modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    //self.modalIsShown = false;
+                    if(result)
+                        self.remove(index);
+
+                });
+            });
+
         };
 
 
@@ -1087,7 +1216,7 @@
     }]);
 
 
-    app.controller('StuffPageCtrl', ['$scope', '$http', '$timeout', 'Staff',function($scope,$http,$timeout,Staff) {
+    app.controller('StuffPageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Staff',function($scope,$http,$timeout,ModalService,Staff) {
         var self = this;
         self.stuff = [];
         // This is what you will bind the filter to
@@ -1126,6 +1255,32 @@
             //console.log(self.movies[index].name);
             self.stuff[index].$remove();
             self.stuff.splice(index,1);
+
+        };
+
+        self.showAModal = function(index) {
+
+            /*if(self.modalIsShown)
+             return;
+
+             self.modalIsShown = true;*/
+
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "partials/widgets/confirm-modal.html",
+                controller: "YesNoController"
+            }).then(function(modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    //self.modalIsShown = false;
+                    if(result)
+                        self.removeProfession(index);
+
+                });
+            });
 
         };
 
@@ -1296,7 +1451,7 @@
     }]);
 
 
-    app.controller('CategoriesPageCtrl', ['$scope', '$http', '$timeout', 'Category', function($scope,$http,$timeout,Category) {
+    app.controller('CategoriesPageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Category', function($scope,$http,$timeout,ModalService,Category) {
         var self = this;
         self.$scope = $scope;
         self.$scope.selectedCategoryId = null;
@@ -1376,6 +1531,32 @@
                     ]
                 }
             ];*/
+
+        };
+
+        self.$scope.showAModal = function(index) {
+
+            /*if(self.modalIsShown)
+             return;
+
+             self.modalIsShown = true;*/
+
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "partials/widgets/confirm-modal.html",
+                controller: "YesNoController"
+            }).then(function(modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function(result) {
+                    //self.modalIsShown = false;
+                    if(result)
+                        self.$scope.remove(index);
+
+                });
+            });
 
         };
 
@@ -1506,6 +1687,77 @@
             self.$scope.$watch(function () {
                 return self.$scope.categoriesData;
             }, function (nv) {
+                processCategoriesData(nv);
+            });
+        }
+
+    }]);
+
+
+    app.controller('CategorySingleInputCtrl', ['$scope', '$http', '$routeParams', '$timeout', 'Category', function ($scope, $http, $routeParams, $timeout, Category) {
+        var self = this;
+        self.$scope = $scope;
+
+        //console.log("HERE");
+        self.$scope.treeData = [];
+
+        self.$scope.chooseCategory = function (cat) {
+            console.log("Cat chosen id="+cat.id);
+            self.$scope.selected = cat.id;
+        };
+
+        var addChildren = function (children) {
+            var ret = [];
+
+            angular.forEach(children, function (value, key) {
+                var cat = {
+                    id: value.id,
+                    label: value.name,
+                    //onSelect: chooseCategory,
+                    children: []
+                };
+
+                if(value.children.length)
+                    cat.children = addChildren(value.children);
+
+                ret.push(cat);
+            });
+
+            return ret;
+        };
+
+        var processCategoriesData = function (categoriesData) {
+
+            if(categoriesData.$promise === undefined || categoriesData.$resolved === true)
+            {
+                // it's not a promise or promise resolved
+                self.$scope.treeData = addChildren(categoriesData);
+                //console.log("Tree data =",self.$scope.treeData);
+                return;
+            }
+
+            // else - let's wait for promise
+            categoriesData.$promise.then(function (data) {
+                self.$scope.treeData = addChildren(data);
+                //console.log("Tree data =",self.$scope.treeData);
+            });
+        };
+
+        if(!self.$scope.categoriesData)
+        {
+            //console.log("Data bad",self.$scope.categoriesData);
+            Category.query(function (data) {
+                console.log(data);
+                //console.log("Categories tree data:",trData);
+                self.$scope.treeData = addChildren(data);
+                //console.log("Tree data =",self.$scope.treeData);
+            });
+        }
+        else
+        {
+            //console.log("Data ok",self.$scope.categoriesData);
+            processCategoriesData(self.$scope.categoriesData);
+            self.$scope.$watch('categoriesData', function (nv) {
                 processCategoriesData(nv);
             });
         }

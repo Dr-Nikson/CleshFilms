@@ -257,6 +257,17 @@
         };
     });
 
+    app.directive('categorySingleInput', function () {
+        return {
+            scope: { selected:'=ngModel', categoriesData:'=' },
+            restrict: 'E',
+            templateUrl: './partials/widgets/category-single-input.html',
+            controller: 'CategorySingleInputCtrl',
+            controllerAs: 'categorySingleInputCtrl'
+        };
+    });
+
+
 
     /*app.directive('slideable', function () {
         return {
