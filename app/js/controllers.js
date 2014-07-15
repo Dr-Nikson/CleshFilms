@@ -24,13 +24,35 @@
 
     }]);
 
-    app.controller('MoviePageCtrl', ['$scope', '$http', '$timeout', 'ModalService', 'Movie', function($scope,$http,$timeout,ModalService,Movie) {
+    app.controller('MoviePageCtrl', ['$scope', '$http', '$timeout', '$route', '$filter', 'ModalService', 'Movie', function($scope,$http,$timeout,$route,$filter,ModalService,Movie) {
         var self = this;
-        self.movies = Movie.query();
+        self.movies = [];
         // This is what you will bind the filter to
-        self.filterSearchQuery = '';
+        //self.filterSearchQuery = '';
+
+        var pageSize = 4;
+        var currentPage = 0;
+
+        var allMovies = [];
+        var selectedMovies = [];
 
         //self.modalIsShown = false;
+
+        var addElementsToShow = function (elements,size,offset) {
+
+            for(var i = offset, j = 0; j != pageSize && i != elements.length && j != size; i++,j++)
+            {
+                self.movies.push(elements[i]);
+            }
+
+        };
+
+        var filterMovies = function (q) {
+            selectedMovies = $filter('filter')(allMovies,q);
+            self.movies = [];
+            currentPage = 0;
+            addElementsToShow(selectedMovies,pageSize,0);
+        };
 
 
         // Instantiate these variables outside the watch
@@ -42,9 +64,30 @@
             tmpFilterSearchQuery = val;
 
             filterSearchQueryTimeout = $timeout(function() {
-                self.filterSearchQuery = tmpFilterSearchQuery;
+                //self.filterSearchQuery = tmpFilterSearchQuery;
+                filterMovies(tmpFilterSearchQuery);
             }, 250); // delay 250 ms
         });
+
+        self.isMoreResults = function () {
+            var nextPage = currentPage + 1;
+            var maxPage = Math.ceil(selectedMovies.length / pageSize) - 1;
+
+            return nextPage <= maxPage;
+        };
+
+        self.showMore = function () {
+            var nextPage = currentPage + 1;
+            var maxPage = Math.ceil(selectedMovies.length / pageSize) - 1;
+
+            if( nextPage > maxPage)
+            {
+                return;
+            }
+
+            currentPage = nextPage;
+            addElementsToShow(selectedMovies,pageSize,pageSize*currentPage);
+        };
 
         self.getRowMoviesNum = function () {
             return 4;
@@ -89,6 +132,17 @@
             });
 
         };
+
+        self.copyMovie = function (index) {
+            self.movies[index].$copy();
+            console.log('copied');
+            //$location.path("home");
+            $route.reload();
+        };
+
+        allMovies = Movie.query(function (data) {
+            addElementsToShow(data,pageSize,0);
+        });
 
 
     }]);

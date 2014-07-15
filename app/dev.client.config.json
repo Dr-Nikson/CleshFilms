@@ -3,7 +3,9 @@
     {
         "GET_URL": "./json/movies/:id.json",
         "SAVE_URL": "./json/movies/add.json",
-        "SAVE_METHOD": "POST"
+        "SAVE_METHOD": "POST",
+        "COPY_URL": "./json/movies/copy/:id.json",
+        "COPY_METHOD": "POST"
     },
     "STAFF":
     {

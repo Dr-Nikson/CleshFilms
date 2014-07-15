@@ -14,6 +14,7 @@
         var resource = $resource(CONFIG.GET_URL, { id: '@id' }, {
             query: {method:'GET', params:{ id: 'all'}, isArray:true},
             save: {method: CONFIG.SAVE_METHOD, url: CONFIG.SAVE_URL},
+            copy: {method: CONFIG.COPY_METHOD, url: CONFIG.COPY_URL},
             update: {method: "POST"}
         });
 
