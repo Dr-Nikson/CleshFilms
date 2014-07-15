@@ -15,17 +15,31 @@
 </div>
 
 
-<div class="row my-row-standard" ng-repeat="row in moviePageCtrl.movies | filter:moviePageCtrl.filterSearchQuery | partition:moviePageCtrl.getRowMoviesNum() ">
+<div class="row my-row-standard" ng-repeat="row in moviePageCtrl.movies | partition:moviePageCtrl.getRowMoviesNum() ">
     <div class="col-xs-3" ng-repeat="movie in row">
         <div class="tile tile-movie">
             <img src="{{movie.image.thumbUrl}}" alt="{{movie.name}}" class="tile-image big-illustration">
             <h3 class="tile-title">{{movie.name | characters:21:true}}</h3>
             <!-- <p>100% convertable to HTML/CSS layout.</p> -->
             <a class="btn btn-info btn-large btn-block" href="#/movies/edit/{{movie.id}}">Изменить</a>
+            <button class="btn btn-info btn-large btn-block" ng-click="moviePageCtrl.copyMovie(moviePageCtrl.calculateIndex($index,$parent.$index))">
+                Копировать
+            </button>
             <button class="btn btn-danger btn-large btn-block" ng-click="moviePageCtrl.showAModal(moviePageCtrl.calculateIndex($index,$parent.$index))">
                 Удалить
             </button>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <button type="button" class="btn btn-block btn-lg btn-default"
+                ng-click="moviePageCtrl.showMore()"
+                ng-show="moviePageCtrl.isMoreResults()">
+            <!--<span class="glyphicon glyphicon-arrow-up"></span>-->
+            Show more
+        </button>
     </div>
 </div>
 
