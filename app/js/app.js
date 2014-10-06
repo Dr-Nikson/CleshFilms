@@ -33,7 +33,10 @@
         });
     };
 
-    app.config(['$routeProvider', function($routeProvider) {
+    app.config(['$routeProvider', '$locationProvider', function($routeProvider,$locationProvider) {
+
+        $locationProvider.hashPrefix('!');
+
         $routeProvider.when('/home', {
             templateUrl: 'partials/home.html',
             controller: 'HomePageCtrl',

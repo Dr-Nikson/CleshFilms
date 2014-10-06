@@ -400,8 +400,8 @@
     }]);
 
 
-    app.controller('MovieEditFormCtrl',['$scope', '$http', '$routeParams', '$location', '$timeout', '$filter','Movie',
-        function ($scope, $http, $routeParams, $location, $timeout, $filter, Movie)
+    app.controller('MovieEditFormCtrl',['$scope', '$http', '$routeParams', '$location', '$route', '$timeout', '$filter','Movie',
+        function ($scope, $http, $routeParams, $location, $route, $timeout, $filter, Movie)
         {
             var self = this;
 
@@ -413,6 +413,7 @@
             self.formattedDate = {
                 'movieYear' : null
             };
+            self.additionalCrew = [];
 
             self.initMovie = function () {
                 self.movie = new Movie.get({"id":$routeParams.movieId}, function (data) {
@@ -494,7 +495,7 @@
             });
 
             self.addStaffMember = function () {
-                self.movie.crew.push({ });
+                self.additionalCrew.push({ });
                 $timeout(function () {
                     //self.broadcastDataLoaded();
                 },0,false);
@@ -517,6 +518,10 @@
 
             self.removeStaffMember = function (index) {
                 self.movie.crew.splice(index,1);
+            };
+
+            self.removeAdditionalStaffMember = function (index) {
+                self.additionalCrew.splice(index,1);
             };
 
             self.removeAward = function (index) {
@@ -552,11 +557,13 @@
 
                 $timeout(function () {
                     self.isSuccessMsgVisible = false;
+                    $route.reload();
                 },3000);
             };
 
             self.submitForm = function () {
                 console.log("Form submit");
+                self.movie.crew = self.movie.crew.concat(self.additionalCrew);
                 self.movie.$update().then(function () {
                     //self.showScreenImageContainer = true;
                     //self.showMovieImageContainer = true;
